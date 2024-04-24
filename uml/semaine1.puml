@@ -1,0 +1,67 @@
+@startuml
+
+class Main
+{
+
+}
+
+class Ordinateur
+{
+
+}
+
+class Joueur
+{
+# m_pseudo : String
+# m_pioche : ArrayList<Pokemon>
+# m_main : ArrayList<Pokemon>
+# m_defausse : ArrayList<Pokemon>
+# m_terrain : ArrayList<Pokemon>
++ piocher():Void
++ placerPokemon():Void
+
+}
+
+
+class Pokemon
+{
+- m_nom : String
+- m_pv : Integer
+- m_attaque : Integer
+- m_element : Element
++ <<Create>> Pokemon ()
++ getNom() : String
++ Attaque()
+}
+
+class Plateau
+{
++ afficherPlateau(): Void
++afficherFinDuJeu(): Void
+}
+
+class Initialisation
+{
+- m_listeNoms : ArrayList<String>
+- m_index : Integer
++ getNom() : String
+}
+
+class Element
+{
+- m_avantage : String
+- m_desavantage : String
+- m_nom : String
++ <<Create>> Element (nom : String, avantage : String, desavantage : String)
++ getElement() : String
+}
+
+Plateau --> Pokemon
+Pokemon --> Element
+Ordinateur --> Joueur
+Joueur --> Plateau
+Main --> Pokemon
+Main --> Joueur
+Pokemon --> Initialisation
+
+@enduml
