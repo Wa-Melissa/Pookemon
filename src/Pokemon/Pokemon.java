@@ -36,6 +36,11 @@ public class Pokemon
         else {autre.m_pv -= m_attaque;}
     }
 
+    @Override
+    public String toString(){
+        return "nom:"+m_nom+"\nelement:"+m_element.getElement()+"\npv:"+m_pv+"\nattaque:"+m_attaque;
+    }
+
     public static void main(String args[])
     {
         System.out.println("Lancement du jeu ...");
