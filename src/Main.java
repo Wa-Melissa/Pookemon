@@ -8,5 +8,8 @@ public class Main
         System.out.println("Lancement du jeu ...");
         System.out.println(pokemon.toString());
 
+        Pokemon deux = new Pokemon();
+        System.out.println(deux.toString());
+
     }
 }
