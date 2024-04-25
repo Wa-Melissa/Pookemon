@@ -1,3 +1,5 @@
+package Pokemon;
+
 import java.util.ArrayList;
 
 public class Initialisation
@@ -6,5 +8,8 @@ public class Initialisation
 
     private int m_index;
 
-
+    public static String getNom()
+    {
+        return "";
+    }
 }

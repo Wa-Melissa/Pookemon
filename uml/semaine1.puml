@@ -52,7 +52,7 @@ class Element
 - m_avantage : String
 - m_desavantage : String
 - m_nom : String
-+ <<Create>> Element (nom : String, avantage : String, desavantage : String)
++ <<Create>> Element (nom : String)
 + getElement() : String
 }
 
