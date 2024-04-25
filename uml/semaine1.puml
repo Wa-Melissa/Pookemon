@@ -12,11 +12,13 @@ class Ordinateur
 
 class Joueur
 {
+# m_num : Integer
 # m_pseudo : String
 # m_pioche : ArrayList<Pokemon>
 # m_main : ArrayList<Pokemon>
 # m_defausse : ArrayList<Pokemon>
 # m_terrain : ArrayList<Pokemon>
++ "create" Joueur(pseudo: String, ordrePassage: Integer)
 + piocher():Void
 + placerPokemon():Void
 
