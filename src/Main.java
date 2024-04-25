@@ -11,5 +11,8 @@ public class Main
         Pokemon deux = new Pokemon();
         System.out.println(deux.toString());
 
+        Plateau plateau = new Plateau();
+        System.out.println(plateau.afficherPlateau());
+
     }
 }
