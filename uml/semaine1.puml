@@ -23,6 +23,17 @@ class Joueur
 }
 
 
+
+
+class Plateau
+{
++ afficherPlateau(): Void
++afficherFinDuJeu(): Void
+}
+
+
+package "Create_Pokemon" #DDDDDD {
+
 class Pokemon
 {
 - m_nom : String
@@ -30,14 +41,9 @@ class Pokemon
 - m_attaque : Integer
 - m_element : Element
 + <<Create>> Pokemon ()
++ attaque(autre : Pokemon)
 + getNom() : String
-+ Attaque()
-}
-
-class Plateau
-{
-+ afficherPlateau(): Void
-+afficherFinDuJeu(): Void
++ toString() : String
 }
 
 class Initialisation
@@ -54,6 +60,10 @@ class Element
 - m_nom : String
 + <<Create>> Element (nom : String)
 + getElement() : String
++ getAvantage() : String
++ getDesavantage() : String
+}
+
 }
 
 Plateau --> Pokemon
@@ -63,5 +73,6 @@ Joueur --> Plateau
 Main --> Pokemon
 Main --> Joueur
 Pokemon --> Initialisation
+
 
 @enduml

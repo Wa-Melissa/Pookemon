@@ -1,4 +1,4 @@
-package Pokemon;
+package Create_Pokemon;
 
 public class Element
 {

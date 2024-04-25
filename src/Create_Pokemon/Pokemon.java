@@ -1,6 +1,4 @@
-package Pokemon;
-
-import Pokemon.Element;
+package Create_Pokemon;
 
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
@@ -36,8 +34,10 @@ public class Pokemon
         else {autre.m_pv -= m_attaque;}
     }
 
-    public static void main(String args[])
+    @Override
+    public String toString()
     {
-        System.out.println("Lancement du jeu ...");
+        return "Nom : "+ m_nom + "\nType : " + m_element.getElement() + "\nPV : " + m_pv + "\nAttaque : " + m_attaque;
     }
+
 }
