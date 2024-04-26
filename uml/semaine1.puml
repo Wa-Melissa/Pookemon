@@ -14,11 +14,11 @@ class Joueur
 {
 # m_num : Integer
 # m_pseudo : String
-# m_pioche : ArrayList<Pokemon>
-# m_main : ArrayList<Pokemon>
-# m_defausse : ArrayList<Pokemon>
-# m_terrain : ArrayList<Pokemon>
-+ "create" Joueur(pseudo: String, ordrePassage: Integer)
+# m_pioche : Pokemon[*]
+# m_main : Pokemon[*]
+# m_defausse : Pokemon[*]
+# m_terrain : Pokemon[*]
++ <<Create>> Joueur(pseudo: String, ordrePassage: Integer)
 + piocher()
 + placerPokemon()
 
@@ -29,10 +29,14 @@ class Joueur
 
 class Plateau
 {
-+ afficherPlateau(): Void
-+afficherFinDuJeu(): Void
++ afficherPlateau()
++afficherFinDuJeu()
 }
 
+class Gestion_Tour
+{
+
+}
 
 package "Create_Pokemon" #DDDDDD {
 
@@ -41,16 +45,17 @@ class Pokemon
 - m_nom : String
 - m_pv : Integer
 - m_attaque : Integer
-- m_element : Element
-+ <<Create>> Pokemon ()
++ <<Create>> Pokemon()
 + attaque(autre : Pokemon)
 + getNom() : String
 + toString() : String
 }
 
+
+
 class Initialisation
 {
-- m_listeNoms : ArrayList<String>
+- m_listeNoms : String[*]
 - m_index : Integer
 + getNom() : String
 }
@@ -68,13 +73,14 @@ class Element
 
 }
 
-Plateau --> Pokemon
-Pokemon --> Element
+
+Joueur --> Pokemon
+Pokemon --|> "- m_element" Element
 Ordinateur --> Joueur
 Joueur --> Plateau
 Main --> Pokemon
 Main --> Joueur
-Pokemon --> Initialisation
+Pokemon --|> Initialisation
 
 
 @enduml
