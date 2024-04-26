@@ -3,10 +3,11 @@ package Create_Pokemon;
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
-    private String m_nom;
-    private int m_pv;
-    private int m_attaque;
-    private Element m_element;
+    protected String m_nom;
+    protected int m_pv;
+    protected int m_attaque;
+
+    protected Element m_element;
 
     public Pokemon(){
         m_nom = Initialisation.getNom(); //Méthode statique ?
@@ -23,6 +24,15 @@ public class Pokemon
 
     public String getNom(){
         return m_nom;
+    }
+    public Element getElement() {
+        return m_element;
+    }
+    public int getAttaque(){
+        return m_attaque;
+    }
+    public int getPV(){
+        return m_pv;
     }
 
     public void attaque(Pokemon autre){

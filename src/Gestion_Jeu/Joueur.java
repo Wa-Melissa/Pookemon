@@ -21,4 +21,18 @@ public class Joueur
         m_num = ordrePassage;
 
     }
+    public void piocher()
+    {
+
+    }
+
+    public void placerPokemon()
+    {
+
+    }
+
+    public String afficherJoueur()
+    {
+        return "Pseudo : " + m_pseudo + " Ordre de passage : " + m_num;
+    }
 }
