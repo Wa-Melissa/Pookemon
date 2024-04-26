@@ -134,11 +134,11 @@ Elle doit :
 ```console
 ********************************************************************************
 Tour 3:
-                                    Joueur 2
+                                    Gestion_Jeu.Joueur 2
 
 ********************************************************************************
 
-                                    Joueur 1
+                                    Gestion_Jeu.Joueur 1
 
 pioche: 15 pokemons
 defausse: 0 pokemons
@@ -168,7 +168,7 @@ En main:
 - Papilusion, Air, Vie: 120, Attaque: 20
 - Roucool, Air, Vie: 150, Attaque: 30
 
-                                    Joueur 2
+                                    Gestion_Jeu.Joueur 2
 
 Quel pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
 ```

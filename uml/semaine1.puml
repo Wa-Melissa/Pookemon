@@ -73,7 +73,8 @@ class Element
 
 }
 
-Plateau --> Pokemon
+
+Joueur --> Pokemon
 Pokemon --|> "- m_element" Element
 Ordinateur --> Joueur
 Joueur --> Plateau
