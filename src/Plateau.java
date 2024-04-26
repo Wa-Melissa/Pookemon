@@ -24,7 +24,7 @@ public class Plateau
             m_affichage += " ";
         }
         m_affichage += "Joueur 2\n\n\n";
-        m_affichage += "pioche : " + ;
+        m_affichage += "pioche : " ;
 
         return m_affichage;
     }

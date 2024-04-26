@@ -8,5 +8,5 @@ public class Joueur
 
     protected String m_pseudo;
 
-    protected ArrayList<Pokemon> m_pioche
+    protected ArrayList<Pokemon> m_pioche;
 }
