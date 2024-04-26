@@ -1,3 +1,4 @@
+
 public class Plateau
 {
     private String m_carte;
@@ -22,7 +23,8 @@ public class Plateau
         {
             m_affichage += " ";
         }
-        m_affichage += "Joueur 2\n";
+        m_affichage += "Joueur 2\n\n\n";
+        m_affichage += "pioche : " + ;
 
         return m_affichage;
     }
