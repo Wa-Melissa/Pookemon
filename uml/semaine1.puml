@@ -19,8 +19,8 @@ class Joueur
 # m_defausse : ArrayList<Pokemon>
 # m_terrain : ArrayList<Pokemon>
 + "create" Joueur(pseudo: String, ordrePassage: Integer)
-+ piocher():Void
-+ placerPokemon():Void
++ piocher()
++ placerPokemon()
 
 }
 
