@@ -14,16 +14,16 @@ class Ordinateur
 
 class Joueur
 {
-# m_num : Integer
+# m_num : Boolean
 # m_pseudo : String
-# m_pioche : Pokemon[*]
-# m_main : Pokemon[*]
-# m_defausse : Pokemon[*]
-# m_terrain : Pokemon[*]
-+ <<Create>> Joueur(pseudo: String, ordrePassage: Integer)
++ <<Create>> Joueur(pseudo: String, ordrePassage: Boolean)
 + piocher()
 + placerPokemon()
 + afficherJoueur() : String
+# bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
+# choisirPokemon(liste : Pokemon[*]) : String
+# pokemonExiste(nom : String, liste : Pokemon[*]) : Boolean
+# listeChoixPoke(liste : Pokemon[*]) : String 
 }
 
 
@@ -64,7 +64,6 @@ class Pokemon
 }
 
 
-
 class Initialisation
 {
 - {static} m_listeNoms : String[*]
@@ -86,13 +85,13 @@ class Element
 }
 
 
-Joueur -----|> "- m_element  \n " Pokemon
-Pokemon --|> "- m_element" Element
-Ordinateur --> Joueur
-Joueur --> Plateau
+Joueur "*" *----> "\n'# m_terrain[*]'\n'# m_pioche[*]'\n'# m_main[*]'\n'# m_defausse[*]'\n1" Pokemon
+Pokemon "1" o-> "0..*\n-m_element" Element : est de type >
+Ordinateur --|> Joueur
+Plateau ..> Joueur : "calls"
 Main --> Pokemon
 Main --> Joueur
-Pokemon --|> Initialisation
+Pokemon ..> Initialisation : "uses"
 
 
 @enduml
