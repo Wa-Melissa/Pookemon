@@ -14,7 +14,7 @@ public class Plateau
         m_affichage = "";
     }
 
-    public String afficherPlateau(Joueur J1, Joueur J2, Pokemon pokemon)
+    public String afficherPlateau(Joueur J1, Joueur J2)
     {
         m_affichage = m_separation + "\n" + "Tour 1 \n";
         for(int i = 0; i < 28; i++)
@@ -31,23 +31,43 @@ public class Plateau
                 "pioche : " + J1.m_pioche.toArray().length + " Pokémons \n" +
                 "defausse : " + J1.m_defausse.toArray().length + " Cartes \n";
 
+        m_affichage += afficherCarte(J1);
+        m_affichage += "\n" + m_separation + "\n";
+
+        m_affichage += afficherCarte(J2) + "\n\n";
+        m_affichage += afficherMain(J2);
 
 
         return m_affichage;
     }
 
-    public void afficherCarte(Pokemon pokemon)
+    public String afficherCarte(Joueur j)
     {
-        String[][] carte = {
-                {"Attaque: " + pokemon.getAttaque() , "Vie: " + pokemon.getPV(), "Affinite : " + pokemon.getElement().getElement(), pokemon.getNom()},
-        };
-        System.out.println("-------------------");
-        for (int i = 0; i < carte.length; i++) {
-            String[] row = carte[i];
-            System.out.printf("| %-15s |\n| %-15s |\n| %-15s |\n| %-15s |\n", row[0], row[1], row[2], row[3]);
-            System.out.println("-------------------");
+        String s = "";
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            String[][] carte = {
+                    {"Attaque: " + pokemon.getAttaque() , "Vie: " + pokemon.getPV(), "Affinite : " + pokemon.getElement().getElement(), pokemon.getNom()},
+            };
+            s += "--------------------\n";
+            for (int i = 0; i < carte.length; i++) {
+                String[] row = carte[i];
+                s += String.format("| %-16s |\n| %-16s |\n| %-16s |\n| %-16s |\n", row[0], row[1], row[2], row[3]);
+                s += "--------------------\n";
+            }
         }
 
+        return s;
 
+    }
+
+    public String afficherMain(Joueur j)
+    {
+        String s = "En main : \n";
+        for (Pokemon pokemon : j.m_main)
+        {
+            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
+        }
+        return s;
     }
 }

@@ -5,6 +5,8 @@ class Main
 
 }
 
+package "Gestion_Jeu" #DDDDDD {
+
 class Ordinateur
 {
 
@@ -21,7 +23,7 @@ class Joueur
 + <<Create>> Joueur(pseudo: String, ordrePassage: Integer)
 + piocher()
 + placerPokemon()
-
++ afficherJoueur() : String
 }
 
 
@@ -29,12 +31,19 @@ class Joueur
 
 class Plateau
 {
-+ afficherPlateau()
-+afficherFinDuJeu()
+- m_carte : String
+- m_separation : String
+- m_affichage : String
++ <<Create>> Plateau()
++ afficherPlateau(J1 : Joueur, J2 : Joueur) : String
++ afficherCarte(j : Joueur) : String
++ afficherMain(j : Joueur) : String
 }
 
 class Gestion_Tour
 {
+
+}
 
 }
 
@@ -46,8 +55,11 @@ class Pokemon
 - m_pv : Integer
 - m_attaque : Integer
 + <<Create>> Pokemon()
-+ attaque(autre : Pokemon)
 + getNom() : String
++ getElement() : Element
++ getAttaque() : Integer
++ getPV() : Integer
++ attaque(autre : Pokemon)
 + toString() : String
 }
 
@@ -55,16 +67,16 @@ class Pokemon
 
 class Initialisation
 {
-- m_listeNoms : String[*]
-- m_index : Integer
-+ getNom() : String
+- {static} m_listeNoms : String[*]
+- {static} m_index : Integer
++ {static} getNom() : String
 }
 
 class Element
 {
-- m_avantage : String
-- m_desavantage : String
-- m_nom : String
+# m_avantage : String
+# m_desavantage : String
+# m_nom : String
 + <<Create>> Element (nom : String)
 + getElement() : String
 + getAvantage() : String
@@ -74,7 +86,7 @@ class Element
 }
 
 
-Joueur --> Pokemon
+Joueur -----|> "- m_element  \n " Pokemon
 Pokemon --|> "- m_element" Element
 Ordinateur --> Joueur
 Joueur --> Plateau

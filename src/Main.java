@@ -9,22 +9,15 @@ public class Main
         Joueur joueur1 = new Joueur("Max", 1);
         Joueur joueur2 = new Joueur("Ordinateur", 2);
 
-        Pokemon pokemon1 = new Pokemon();
-        Pokemon pokemon2 = new Pokemon();
-
         System.out.println("Lancement du jeu ...");
-        System.out.println(pokemon1.toString());
-        System.out.println(pokemon2.toString());
 
         joueur1.piocher();
         joueur1.placerPokemon();
         System.out.println(joueur1.afficherJoueur());
 
         Plateau plateau = new Plateau();
-        System.out.println(plateau.afficherPlateau(joueur1, joueur2, pokemon1));
-        plateau.afficherCarte(pokemon1);
-        plateau.afficherCarte(pokemon2);
-        plateau.afficherCarte(pokemon1);
+        System.out.println(plateau.afficherPlateau(joueur1, joueur2));
+
 
     }
 }
