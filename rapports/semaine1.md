@@ -1,23 +1,21 @@
-Choix de conception:
-- 
+## Choix de conception:
 - Nous avons fait une classe éléments qui regroupe tous les éléments
 - Nous avons une classe statique pour l'initialisation des noms des pokemons
 - Nous avons choisi de faire hériter l'ordinateur de la classe joueur
+- Nous avons géré tout l'affichage du plateau depuis une classe dédiée
 
-Fonctionalités implémentées:
-- 
+## Fonctionalités implémentées:
 - La création de pokemons
-- la gestion des avantages des éléments
-- la création du joueur
-- piocher et placer des pokemons sur le terrain
-- afficher le terrain
+- La gestion des avantages des éléments
+- La création du joueur
+- Piocher et placer des pokemons sur le terrain
+- Afficher le terrain (en cours)
 
-Difficultés rencontrées:
--
-- 
+## Difficultés rencontrées:
+- Faire en sorte que les cartes affichant les pokemons sur le terrain soient toutes de la meme taille malgré le changement de texte à l'intérieur
 
-To Do
-- 
-- les attaques des pokemons
-- les actions de l'ordinateur
-- la gestion des tours de jeux
+## To Do
+- Les attaques des pokemons
+- Les actions de l'ordinateur
+- La gestion des tours de jeux
+- Terminer d'afficher correctement le plateau
