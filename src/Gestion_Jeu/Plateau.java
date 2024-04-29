@@ -3,6 +3,8 @@ package Gestion_Jeu;
 import Create_Pokemon.Pokemon;
 import Gestion_Jeu.Joueur;
 
+import java.util.ArrayList;
+
 public class Plateau
 {
     private String m_carte;
@@ -13,6 +15,13 @@ public class Plateau
     {
         m_affichage = "";
     }
+
+    /**
+     * Méthode afficherPlateau : Affiche le plateau sur la console
+     * @param J1 : Joueur 1
+     * @param J2 : Joueur 2
+     * @return m_affichage : Chaine de caractères contenant l'affichage du plateau
+     */
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
@@ -41,6 +50,12 @@ public class Plateau
         return m_affichage;
     }
 
+    /**
+     * Méthode afficherCarte() : Affiche les cartes sur le terrain d'un joueur
+     * @param j : joueur dont les cartes sur le terrain vont être affichées
+     * @return s : Chaîne de caractère contenant les cartes sur le terrain du joueur j
+     */
+
     public String afficherCarte(Joueur j)
     {
         String s = "";
@@ -60,6 +75,12 @@ public class Plateau
         return s;
 
     }
+
+    /**
+     * Méthode afficherMain() : Affiche la main du joueur en paramètre
+     * @param j : le joueur qui doit afficher sa main
+     * @return s : Chaîne de caractère contenant la main du joueur
+     */
 
     public String afficherMain(Joueur j)
     {

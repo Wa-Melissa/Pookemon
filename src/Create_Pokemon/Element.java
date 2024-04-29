@@ -8,6 +8,11 @@ public class Element
 
     protected String m_nom;
 
+    /**
+     * Constructeur Element() : Crée les affinités d'un élément
+     * @param nom : nom de l'élément
+     */
+
     public Element(String nom)
     {
         m_nom = nom;

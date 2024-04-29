@@ -6,6 +6,10 @@ import java.util.Arrays;
 public class Initialisation
 {
     private static int m_index = -1;
+
+    /**
+     * Liste contenant tous les Pokémons qui peuvent être utilisé dans la partie
+     */
     private static ArrayList<String> m_listePokemon = new ArrayList<>(Arrays.asList(
             "Bulbizarre", "Herbizarre", "Florizarre", "Salamèche", "Reptincel",
             "Dracaufeu", "Carapuce", "Carabaffe", "Tortank", "Chenipan", "Chrysacier",
@@ -32,6 +36,11 @@ public class Initialisation
             "Germignon", "Macronium", "Méganium", "Héricendre", "Feurisson", "Typhlosion", "Kaiminus",
             "Crocrodil", "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", "Noarfang", "Coxy",
             "Coxyclaque", "Mimigal", "Migalos", "Nostenfer", "Loupio", "Lanturn", "Pichu"));
+
+    /**
+     * Méthode getNom() : Affiche le nom du Pokémon
+     * @return m_listePokemon.get(m_index) : Le nom du Pokémon
+     */
 
     public static String getNom()
     {

@@ -9,6 +9,10 @@ public class Pokemon
 
     protected Element m_element;
 
+    /**
+     * Constructeur Pokemon() : Crée un pokemon avec un nom, un élément, des PV et des dégats d'attaque
+     */
+
     public Pokemon(){
         m_nom = Initialisation.getNom(); //Méthode statique ?
         m_pv = ThreadLocalRandom.current().nextInt(10, 21) * 10; //multiple de 10 entre 100 et 200
@@ -22,18 +26,46 @@ public class Pokemon
         }
     }
 
+    /**
+     * Méthode getNom() : Affiche le nom du Pokémon
+     * @return m_nom : nom du Pokémon
+     */
+
     public String getNom(){
         return m_nom;
     }
+
+    /**
+     * Méthode getELement() : Affiche l'élément du Pokémon
+     * @return m_element : Element du Pokemon
+     */
+
     public Element getElement() {
         return m_element;
     }
+
+    /**
+     * Méthode getAttaque() : Affiche les dégats d'attaque du Pokémon
+     * @return m_attaque : Attaque du Pokémon
+     */
+
     public int getAttaque(){
         return m_attaque;
     }
+
+    /**
+     * Méthode getPV() : Affiche les PV du Pokémon
+     * @return m_pv
+     */
+
     public int getPV(){
         return m_pv;
     }
+
+    /**
+     * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
+     * @param autre : Pokémon attaqué
+     */
 
     public void attaque(Pokemon autre){
         if(m_element.m_avantage == autre.m_element.getElement()){
@@ -43,6 +75,11 @@ public class Pokemon
         }
         else {autre.m_pv -= m_attaque;}
     }
+
+    /**
+     * Méthode toString() : Renvoie les informations à propos du Pokémon
+     * @return "Nom : ... Type : ... PV : ... Attaque : ..."
+     */
 
     @Override
     public String toString()
