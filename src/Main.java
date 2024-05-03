@@ -20,7 +20,11 @@ public class Main
         Plateau plateau = new Plateau();
         System.out.println(plateau.afficherPlateau(joueur1, ordi));
 
-        joueur1.attaquePokemon(ordi);
+        ordi.attaquePokemon(joueur1);
+        ordi.attaquePokemon(joueur1);
+        ordi.attaquePokemon(joueur1);
+        ordi.attaquePokemon(joueur1);
+
 
         System.out.println(plateau.afficherPlateau(joueur1, ordi));
 

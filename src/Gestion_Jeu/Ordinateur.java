@@ -49,23 +49,29 @@ public class Ordinateur extends Joueur {
                 if (pokemonsCibles.size() > 1) {
                     Random rdt = new Random();
                     cible = pokemonsCibles.remove(rdt.nextInt(pokemonsCibles.size()));
-                } else{ cible = pokemonsCibles.get(0); }
-            }else {cible = pokemonsCibles.get(0);}
+                } else{
+                    cible = pokemonsCibles.get(0); }
+            }else {
+                cible = pokemonsCibles.get(0);
+            }
 
             pokemonAttaquant.attaque(cible,adversaire);
         }
     }
 
-    private ArrayList<Pokemon> getPokemonsPvMin(ArrayList<Pokemon> pokemonsCibles){
-        int pv_min = pokemonsCibles.get(0).getPV();
-        for (int j = 1 ; j < pokemonsCibles.size() ; j++){
-            int pv_pokemon = pokemonsCibles.get(j).getPV();
-            if ( pv_pokemon > pv_min){
-                pokemonsCibles.remove(j);
-            }
-            else if (pv_pokemon < pv_min){
-                pokemonsCibles = new ArrayList<>(pokemonsCibles.subList(0, j));
+    private ArrayList<Pokemon> getPokemonsPvMin(ArrayList<Pokemon> listeDep){
+        int pv_min = listeDep.get(0).getPV();
+        ArrayList<Pokemon> pokemonsCibles = new ArrayList<>();
+        pokemonsCibles.add(listeDep.get(0));
+        for (int j = 1 ; j < listeDep.size() ; j++){
+            int pv_pokemon = listeDep.get(j).getPV();
+            if ( pv_pokemon < pv_min) {
                 pv_min = pv_pokemon;
+                pokemonsCibles.clear();
+                pokemonsCibles.add(listeDep.get(j));
+            }
+            else if (pv_pokemon == pv_min){
+                pokemonsCibles.add(listeDep.get(j));
             }
         }
         return pokemonsCibles;
@@ -77,7 +83,7 @@ public class Ordinateur extends Joueur {
 
         if (pokemonsCibles.isEmpty()){
             // S'il n'y en a aucun on recupere la liste des pokemons contre lesquels on n'est pas désavantagé
-            pokemonsCibles = getPokemonsAvecElement(ttPokemonsAdverses, monElement.toString());
+            pokemonsCibles = getPokemonsAvecElement(ttPokemonsAdverses, monElement.getElement());
             String autreElementNeutre = new Element(monElement.getAvantage()).getAvantage();
             pokemonsCibles.addAll(getPokemonsAvecElement(ttPokemonsAdverses, autreElementNeutre));
 
@@ -90,11 +96,13 @@ public class Ordinateur extends Joueur {
     }
 
     private ArrayList<Pokemon> getPokemonsAvecElement(ArrayList<Pokemon> pokemonsAttaques, String elementVoulu){
-        for (int j = 0 ; j<3 ; j++){
-            if ( elementVoulu.equals(pokemonsAttaques.get(j).getElement().toString())){
-                pokemonsAttaques.remove(j);
+        ArrayList<Pokemon> cibles = new ArrayList<>();
+        for (Pokemon pokemonsAttaque : pokemonsAttaques) {
+            if (elementVoulu.equals(pokemonsAttaque.getElement().getElement())) {
+                cibles.add(pokemonsAttaque);
             }
+
         }
-        return pokemonsAttaques;
+        return cibles;
     }
 }
