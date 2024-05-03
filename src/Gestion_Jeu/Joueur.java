@@ -16,7 +16,7 @@ public class Joueur {
     /**
      * Crée un joueur
      * @param pseudo : le pseudo du joueur
-     * @param commence : true s'il commence, false sinon
+     * @param commence : true s'il commence, false sinon, doit être différent de l'attribut de l'ordinateur
      */
     public Joueur(String pseudo, boolean commence){
         m_pseudo = pseudo;
@@ -46,7 +46,7 @@ public class Joueur {
      */
     public void placerPokemon(){
         while(m_terrain.size()<3){
-            String choix = choisirPokemon(m_main);
+            String choix = choisirPokemon(m_main,"placer");
             bougerPokemon(choix,m_main,m_terrain);
         }
     }
@@ -73,12 +73,12 @@ public class Joueur {
      * @param liste : la liste des pokemons parmis lesquels il doit choisir
      * @return le nom du pokemon sélectionné
      */
-    protected String choisirPokemon(ArrayList<Pokemon> liste){
+    private String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
         Scanner scanner = new Scanner(System.in);
         boolean choixValide = false;
         String choix = "";
         while (!choixValide){
-            System.out.print("Quel pokemon voulez-vous placer ? ("+listeChoixPoke(liste)+"): ");
+            System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
             choix = scanner.nextLine();
             choixValide = pokemonExiste(choix,liste);
         }
@@ -106,7 +106,7 @@ public class Joueur {
      * @param liste : liste des pokemons
      * @return la string contenant tous les noms
      */
-    protected String listeChoixPoke(ArrayList<Pokemon> liste){
+    private String listeChoixPoke(ArrayList<Pokemon> liste){
         String s = "";
         for (Pokemon p:liste
              ) {
@@ -116,15 +116,41 @@ public class Joueur {
         return s;
     }
 
+    public void attaquePokemon(Joueur adversaire){
+        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+        for ( int i = 0 ; i<3 ; i++){
+            String pokemonChoisi = choisirPokemon(attaquants,"jouer");
+            int j = 0;
+            while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
+                j++;
+            }
+            Pokemon monPokemon = (attaquants.remove(j));
+            String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
+            j = 0;
+            while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
+                j++;
+            }
+            Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
+            monPokemon.attaque(pokemonAdverse, adversaire);
+        }
+    }
+
+    public void perdPokemon(Pokemon p) {
+        m_defausse.add(p);
+        m_terrain.remove(p);
+
+    }
+
     //methode pour tests
     public void afficherJoueur(){
-        System.out.println("pseudo:"+m_pseudo);
+        System.out.println("\npseudo:"+m_pseudo);
         System.out.println("nombre de cartes dans la pioche:"+m_pioche.size());
-        System.out.println("pioche:"+m_pioche.toString());
-        System.out.println("\n\nnb en main:"+m_main.size());
+        System.out.println("\nnb en main:"+m_main.size());
         System.out.println("main:"+m_main.toString());
-        System.out.println("\n\nnb terrain:"+m_terrain.size());
+        System.out.println("\nnb terrain:"+m_terrain.size());
         System.out.println("terrain:"+m_terrain.toString());
+        System.out.println("\nnb defausse:"+m_terrain.size());
+        System.out.println("defausse:"+m_defausse.toString());
     }
 
 

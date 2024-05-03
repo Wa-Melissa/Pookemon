@@ -21,9 +21,9 @@ class Joueur
 + placerPokemon()
 + afficherJoueur() : String
 # bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
-# choisirPokemon(liste : Pokemon[*]) : String
+- choisirPokemon(liste : Pokemon[*]) : String
 # pokemonExiste(nom : String, liste : Pokemon[*]) : Boolean
-# listeChoixPoke(liste : Pokemon[*]) : String 
+- listeChoixPoke(liste : Pokemon[*]) : String
 }
 
 
