@@ -21,10 +21,6 @@ public class Main
         System.out.println(plateau.afficherPlateau(joueur1, ordi));
 
         joueur1.attaquePokemon(ordi);
-        System.out.println(plateau.afficherPlateau(joueur1, ordi));
-        joueur1.attaquePokemon(ordi);
-        joueur1.attaquePokemon(ordi);
-        ordi.afficherJoueur();
 
         System.out.println(plateau.afficherPlateau(joueur1, ordi));
 

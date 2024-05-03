@@ -52,20 +52,36 @@ public class Joueur {
     }
 
     /**
-     * déplace un pokemon d'une liste à une autre à partir de son nom
-     * @param nom : nom du pokemon a deplacer, doit être dans dans départ
-     * @param depart : la ou est actuellement le pokemon a deplacer
-     * @param arrivee : la ou il doit être déplacé
+     * attaque l'adversere une fois avec chaque pokemon, dans l'ordre de son choix
+     * @param adversaire : Joueur ou Ordinateur
      */
-    protected void bougerPokemon(String nom,ArrayList<Pokemon> depart, ArrayList<Pokemon> arrivee ){
-        for (int i = 0 ; i< depart.size() ; i++){
-            Pokemon p = depart.get(i);
-            if (p.getNom().equals(nom)){
-                arrivee.add(p);
-                depart.remove(i);
-                break;
+    public void attaquePokemon(Joueur adversaire){
+        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+        for ( int i = 0 ; i<3 ; i++){
+            String pokemonChoisi = choisirPokemon(attaquants,"jouer");
+            int j = 0;
+            while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
+                j++;
             }
+            Pokemon monPokemon = (attaquants.remove(j));
+            String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
+            j = 0;
+            while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
+                j++;
+            }
+            Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
+            monPokemon.attaque(pokemonAdverse, adversaire);
         }
+    }
+
+    /**
+     * Retire un pokemon du terrain et le place dans la defausse
+     * @param p : Pokemon, doit être sur le terrain
+     */
+    public void perdPokemon(Pokemon p) {
+        m_defausse.add(p);
+        m_terrain.remove(p);
+
     }
 
     /**
@@ -86,6 +102,38 @@ public class Joueur {
     }
 
     /**
+     * déplace un pokemon d'une liste à une autre à partir de son nom
+     * @param nom : nom du pokemon a deplacer, doit être dans dans départ
+     * @param depart : la ou est actuellement le pokemon a deplacer
+     * @param arrivee : la ou il doit être déplacé
+     */
+    protected void bougerPokemon(String nom,ArrayList<Pokemon> depart, ArrayList<Pokemon> arrivee ){
+        for (int i = 0 ; i< depart.size() ; i++){
+            Pokemon p = depart.get(i);
+            if (p.getNom().equals(nom)){
+                arrivee.add(p);
+                depart.remove(i);
+                break;
+            }
+        }
+    }
+
+    /**
+     * fabrique la liste des noms des pokemons parmi lesquels l'utilisateur doit choisir
+     * @param liste : liste des pokemons
+     * @return la string contenant tous les noms
+     */
+    private String listeChoixPoke(ArrayList<Pokemon> liste){
+        String s = "";
+        for (Pokemon p:liste
+        ) {
+            s = s.concat(p.getNom()+"/");
+        }
+        s = s.substring(0,s.length()-1);
+        return s;
+    }
+
+    /**
      * Vérifie qu'un pokemon existe dans une liste à partir de son nom
      * @param nom : le nom du pokemon
      * @param liste : la liste dans laquelle on veut cherchee
@@ -99,46 +147,6 @@ public class Joueur {
             }
         }
         return false;
-    }
-
-    /**
-     * fabrique la liste des noms des pokemons parmi lesquels l'utilisateur doit choisir
-     * @param liste : liste des pokemons
-     * @return la string contenant tous les noms
-     */
-    private String listeChoixPoke(ArrayList<Pokemon> liste){
-        String s = "";
-        for (Pokemon p:liste
-             ) {
-            s = s.concat(p.getNom()+"/");
-        }
-        s = s.substring(0,s.length()-1);
-        return s;
-    }
-
-    public void attaquePokemon(Joueur adversaire){
-        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
-        for ( int i = 0 ; i<3 ; i++){
-            String pokemonChoisi = choisirPokemon(attaquants,"jouer");
-            int j = 0;
-            while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
-                j++;
-            }
-            Pokemon monPokemon = (attaquants.remove(j));
-            String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
-            j = 0;
-            while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
-                j++;
-            }
-            Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
-            monPokemon.attaque(pokemonAdverse, adversaire);
-        }
-    }
-
-    public void perdPokemon(Pokemon p) {
-        m_defausse.add(p);
-        m_terrain.remove(p);
-
     }
 
     //methode pour tests
