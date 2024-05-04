@@ -24,7 +24,8 @@ public class Main
         ordi.attaquePokemon(joueur1);
         ordi.attaquePokemon(joueur1);
         ordi.attaquePokemon(joueur1);
-
+        ordi.attaquePokemon(joueur1);
+        ordi.attaquePokemon(joueur1);
 
         System.out.println(plateau.afficherPlateau(joueur1, ordi));
 
