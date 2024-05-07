@@ -14,9 +14,9 @@ public class Joueur {
     protected ArrayList<Pokemon> m_terrain;
 
     /**
-     * Crée un joueur
+     * Cree un joueur
      * @param pseudo : le pseudo du joueur
-     * @param commence : true s'il commence, false sinon
+     * @param commence : true s'il commence, false sinon, doit etre different de l'attribut de l'ordinateur
      */
     public Joueur(String pseudo, boolean commence){
         m_pseudo = pseudo;
@@ -32,7 +32,7 @@ public class Joueur {
     }
 
     /**
-     * complète la main du joueur avec la pioche
+     * complete la main du joueur avec la pioche
      */
     public void piocher(){
         while (m_main.size()<5 && !m_pioche.isEmpty()){
@@ -42,20 +42,70 @@ public class Joueur {
     }
 
     /**
-     * déplace les pokemons du choix du joueur de sa main vers son terrain
+     * deplace les pokemons du choix du joueur de sa main vers son terrain
      */
     public void placerPokemon(){
         while(m_terrain.size()<3){
-            String choix = choisirPokemon(m_main);
+            String choix = choisirPokemon(m_main,"placer");
             bougerPokemon(choix,m_main,m_terrain);
         }
     }
 
     /**
-     * déplace un pokemon d'une liste à une autre à partir de son nom
-     * @param nom : nom du pokemon a deplacer, doit être dans dans départ
+     * attaque l'adversere une fois avec chaque pokemon du terrain, dans l'ordre du choix de l'utilisateur
+     * @param adversaire : Joueur ou Ordinateur qu'on attaque
+     */
+    public void attaquePokemon(Joueur adversaire){
+        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+        for ( int i = 0 ; i<3 ; i++){
+            String pokemonChoisi = choisirPokemon(attaquants,"jouer");
+            int j = 0;
+            while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
+                j++;
+            }
+            Pokemon monPokemon = (attaquants.remove(j));
+            String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
+            j = 0;
+            while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
+                j++;
+            }
+            Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
+            monPokemon.attaque(pokemonAdverse, adversaire);
+        }
+    }
+
+    /**
+     * Retire un pokemon du terrain et le place dans la defausse
+     * @param p : Pokemon, doit etre sur le terrain
+     */
+    public void perdPokemon(Pokemon p) {
+        m_defausse.add(p);
+        m_terrain.remove(p);
+
+    }
+
+    /**
+     * Fait choisir à l'utilisateur un pokemon parmis une liste
+     * @param liste : la liste des pokemons parmis lesquels il doit choisir
+     * @return le nom du pokemon selectionne
+     */
+    private String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
+        Scanner scanner = new Scanner(System.in);
+        boolean choixValide = false;
+        String choix = "";
+        while (!choixValide){
+            System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
+            choix = scanner.nextLine();
+            choixValide = pokemonExiste(choix,liste);
+        }
+        return choix;
+    }
+
+    /**
+     * deplace un pokemon d'une liste à une autre à partir de son nom
+     * @param nom : nom du pokemon a deplacer, doit etre dans dans depart
      * @param depart : la ou est actuellement le pokemon a deplacer
-     * @param arrivee : la ou il doit être déplacé
+     * @param arrivee : la ou il doit etre deplace
      */
     protected void bougerPokemon(String nom,ArrayList<Pokemon> depart, ArrayList<Pokemon> arrivee ){
         for (int i = 0 ; i< depart.size() ; i++){
@@ -69,24 +119,22 @@ public class Joueur {
     }
 
     /**
-     * Fait choisir à l'utilisateur un pokemon parmis une liste
-     * @param liste : la liste des pokemons parmis lesquels il doit choisir
-     * @return le nom du pokemon sélectionné
+     * fabrique la liste des noms des pokemons parmi lesquels l'utilisateur doit choisir
+     * @param liste : liste des pokemons
+     * @return la string contenant tous les noms
      */
-    protected String choisirPokemon(ArrayList<Pokemon> liste){
-        Scanner scanner = new Scanner(System.in);
-        boolean choixValide = false;
-        String choix = "";
-        while (!choixValide){
-            System.out.print("Quel pokemon voulez-vous placer ? ("+listeChoixPoke(liste)+"): ");
-            choix = scanner.nextLine();
-            choixValide = pokemonExiste(choix,liste);
+    private String listeChoixPoke(ArrayList<Pokemon> liste){
+        String s = "";
+        for (Pokemon p:liste
+        ) {
+            s = s.concat(p.getNom()+"/");
         }
-        return choix;
+        s = s.substring(0,s.length()-1);
+        return s;
     }
 
     /**
-     * Vérifie qu'un pokemon existe dans une liste à partir de son nom
+     * Verifie qu'un pokemon existe dans une liste à partir de son nom
      * @param nom : le nom du pokemon
      * @param liste : la liste dans laquelle on veut cherchee
      * @return true s'il est dans la liste, false sinon
@@ -101,30 +149,16 @@ public class Joueur {
         return false;
     }
 
-    /**
-     * fabrique la liste des noms des pokemons parmi lesquels l'utilisateur doit choisir
-     * @param liste : liste des pokemons
-     * @return la string contenant tous les noms
-     */
-    protected String listeChoixPoke(ArrayList<Pokemon> liste){
-        String s = "";
-        for (Pokemon p:liste
-             ) {
-            s = s.concat(p.getNom()+"/");
-        }
-        s = s.substring(0,s.length()-1);
-        return s;
-    }
-
     //methode pour tests
     public void afficherJoueur(){
-        System.out.println("pseudo:"+m_pseudo);
+        System.out.println("\npseudo:"+m_pseudo);
         System.out.println("nombre de cartes dans la pioche:"+m_pioche.size());
-        System.out.println("pioche:"+m_pioche.toString());
-        System.out.println("\n\nnb en main:"+m_main.size());
+        System.out.println("\nnb en main:"+m_main.size());
         System.out.println("main:"+m_main.toString());
-        System.out.println("\n\nnb terrain:"+m_terrain.size());
+        System.out.println("\nnb terrain:"+m_terrain.size());
         System.out.println("terrain:"+m_terrain.toString());
+        System.out.println("\nnb defausse:"+m_terrain.size());
+        System.out.println("defausse:"+m_defausse.toString());
     }
 
 
