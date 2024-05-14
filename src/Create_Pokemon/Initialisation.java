@@ -2,6 +2,7 @@ package Create_Pokemon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Initialisation
 {
@@ -35,7 +36,7 @@ public class Initialisation
 
     public static String getNom()
     {
-        m_index ++;
-        return m_listePokemon.get(m_index);
+        Random rdt = new Random();
+        return m_listePokemon.remove(rdt.nextInt(m_listePokemon.size()));
     }
 }

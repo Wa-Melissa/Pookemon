@@ -1,7 +1,6 @@
 package Gestion_Jeu;
 
 import Create_Pokemon.Pokemon;
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,8 +35,8 @@ public class Joueur {
      */
     public void piocher(){
         while (m_main.size()<5 && !m_pioche.isEmpty()){
-            Random rdt = new Random();
-            m_main.add(m_pioche.remove(rdt.nextInt(m_pioche.size())));
+           // Random rdt = new Random();
+            m_main.add(m_pioche.remove(0)); //ou rdt.nextInt(m_pioche.size())
         }
     }
 
@@ -92,8 +91,11 @@ public class Joueur {
     private String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
         Scanner scanner = new Scanner(System.in);
         boolean choixValide = false;
-        String choix = "";
+        System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
+        String choix = scanner.nextLine();
+        choixValide = pokemonExiste(choix,liste);
         while (!choixValide){
+            System.out.println("\t--> Ce nom n'est pas valide, veuillez entrer un nom valide");
             System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
             choix = scanner.nextLine();
             choixValide = pokemonExiste(choix,liste);
@@ -161,5 +163,15 @@ public class Joueur {
         System.out.println("defausse:"+m_defausse.toString());
     }
 
+    public boolean aPerdu(){
+        if (m_pioche.isEmpty()){
+            if (m_main.isEmpty()){
+                if (m_terrain.isEmpty()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
