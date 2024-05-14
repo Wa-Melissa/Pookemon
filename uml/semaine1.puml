@@ -9,7 +9,13 @@ package "Gestion_Jeu" #DDDDDD {
 
 class Ordinateur
 {
-
++ <<Create>> Ordinateur(pseudo: String, ordrePassage: Boolean)
++ <<Create>> Ordinateur(ordrePassage: Boolean)
++ placerPokemon()
++ attaquePokemon(adversaire : Joueur)
+- getPokemonsPvMin(listeDep: Pokemon(*)): Pokemon(*)
+- recuperePokemonsAvantageux(ttPokemonsAdverses : Pokemon(*), monElement : Element): Pokemon(*)
+- getPokemonsAvecElement(pokemonsAttaques : Pokemon(*), elementVoulu : String  ): Pokemon(*)
 }
 
 class Joueur
@@ -19,14 +25,12 @@ class Joueur
 + <<Create>> Joueur(pseudo: String, ordrePassage: Boolean)
 + piocher()
 + placerPokemon()
-+ afficherJoueur() : String
++ attaquePokemon(adversaire : Joueur)
 # bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
-# choisirPokemon(liste : Pokemon[*]) : String
 # pokemonExiste(nom : String, liste : Pokemon[*]) : Boolean
-# listeChoixPoke(liste : Pokemon[*]) : String 
+- choisirPokemon(liste : Pokemon[*]) : String
+- listeChoixPoke(liste : Pokemon[*]) : String
 }
-
-
 
 
 class Plateau
@@ -42,8 +46,6 @@ class Plateau
 
 class Gestion_Tour
 {
-
-}
 
 }
 

@@ -1,5 +1,7 @@
 package Create_Pokemon;
 
+import Gestion_Jeu.Joueur;
+
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
@@ -67,13 +69,17 @@ public class Pokemon
      * @param autre : Pokémon attaqué
      */
 
-    public void attaque(Pokemon autre){
-        if(m_element.m_avantage == autre.m_element.getElement()){
+    public void attaque(Pokemon autre, Joueur dresseurAutre){
+        if(m_element.m_avantage.equals(autre.m_element.getElement())){
             autre.m_pv -= (m_attaque+10);
-        } else if (m_element.m_desavantage == autre.m_element.getElement()){
+        } else if (m_element.m_desavantage.equals(autre.m_element.getElement())){
             autre.m_pv -= (m_attaque-10);
         }
         else {autre.m_pv -= m_attaque;}
+
+        if (autre.m_pv <= 0){
+            dresseurAutre.perdPokemon(autre);
+        }
     }
 
     /**
