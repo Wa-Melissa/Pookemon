@@ -28,6 +28,11 @@ public class Pokemon
         }
     }
 
+    /**
+     * Méthode getNom() : Affiche le nom du Pokémon
+     * @return m_nom : nom du Pokémon
+     */
+
     public String getNom(){
         return m_nom;
     }
@@ -59,8 +64,14 @@ public class Pokemon
         return m_pv;
     }
 
+    /**
+     * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
+     * @param autre : Pokémon attaqué
+     */
+
     public void attaque(Pokemon autre, Joueur dresseurAutre){
         if(m_element.m_avantage.equals(autre.m_element.getElement())){
+>>>>>>>>> Temporary merge branch 2
             autre.m_pv -= (m_attaque+10);
         } else if (m_element.m_desavantage.equals(autre.m_element.getElement())){
             autre.m_pv -= (m_attaque-10);
