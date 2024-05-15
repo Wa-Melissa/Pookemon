@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Plateau
 {
     private String m_carte;
+    private int m_tour = 1;
     private String m_separation = "===============================================================";
     private String m_affichage;
 
@@ -25,7 +26,8 @@ public class Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
-        m_affichage = m_separation + "\n" + "Tour 1 \n";
+        m_affichage = m_separation + "\n" + m_separation + "\n" + "Tour " + m_tour +"\n";
+        m_tour++;
         for(int i = 0; i < 28; i++)
         {
             m_affichage += " ";
@@ -56,13 +58,14 @@ public class Plateau
      * @return s : Chaîne de caractère contenant les cartes sur le terrain du joueur j
      */
 
+    /**
     public String afficherCarte(Joueur j)
     {
         String s = "";
         for(Pokemon pokemon : j.m_terrain)
         {
             String[][] carte = {
-                    {"Attaque: " + pokemon.getAttaque() , "Vie: " + pokemon.getPV(), "Affinite : " + pokemon.getElement().getElement(), pokemon.getNom()},
+                    {"Attaque: " + pokemon.getAttaque() , "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax(), "Affinite : " + pokemon.getElement().getElement(), pokemon.getNom()},
             };
             s += "--------------------\n";
             for (int i = 0; i < carte.length; i++) {
@@ -71,11 +74,27 @@ public class Plateau
                 s += "--------------------\n";
             }
         }
-
         return s;
-
     }
+*/
 
+    public String afficherCarte(Joueur j)
+    {
+        ArrayList<String> carteList = new ArrayList<>();
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            String carteString = "--------------------\n";
+            carteString += String.format("| %-16s |\n", "Attaque: " + pokemon.getAttaque());
+            carteString += String.format("| %-16s |\n", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
+            carteString += String.format("| %-16s |\n", "Affinite : " + pokemon.getElement().getElement());
+            carteString += String.format("| %-16s |\n", pokemon.getNom());
+            carteString += "--------------------\n";
+            carteList.add(carteString);
+
+
+        }
+        return String.join("", carteList);
+    }
     /**
      * Méthode afficherMain() : Affiche la main du joueur en paramètre
      * @param j : le joueur qui doit afficher sa main

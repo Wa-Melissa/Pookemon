@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
     protected String m_nom;
+    protected int m_pvMax;
     protected int m_pv;
     protected int m_attaque;
 
@@ -17,8 +18,9 @@ public class Pokemon
 
     public Pokemon(){
         m_nom = Initialisation.getNom(); //Méthode statique ?
-        m_pv = ThreadLocalRandom.current().nextInt(10, 21) * 10; //multiple de 10 entre 100 et 200
+        m_pvMax = ThreadLocalRandom.current().nextInt(10, 21) * 10; //multiple de 10 entre 100 et 200
         m_attaque = ThreadLocalRandom.current().nextInt(1, 5) * 10;//multiple de 10 entre 10 et 40
+        m_pv = m_pvMax;
         int nomElement = ThreadLocalRandom.current().nextInt(0,4);
         switch (nomElement){
             case 0: m_element = new Element("Eau");break;
@@ -56,7 +58,7 @@ public class Pokemon
     }
 
     /**
-     * Méthode getPV() : Affiche les PV du Pokémon
+     * Méthode getPV() : Affiche les PV actuels du Pokémon
      * @return m_pv
      */
 
@@ -65,13 +67,18 @@ public class Pokemon
     }
 
     /**
+     * Méthode getPV() : Affiche les PV Max du Pokémon
+     * @return m_pvMax
+     */
+    public int getPVMax(){return m_pvMax;}
+
+    /**
      * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
      * @param autre : Pokémon attaqué
      */
 
     public void attaque(Pokemon autre, Joueur dresseurAutre){
         if(m_element.m_avantage.equals(autre.m_element.getElement())){
->>>>>>>>> Temporary merge branch 2
             autre.m_pv -= (m_attaque+10);
         } else if (m_element.m_desavantage.equals(autre.m_element.getElement())){
             autre.m_pv -= (m_attaque-10);
