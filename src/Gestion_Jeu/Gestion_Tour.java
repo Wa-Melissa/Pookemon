@@ -4,46 +4,44 @@ import java.util.Scanner;
 
 public class Gestion_Tour {
 
-    public static String recuperePseudo(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\nVeuillez entrer un pseudo : ");
-        String pseudo = scanner.nextLine();
-        scanner.close();
-        return pseudo;
-    }
-    public static void miseEnPlace(Joueur joueur1, Joueur joueur2){
+    public static void miseEnPlace(Joueur joueur1, Joueur joueur2, Plateau plateau){
         joueur1.piocher();
         if (joueur1.getClass()!=Ordinateur.class){
-            joueur1.afficherJoueur() ;
+            System.out.println(plateau.afficherMain(joueur1));
         }
         joueur1.placerPokemon();
 
         joueur2.piocher();
         if (joueur2.getClass()!=Ordinateur.class){
-            joueur2.afficherJoueur() ;
+            System.out.println(plateau.afficherMain(joueur2));
         }
         joueur2.placerPokemon();
+       // System.out.println(plateau.afficherPlateau(joueur1, joueur2));
+
     }
 
     public static void tourSuivant(Joueur joueur1, Joueur joueur2, Plateau plateau){
+        boolean j1joueur = (joueur1.getClass()!=Ordinateur.class); // vrai si l'utilisateur est le joueur 1
         joueur1.piocher();
-        if (joueur1.getClass()!=Ordinateur.class){
-            joueur1.afficherJoueur() ;
+        if (j1joueur){
+            System.out.println("Placez vos pokemons !");
+            System.out.println(plateau.afficherPlateau(joueur1,joueur2));
         }
         joueur1.placerPokemon();
-        plateau.afficherPlateau(joueur1,joueur2);
+        System.out.println(plateau.afficherPlateau(joueur1,joueur2));
         joueur1.attaquePokemon(joueur2);
 
-        plateau.afficherPlateau(joueur1,joueur2);
+        System.out.println(plateau.afficherPlateau(joueur1, joueur2));
 
         joueur2.piocher();
-        if (joueur2.getClass()!=Ordinateur.class){
-            joueur2.afficherJoueur() ;
+        if (!j1joueur){
+            System.out.println("Placez vos pokemons !");
+            System.out.println(plateau.afficherMain(joueur2));
         }
         joueur2.placerPokemon();
         joueur2.attaquePokemon(joueur1);
 
-        plateau.afficherPlateau(joueur1,joueur2);
+        System.out.println(plateau.afficherPlateau(joueur1, joueur2));
     }
 
     public static void affichageFin(Joueur joueur){

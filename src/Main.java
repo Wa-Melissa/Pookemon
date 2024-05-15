@@ -10,15 +10,13 @@ public class Main
 {
     public static void main(String[] args)
     {
+        //Initialisation des joueurs
         Scanner scanner = new Scanner(System.in);
         System.out.print("Veuillez entrer votre pseudo : ");
         String name = scanner.nextLine();
         System.out.println("Bonjour " + name + " !\nBienvenue dans Pookémon ! Prépare toi au combat.");
-
-        //Initialisation des joueurs
         Joueur joueur1;
         Joueur joueur2;
-        //String pseudo = Gestion_Tour.recuperePseudo(); --> problemes avec le scanner
         Random rdt = new Random();
         int pnjCommence = rdt.nextInt(2); // 0 pour non, 1 pour oui
         if (pnjCommence==0){
@@ -30,14 +28,10 @@ public class Main
              joueur2 = new Joueur(name, false);
              System.out.println("C'est votre adversaire qui commence!");
         }
-
         Plateau plateau  = new Plateau();
 
 
-
-        Gestion_Tour.miseEnPlace(joueur1,joueur2);
-
-        System.out.println(plateau.afficherPlateau(joueur1, joueur2));
+        Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
 
         //tours de jeu
         while (!joueur1.aPerdu() && !joueur2.aPerdu()){
