@@ -26,25 +26,32 @@ public class Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
+
+        if (J1.getClass() != Ordinateur.class)
+        {
+            Joueur temp = J1;
+            J1 = J2;
+            J2 = temp;
+        }
+
         m_affichage = m_separation + "\n" + m_separation + "\n" + "Tour " + m_tour +"\n";
         m_tour++;
-        for(int i = 0; i < 28; i++)
-        {
-            m_affichage += " ";
-        }
-        m_affichage += "Joueur 1\n";
         m_affichage += m_separation + "\n";
         for(int i = 0; i < 28; i++)
         {
             m_affichage += " ";
         }
-        m_affichage += "Joueur 2\n\n\n" +
+        m_affichage += J1.m_pseudo +"\n\n\n" +
                 "pioche : " + J1.m_pioche.toArray().length + " Pokémons \n" +
                 "defausse : " + J1.m_defausse.toArray().length + " Cartes \n";
 
         m_affichage += afficherCarte(J1);
         m_affichage += "\n" + m_separation + "\n";
-
+        for(int i = 0; i < 28; i++)
+        {
+            m_affichage += " ";
+        }
+        m_affichage += "Joueur 2\n\n\n";
         m_affichage += afficherCarte(J2) + "\n\n";
         m_affichage += afficherMain(J2);
 
@@ -81,20 +88,49 @@ public class Plateau
     public String afficherCarte(Joueur j)
     {
         ArrayList<String> carteList = new ArrayList<>();
+
+        String carteString = separation(j);
+
         for(Pokemon pokemon : j.m_terrain)
         {
-            String carteString = "--------------------\n";
-            carteString += String.format("| %-16s |\n", "Attaque: " + pokemon.getAttaque());
-            carteString += String.format("| %-16s |\n", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
-            carteString += String.format("| %-16s |\n", "Affinite : " + pokemon.getElement().getElement());
-            carteString += String.format("| %-16s |\n", pokemon.getNom());
-            carteString += "--------------------\n";
-            carteList.add(carteString);
-
-
+            carteString += String.format("| %-16s |      ", pokemon.getNom());
         }
+        carteString += "\n";
+        carteString += separation(j);
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            carteString += String.format("| %-16s |      ", "Attaque: " + pokemon.getAttaque());
+        }
+        carteString += "\n";
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            carteString += String.format("| %-16s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
+        }
+        carteString += "\n";
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            carteString += String.format("| %-16s |      ", "Affinite : " + pokemon.getElement().getElement());
+        }
+        carteString += "\n";
+        carteString += separation(j);
+        carteList.add(carteString);
+
+
         return String.join("", carteList);
     }
+
+    public String separation(Joueur j)
+    {
+        String s = "";
+        for(Pokemon pokemon : j.m_terrain)
+        {
+            s += "--------------------      ";
+        }
+        s += "\n";
+        return s;
+    }
+
+
     /**
      * Méthode afficherMain() : Affiche la main du joueur en paramètre
      * @param j : le joueur qui doit afficher sa main

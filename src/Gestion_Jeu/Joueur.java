@@ -152,7 +152,7 @@ public class Joueur {
     }
 
     //methode pour tests
-    public void afficherJoueur(){
+    /*public void afficherJoueur(){
    //     System.out.println("\npseudo:"+m_pseudo);
     //    System.out.println("nombre de cartes dans la pioche:"+m_pioche.size());
     //    System.out.println("\nnb en main:"+m_main.size());
@@ -160,7 +160,7 @@ public class Joueur {
 //        System.out.println("terrain:"+m_terrain.toString());
    //     System.out.println("\nnb defausse:"+m_terrain.size());
        // System.out.println("defausse:"+m_defausse.toString());
-    }
+    }*/
 
     public boolean aPerdu(){
         if (m_pioche.isEmpty()){
