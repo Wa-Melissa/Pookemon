@@ -1,38 +1,51 @@
-import java.io.IOException;
-import java.util.Scanner;
+import Gestion_Jeu.Gestion_Tour;
 import Gestion_Jeu.Joueur;
 import Gestion_Jeu.Ordinateur;
 import Gestion_Jeu.Plateau;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main
 {
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Veuillez entrer votre pseudo : ");
         String name = scanner.nextLine();
         System.out.println("Bonjour " + name + " !\nBienvenue dans Pookémon ! Prépare toi au combat.");
 
-        Joueur joueur1 = new Ordinateur(name, false);
-        Joueur ordi = new Ordinateur("Ordinateur", true);
+        //Initialisation des joueurs
+        Joueur joueur1;
+        Joueur joueur2;
+      //  String pseudo = Gestion_Tour.recuperePseudo(); --> problemes avec le scanner
+        Random rdt = new Random();
+        int pnjCommence = rdt.nextInt(2); // 0 pour non, 1 pour oui
+        if (pnjCommence==0){
+             joueur1 = new Joueur(name, true);
+             joueur2 = new Ordinateur("Ordinateur", false);
+             System.out.println("\nC'est vous qui commencez !");
+        }else {
+             joueur1 = new Ordinateur("Ordinateur", true);
+             joueur2 = new Joueur(name, false);
+             System.out.println("C'est votre adversaire qui commence!");
+        }
 
-        System.out.println("Lancement de la partie ...");
+        Plateau plateau  = new Plateau();
 
-        ordi.piocher();
-        ordi.placerPokemon();
+        Gestion_Tour.miseEnPlace(joueur1,joueur2);
 
-        joueur1.piocher();
-        joueur1.placerPokemon();
+        //tours de jeu
+        while (!joueur1.aPerdu() && !joueur2.aPerdu()){
+            Gestion_Tour.tourSuivant(joueur1,joueur2,plateau);
+        }
 
-        Plateau plateau = new Plateau();
-        System.out.println(plateau.afficherPlateau(joueur1, ordi));
-
-        ordi.attaquePokemon(joueur1);
-
-
-
-        System.out.println(plateau.afficherPlateau(joueur1, ordi));
-
-
+        //Affichage fin
+        if (pnjCommence==0){
+            Gestion_Tour.affichageFin(joueur1);
+        }
+        else {
+            Gestion_Tour.affichageFin(joueur2);
+        }
     }
 }
