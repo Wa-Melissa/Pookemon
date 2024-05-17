@@ -1,4 +1,0 @@
-- **Afficher les pokemons les uns à coté des autres**
-- **afficher les stats des pokemons dans la main du joueur** (mais pas ceux dans la main de l'ordi) pour que le joueur puisse choisir correctement quel pokemon placer
-- **afficher à ou est ce qu'on en est dans le tour**
-- **afficher les pseudos des joueurs a la place de joueur 1 et joueur2**
