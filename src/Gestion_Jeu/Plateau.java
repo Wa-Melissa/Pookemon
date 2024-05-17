@@ -9,7 +9,7 @@ public class Plateau
 {
     private String m_carte;
     private int m_tour = 1;
-    private String m_separation = "===============================================================";
+    private final String m_separation = "===============================================================";
     private String m_affichage;
 
     public Plateau()

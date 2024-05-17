@@ -35,8 +35,4 @@ public class Element
         return m_avantage;
     }
 
-    public String getDesavantage()
-    {
-        return m_desavantage;
-    }
 }

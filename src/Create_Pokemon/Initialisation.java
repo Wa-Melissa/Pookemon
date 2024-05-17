@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class Initialisation
 {
-    private static int m_index = -1;
-
     /**
      * Liste contenant tous les Pokémons qui peuvent être utilisé dans la partie
      */

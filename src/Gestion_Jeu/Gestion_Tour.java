@@ -21,9 +21,8 @@ public class Gestion_Tour {
     }
 
     public static void tourSuivant(Joueur joueur1, Joueur joueur2, Plateau plateau){
-        boolean j1joueur = (joueur1.getClass()!=Ordinateur.class); // vrai si l'utilisateur est le joueur 1
         joueur1.piocher();
-        if (j1joueur){
+        if (!(joueur1 instanceof Ordinateur)){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherPlateau(joueur1,joueur2));
         }
@@ -34,7 +33,7 @@ public class Gestion_Tour {
         System.out.println(plateau.afficherPlateau(joueur1, joueur2));
 
         joueur2.piocher();
-        if (!j1joueur){
+        if (!(joueur1 instanceof  Ordinateur)){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherMain(joueur2));
         }

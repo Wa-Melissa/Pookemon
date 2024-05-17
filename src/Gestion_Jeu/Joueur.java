@@ -80,7 +80,6 @@ public class Joueur {
     public void perdPokemon(Pokemon p) {
         m_defausse.add(p);
         m_terrain.remove(p);
-
     }
 
     /**
