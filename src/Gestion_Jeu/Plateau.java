@@ -9,7 +9,7 @@ public class Plateau
 {
     private String m_carte;
     private int m_tour = 1;
-    private final String m_separation = "===============================================================";
+    private final String m_separation = "========================================================================";
     private String m_affichage;
 
     public Plateau()
@@ -26,32 +26,35 @@ public class Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
+        String Affichagetour = "Tour " + m_tour; // Affiche le Tour actuel
 
-        if (J1.getClass() != Ordinateur.class)
+        if (J1.getClass() != Ordinateur.class)//Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur
         {
             Joueur temp = J1;
             J1 = J2;
             J2 = temp;
         }
 
-        m_affichage = m_separation + "\n" + m_separation + "\n" + "Tour " + m_tour +"\n";
-        m_tour++;
+        m_affichage = "\u001B[34m" + m_separation + "\n" + "\u001B[0m";
+        m_affichage += creationEspacement(m_separation.length(),Affichagetour.length());
+
+        m_affichage += "\u001B[34m" + Affichagetour +"\n" + m_separation + "\n" +"\u001B[0m" ;
+
+
+
         m_affichage += m_separation + "\n";
-        for(int i = 0; i < 28; i++)
-        {
-            m_affichage += " ";
-        }
-        m_affichage += J1.m_pseudo +"\n\n\n" +
+        m_affichage += creationEspacement(m_separation.length(),J1.m_pseudo.length());
+
+        m_affichage += "\u001B[33m" + J1.m_pseudo +"\n\n\n" + "\u001B[0m" +
                 "pioche : " + J1.m_pioche.toArray().length + " Pokémons \n" +
                 "defausse : " + J1.m_defausse.toArray().length + " Cartes \n";
-
         m_affichage += afficherCarte(J1);
+
+
         m_affichage += "\n" + m_separation + "\n";
-        for(int i = 0; i < 28; i++)
-        {
-            m_affichage += " ";
-        }
-        m_affichage += "Joueur 2\n\n\n";
+        m_affichage += creationEspacement(m_separation.length(),J2.m_pseudo.length());
+
+        m_affichage += "\u001B[33m" + J2.m_pseudo +"\n\n\n" + "\u001B[0m";
         m_affichage += afficherCarte(J2) + "\n\n";
         m_affichage += afficherMain(J2);
 
@@ -60,30 +63,27 @@ public class Plateau
     }
 
     /**
+     * Méthode creationEspacement() : créer des espaces avant certain texte pour les centrer
+     * @param textRef : Texte de référence pour le centrage
+     * @param textMid : texte à centrer
+     * @return s : Chaîne de caractère contenant les espaces nécessaires pour centrer
+     */
+
+    public String creationEspacement(int textRef, int textMid)
+    {
+        String s ="";
+        for(int i = 0; i < (textRef - textMid)/2; i++)
+        {
+            s += " ";
+        }
+        return s;
+    }
+
+    /**
      * Méthode afficherCarte() : Affiche les cartes sur le terrain d'un joueur
      * @param j : joueur dont les cartes sur le terrain vont être affichées
      * @return s : Chaîne de caractère contenant les cartes sur le terrain du joueur j
      */
-
-    /**
-    public String afficherCarte(Joueur j)
-    {
-        String s = "";
-        for(Pokemon pokemon : j.m_terrain)
-        {
-            String[][] carte = {
-                    {"Attaque: " + pokemon.getAttaque() , "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax(), "Affinite : " + pokemon.getElement().getElement(), pokemon.getNom()},
-            };
-            s += "--------------------\n";
-            for (int i = 0; i < carte.length; i++) {
-                String[] row = carte[i];
-                s += String.format("| %-16s |\n| %-16s |\n| %-16s |\n| %-16s |\n", row[0], row[1], row[2], row[3]);
-                s += "--------------------\n";
-            }
-        }
-        return s;
-    }
-*/
 
     public String afficherCarte(Joueur j)
     {
@@ -119,6 +119,12 @@ public class Plateau
         return String.join("", carteList);
     }
 
+    /**
+     * Méthode separation() : Gere la séparation des informations de la carte pokémon
+     * @param j : joueur dont les cartes sur le terrain vont être affichées
+     * @return s : Chaîne de caractère contenant les séparations
+     */
+
     public String separation(Joueur j)
     {
         String s = "";
@@ -127,6 +133,25 @@ public class Plateau
             s += "--------------------      ";
         }
         s += "\n";
+        return s;
+    }
+
+    /**
+     * Méthode PertePokemon() : Affiche un texte lorsque l'un des deux joueurs perd un pokemon
+     * @param j : utilisateur
+     * @return s : Chaîne de caractère contenant l'annonce de la mort du pokemon'
+     */
+
+    public String PertePokemon(Joueur j)
+    {
+        String s = "";
+        if (j.getClass() != Ordinateur.class)
+        {
+            s = "\u001B[31m" + "Oh mince ! tu as perdu un Pokémon...\n" + "\u001B[0m";
+        } else
+        {
+            s = "\u001B[31m" + "Tu as éliminé un Pokémon ennemi ! Bien joué !" + "\u001B[0m";
+        }
         return s;
     }
 
