@@ -26,9 +26,10 @@ public class Gestion_Tour {
         if (j1joueur){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherPlateau(joueur1,joueur2));
+            plateau.m_tour++;
         }
         joueur1.placerPokemon();
-        System.out.println(plateau.afficherPlateau(joueur1,joueur2));
+
         joueur1.attaquePokemon(joueur2);
 
         System.out.println(plateau.afficherPlateau(joueur1, joueur2));
@@ -37,6 +38,7 @@ public class Gestion_Tour {
         if (!j1joueur){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherMain(joueur2));
+            plateau.m_tour++;
         }
         joueur2.placerPokemon();
         joueur2.attaquePokemon(joueur1);
