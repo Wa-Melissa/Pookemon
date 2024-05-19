@@ -24,8 +24,6 @@ class Plateau
 }
 }
 
-package "Gestion_Jeu" #DDDDDD {
-
 package "Players" #DDDDDD {
 
 class Ordinateur
@@ -55,6 +53,8 @@ class Joueur
 - listeChoixPoke(liste : Pokemon[*] ): String
 }
 }
+
+package "Gestion_Jeu" #DDDDDD {
 class Gestion_Tour
 {
     + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)

@@ -1,4 +1,4 @@
-## Choix de conception:
+_## Choix de conception:
 - Nous avons fait une classe éléments qui regroupe tous les éléments. Les éléments sont différenciés par un nom sous forme de string ("Eau","Feu","Air" ou "Terre"). Nous définissons et stockons au moment de la création d'un élément son avantage et son désavantage. Ainsi la gestion des éléments est facile et centralisée.
 
 
@@ -24,5 +24,5 @@
 - Faire en sorte que les cartes affichant les pokemons sur le terrain soient toutes de la meme taille malgré le changement de texte à l'intérieur
 - Rendre les affichages successifs du terrain facilement compréhensible pour l'utilisateur
 
-## To Do
-
+## To Do_
+- enlever le "placez vos pokemons !" lorsqu'il est au mauvais endroit dans l'affichage
