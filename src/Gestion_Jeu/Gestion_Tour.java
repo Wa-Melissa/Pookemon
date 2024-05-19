@@ -1,6 +1,6 @@
 package Gestion_Jeu;
 
-import java.util.Scanner;
+import Affichage.Plateau;
 
 public class Gestion_Tour {
 
@@ -25,7 +25,7 @@ public class Gestion_Tour {
         if (!(joueur1 instanceof Ordinateur)){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherPlateau(joueur1,joueur2));
-            plateau.m_tour++;
+            plateau.ajouterTour();
         }
         joueur1.placerPokemon();
 
@@ -37,7 +37,7 @@ public class Gestion_Tour {
         if (!(joueur1 instanceof  Ordinateur)){
             System.out.println("Placez vos pokemons !");
             System.out.println(plateau.afficherMain(joueur2));
-            plateau.m_tour++;
+            plateau.ajouterTour();
         }
         joueur2.placerPokemon();
         joueur2.attaquePokemon(joueur1);

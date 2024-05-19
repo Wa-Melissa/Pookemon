@@ -1,7 +1,8 @@
-package Gestion_Jeu;
+package Affichage;
 
 import Create_Pokemon.Pokemon;
 import Gestion_Jeu.Joueur;
+import Gestion_Jeu.Ordinateur;
 
 import java.util.ArrayList;
 
@@ -139,7 +140,7 @@ public class Plateau
     /**
      * Méthode PertePokemon() : Affiche un texte lorsque l'un des deux joueurs perd un pokemon
      * @param j : utilisateur
-     * @return s : Chaîne de caractère contenant l'annonce de la mort du pokemon'
+     * @return s : Chaîne de caractère contenant l'annonce de la mort du Pokémon
      */
 
     public String PertePokemon(Joueur j)
@@ -170,5 +171,10 @@ public class Plateau
             s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
         }
         return s;
+    }
+
+    public void ajouterTour()
+    {
+        m_tour++;
     }
 }

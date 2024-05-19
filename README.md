@@ -205,7 +205,7 @@ La structure du dépôt git doit être la suivante :
 ├── src/
     ├── ...
 ├── uml/
-    ├── semaine1.puml
+    ├── Diagramme de classe.puml
     ├──...
 ```
 
