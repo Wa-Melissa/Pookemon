@@ -1,4 +1,4 @@
-package Gestion_Jeu;
+package Players;
 
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
@@ -40,7 +40,7 @@ public class Ordinateur extends Joueur {
      */
     @Override
     public void attaquePokemon(Joueur adversaire){
-        //Les pokemons attaquent dans l'ordre du terrain, et s'il reste des pokemons en face a attaquer
+        //Les pokemons attaquent dans l'ordre du terrain, et s'il reste des pokemons en face à attaquer
         for (int i = 0 ; i < m_terrain.size() && !adversaire.m_terrain.isEmpty() ; i++){
             //On commence par selectionner les pokemons avec les meilleurs éléments
             Pokemon pokemonAttaquant = m_terrain.get(i);
@@ -53,7 +53,7 @@ public class Ordinateur extends Joueur {
             if(pokemonsCibles.size()>1){
                 pokemonsCibles = getPokemonsPvMin(pokemonsCibles);
 
-                //S'il y en a plusieurs, on en prends un au hazard
+                //S'il y en a plusieurs, on en prend un au hasard
                 if (pokemonsCibles.size() > 1) {
                     Random rdt = new Random();
                     cible = pokemonsCibles.remove(rdt.nextInt(pokemonsCibles.size()));
@@ -65,7 +65,7 @@ public class Ordinateur extends Joueur {
     }
 
     /**
-     * donne les pokemons qui ont le moins de pv parmi une liste de depart
+     * Donne les pokemons qui ont le moins de pv parmi une liste de depart
      * @param listeDep la liste de départ de pokemons, non vide
      * @return le ou les pokemon(s) qui ont le moins de pv
      */

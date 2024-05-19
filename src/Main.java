@@ -1,6 +1,6 @@
 import Gestion_Jeu.Gestion_Tour;
-import Gestion_Jeu.Joueur;
-import Gestion_Jeu.Ordinateur;
+import Players.Joueur;
+import Players.Ordinateur;
 import Affichage.Plateau;
 
 import java.util.Random;

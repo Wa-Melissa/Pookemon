@@ -1,6 +1,6 @@
 package Create_Pokemon;
 
-import Gestion_Jeu.Joueur;
+import Players.Joueur;
 
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon

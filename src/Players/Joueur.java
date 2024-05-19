@@ -1,4 +1,4 @@
-package Gestion_Jeu;
+package Players;
 
 import Create_Pokemon.Pokemon;
 import java.util.ArrayList;
