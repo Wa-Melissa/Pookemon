@@ -172,4 +172,29 @@ public class Joueur {
         return false;
     }
 
+    public String getPseudo()
+    {
+        return m_pseudo;
+    }
+
+    public ArrayList<Pokemon> getMain()
+    {
+        return m_main;
+    }
+
+    public ArrayList<Pokemon> getPioche()
+    {
+        return m_pioche;
+    }
+
+    public ArrayList<Pokemon> getTerrain()
+    {
+        return m_terrain;
+    }
+
+    public ArrayList<Pokemon> getDefausse()
+    {
+        return m_defausse;
+    }
+
 }

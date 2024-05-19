@@ -44,18 +44,18 @@ public class Plateau
 
 
         m_affichage += m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J1.m_pseudo.length());
+        m_affichage += creationEspacement(m_separation.length(),J1.getPseudo().length());
 
-        m_affichage += "\u001B[33m" + J1.m_pseudo +"\n\n\n" + "\u001B[0m" +
-                "pioche : " + J1.m_pioche.toArray().length + " Pokémons \n" +
-                "defausse : " + J1.m_defausse.toArray().length + " Cartes \n";
+        m_affichage += "\u001B[33m" + J1.getPseudo() +"\n\n\n" + "\u001B[0m" +
+                "pioche : " + J1.getPioche().size() + " Pokémons \n" +
+                "defausse : " + J1.getDefausse().size() + " Cartes \n";
         m_affichage += afficherCarte(J1);
 
 
         m_affichage += "\n" + m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J2.m_pseudo.length());
+        m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
 
-        m_affichage += "\u001B[33m" + J2.m_pseudo +"\n\n\n" + "\u001B[0m";
+        m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
         m_affichage += afficherCarte(J2) + "\n\n";
         m_affichage += afficherMain(J2);
 
@@ -92,23 +92,23 @@ public class Plateau
 
         String carteString = separation(j);
 
-        for(Pokemon pokemon : j.m_terrain)
+        for(Pokemon pokemon : j.getTerrain())
         {
             carteString += String.format("| %-16s |      ", pokemon.getNom());
         }
         carteString += "\n";
         carteString += separation(j);
-        for(Pokemon pokemon : j.m_terrain)
+        for(Pokemon pokemon : j.getTerrain())
         {
             carteString += String.format("| %-16s |      ", "Attaque: " + pokemon.getAttaque());
         }
         carteString += "\n";
-        for(Pokemon pokemon : j.m_terrain)
+        for(Pokemon pokemon : j.getTerrain())
         {
             carteString += String.format("| %-16s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
         }
         carteString += "\n";
-        for(Pokemon pokemon : j.m_terrain)
+        for(Pokemon pokemon : j.getTerrain())
         {
             carteString += String.format("| %-16s |      ", "Affinite : " + pokemon.getElement().getElement());
         }
@@ -129,7 +129,7 @@ public class Plateau
     public String separation(Joueur j)
     {
         String s = "";
-        for(Pokemon pokemon : j.m_terrain)
+        for(Pokemon pokemon : j.getTerrain())
         {
             s += "--------------------      ";
         }
@@ -166,7 +166,7 @@ public class Plateau
     public String afficherMain(Joueur j)
     {
         String s = "En main : \n";
-        for (Pokemon pokemon : j.m_main)
+        for (Pokemon pokemon : j.getMain())
         {
             s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
         }
