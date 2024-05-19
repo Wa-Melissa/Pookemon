@@ -1,0 +1,116 @@
+@startuml
+
+class Main
+{
+    + {static} main(args : String[*])
+}
+
+package "Affichage" #DDDDDD {
+
+class Plateau
+{
+- m_carte : String
+- M_SEPARATION : String {read only}
+- m_affichage : String
+- m_tour : Integer
++ <<Create>> Plateau()
++ afficherPlateau(J1 : Joueur, J2 : Joueur) : String
++ afficherCarte(j : Joueur) : String
++ afficherMain(j : Joueur) : String
+}
+}
+
+package "Gestion_Jeu" #DDDDDD {
+
+package "Players" #DDDDDD {
+
+class Ordinateur
+{
++ <<Create>> Ordinateur(pseudo: String, ordrePassage: Boolean)
++ <<Create>> Ordinateur(ordrePassage: Boolean)
++ placerPokemon() {redefines}
++ attaquePokemon(adversaire : Joueur)
+- getPokemonsPvMin(listeDep: Pokemon[*]): Pokemon[*]
+- recuperePokemonsAvantageux(ttPokemonsAdverses : Pokemon[*], monElement : Element): Pokemon[*]
+- getPokemonsAvecElement(pokemonsAttaques : Pokemon[*], elementVoulu : String  ): Pokemon[*]
+}
+
+class Joueur
+{
+# m_commence : Boolean
+# m_pseudo : String
++ <<Create>> Joueur(pseudo: String, commence: Boolean)
++ piocher()
++ placerPokemon()
++ attaquePokemon(adversaire : Joueur)
++ perdPokemon(p : Pokemon)
++ aPerdu()
+# bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
+# pokemonExiste(nom : String, liste : Pokemon[*] : Boolean
+- choisirPokemon(liste : Pokemon[*] ): String
+- listeChoixPoke(liste : Pokemon[*] ): String
+}
+}
+class Gestion_Tour
+{
+    + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
+    + {static} tourSuivant(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
+    + {static} affichageFin(joueur Joueur)
+
+}
+}
+package "Create_Pokemon" #DDDDDD {
+
+class Pokemon
+{
+# m_nom : String
+# m_pv : Integer
+# m_pvMax : Integer
+# m_attaque : Integer
+# m_element : Element
++ <<Create>> Pokemon()
++ getNom() : String
++ getElement() : Element
++ getAttaque() : Integer
++ getPV() : Integer
++ getPVMax() : Integer
++ attaque(autre : Pokemon)
++ toString() : String {redefines}
+}
+
+
+class Initialisation
+{
+- {static} m_listeNoms : String[*]
++ {static} getNom() : String
+}
+
+class Element
+{
+# m_avantage : String
+# m_desavantage : String
+# m_nom : String
++ <<Create>> Element (nom : String)
++ getElement() : String
++ getAvantage() : String
+}
+
+}
+
+
+Joueur "*" *----> "# m_terrain[*] 1" Pokemon
+Joueur "*" *----> "# m_pioche[*] 1" Pokemon
+Joueur "*" *----> "# m_main[*] 1" Pokemon
+Joueur "*" *----> "# m_defausse[*] 1" Pokemon
+
+Pokemon o-> "1\n-m_element" Element : a une affinité avec  >
+Ordinateur --|> Joueur
+Plateau ..> Joueur : <<calls>>
+Main ..> Joueur :<<uses>>
+Main ..> Gestion_Tour :<<calls>>
+Gestion_Tour ..> Joueur :<<calls>>
+Gestion_Tour ..> Plateau :<<calls>>
+Pokemon ..> Initialisation : <<uses>>
+
+
+@enduml

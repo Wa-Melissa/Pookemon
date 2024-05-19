@@ -25,18 +25,22 @@ public class Element
 
     }
 
+    /**
+     * accesseur au nom de l'élément
+     * @return m_nom le nom de l'élément
+     */
     public String getElement()
     {
         return m_nom;
     }
 
+    /**
+     * accesseur a l'avantage de l'elément
+     * @return le nom de l'élément sur lequel cet élément à l'avantage
+     */
     public String getAvantage()
     {
         return m_avantage;
     }
 
-    public String getDesavantage()
-    {
-        return m_desavantage;
-    }
 }

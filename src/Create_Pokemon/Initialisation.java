@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class Initialisation
 {
-    private static int m_index = -1;
-
     /**
      * Liste contenant tous les Pokémons qui peuvent être utilisé dans la partie
      */
@@ -38,11 +36,11 @@ public class Initialisation
             "Crocrodil", "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", "Noarfang", "Coxy",
             "Coxyclaque", "Mimigal", "Migalos", "Nostenfer", "Loupio", "Lanturn", "Pichu"));
 
+
     /**
      * Méthode getNom() : Affiche le nom du Pokémon
      * @return m_listePokemon.get(m_index) : Le nom du Pokémon
      */
-
     public static String getNom()
     {
         Random rdt = new Random();

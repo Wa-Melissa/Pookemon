@@ -150,17 +150,10 @@ public class Joueur {
         return false;
     }
 
-    //methode pour tests
-    /*public void afficherJoueur(){
-   //     System.out.println("\npseudo:"+m_pseudo);
-    //    System.out.println("nombre de cartes dans la pioche:"+m_pioche.size());
-    //    System.out.println("\nnb en main:"+m_main.size());
-        System.out.println("main:"+m_main.toString());
-//        System.out.println("terrain:"+m_terrain.toString());
-   //     System.out.println("\nnb defausse:"+m_terrain.size());
-       // System.out.println("defausse:"+m_defausse.toString());
-    }*/
-
+    /**
+     * Détermine si le joueur a perdu la partie
+     * @return true s'il a perdu, false sinon
+     */
     public boolean aPerdu(){
         if (m_pioche.isEmpty()){
             if (m_main.isEmpty()){
@@ -170,6 +163,31 @@ public class Joueur {
             }
         }
         return false;
+    }
+
+    public String getPseudo()
+    {
+        return m_pseudo;
+    }
+
+    public ArrayList<Pokemon> getMain()
+    {
+        return m_main;
+    }
+
+    public ArrayList<Pokemon> getPioche()
+    {
+        return m_pioche;
+    }
+
+    public ArrayList<Pokemon> getTerrain()
+    {
+        return m_terrain;
+    }
+
+    public ArrayList<Pokemon> getDefausse()
+    {
+        return m_defausse;
     }
 
 }
