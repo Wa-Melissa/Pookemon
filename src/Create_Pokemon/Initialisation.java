@@ -36,11 +36,11 @@ public class Initialisation
             "Crocrodil", "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", "Noarfang", "Coxy",
             "Coxyclaque", "Mimigal", "Migalos", "Nostenfer", "Loupio", "Lanturn", "Pichu"));
 
+
     /**
      * Méthode getNom() : Affiche le nom du Pokémon
      * @return m_listePokemon.get(m_index) : Le nom du Pokémon
      */
-
     public static String getNom()
     {
         Random rdt = new Random();

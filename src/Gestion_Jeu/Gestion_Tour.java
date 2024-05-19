@@ -4,6 +4,12 @@ import Affichage.Plateau;
 
 public class Gestion_Tour {
 
+    /**
+     * Fait la mise en place de la partie
+     * @param joueur1 le joueur qui commence
+     * @param joueur2 l'autre joueur
+     * @param plateau le plateau de jeu
+     */
     public static void miseEnPlace(Joueur joueur1, Joueur joueur2, Plateau plateau){
         joueur1.piocher();
         if (joueur1.getClass()!=Ordinateur.class){
@@ -20,6 +26,12 @@ public class Gestion_Tour {
 
     }
 
+    /**
+     * appelle toutes les actions d'dun tour de jeu
+     * @param joueur1 le joueur qui commence
+     * @param joueur2 l'autre joueur
+     * @param plateau le plateau de jeu
+     */
     public static void tourSuivant(Joueur joueur1, Joueur joueur2, Plateau plateau){
         joueur1.piocher();
         if (!(joueur1 instanceof Ordinateur)){
@@ -45,6 +57,10 @@ public class Gestion_Tour {
         System.out.println(plateau.afficherPlateau(joueur1, joueur2));
     }
 
+    /**
+     * Affiche à la fin de la partie si l'utilisateur a gagné ou perdu
+     * @param joueur le joueur joué par l'utilisateur
+     */
     public static void affichageFin(Joueur joueur){
         if (joueur.aPerdu()){
             System.out.println("\nVous avez perdu !");
