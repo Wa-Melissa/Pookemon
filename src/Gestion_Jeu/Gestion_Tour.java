@@ -1,6 +1,6 @@
 package Gestion_Jeu;
 
-import java.util.Scanner;
+import Affichage.Plateau;
 
 public class Gestion_Tour {
 

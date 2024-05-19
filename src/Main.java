@@ -1,7 +1,7 @@
 import Gestion_Jeu.Gestion_Tour;
 import Gestion_Jeu.Joueur;
 import Gestion_Jeu.Ordinateur;
-import Gestion_Jeu.Plateau;
+import Affichage.Plateau;
 
 import java.util.Random;
 import java.util.Scanner;

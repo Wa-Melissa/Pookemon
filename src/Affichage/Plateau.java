@@ -1,7 +1,8 @@
-package Gestion_Jeu;
+package Affichage;
 
 import Create_Pokemon.Pokemon;
 import Gestion_Jeu.Joueur;
+import Gestion_Jeu.Ordinateur;
 
 import java.util.ArrayList;
 
