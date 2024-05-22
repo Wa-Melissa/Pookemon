@@ -63,6 +63,7 @@ public class Joueur {
                 j++;
             }
             Pokemon monPokemon = (attaquants.remove(j));
+            utiliserPouvoir(monPokemon);
             String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
             j = 0;
             while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
@@ -70,6 +71,11 @@ public class Joueur {
             }
             Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
             monPokemon.attaque(pokemonAdverse, adversaire);
+        }
+    }
+
+    public void utiliserPouvoir(Pokemon pokemon){
+        if (pokemon.possedePouvoir()){
         }
     }
 

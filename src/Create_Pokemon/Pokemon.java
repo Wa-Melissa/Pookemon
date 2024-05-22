@@ -10,6 +10,7 @@ public class Pokemon
     protected int m_pv;
     protected int m_attaque;
 
+    boolean m_possedePouvoir;
     protected Element m_element;
 
     /**
@@ -71,6 +72,9 @@ public class Pokemon
      * @return m_pvMax
      */
     public int getPVMax(){return m_pvMax;}
+
+    public boolean possedePouvoir(){ return m_possedePouvoir;
+    }
 
     /**
      * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
