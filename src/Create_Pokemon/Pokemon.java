@@ -11,7 +11,6 @@ public class Pokemon
     protected int m_pvMax;
     protected int m_pv;
     protected int m_attaque;
-
     Power m_pouvoir;
     protected Element m_element;
 
@@ -56,6 +55,10 @@ public class Pokemon
         return m_nom;
     }
 
+    public Power getPower(){
+        return m_pouvoir;
+    }
+
     /**
      * Méthode getELement() : Affiche l'élément du Pokémon
      * @return m_element : Element du Pokemon
@@ -72,6 +75,17 @@ public class Pokemon
 
     public int getAttaque(){
         return m_attaque;
+    }
+
+    public void setAttaque(int newValue){
+        m_attaque = newValue;
+    }
+
+    public void estSoigne(int soin){
+        if (m_pv + soin <= m_pvMax){
+            m_pv += soin;
+        }
+        else { m_pv = m_pvMax; }
     }
 
     /**

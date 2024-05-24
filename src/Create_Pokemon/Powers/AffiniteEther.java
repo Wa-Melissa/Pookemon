@@ -1,6 +1,7 @@
 package Create_Pokemon.Powers;
 
 import Create_Pokemon.Pokemon;
+import Players.Joueur;
 
 public class AffiniteEther extends Power {
     public AffiniteEther(){
@@ -9,7 +10,7 @@ public class AffiniteEther extends Power {
     }
 
     @Override
-    void declencherPouvoir() {
+    void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
 }

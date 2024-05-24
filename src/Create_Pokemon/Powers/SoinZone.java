@@ -1,6 +1,7 @@
 package Create_Pokemon.Powers;
 
 import Create_Pokemon.Pokemon;
+import Players.Joueur;
 
 public class SoinZone extends Power{
     public SoinZone(){
@@ -9,7 +10,9 @@ public class SoinZone extends Power{
     }
 
     @Override
-    void declencherPouvoir() {
-
+    void declencherPouvoir(Joueur soi, Joueur adv) {
+        for (int i = 0 ; i < soi.getTerrain().size() ; i++){
+            soi.getTerrain().get(i).estSoigne(10);
+        }
     }
 }

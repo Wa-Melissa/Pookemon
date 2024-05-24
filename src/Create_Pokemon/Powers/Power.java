@@ -2,6 +2,9 @@ package Create_Pokemon.Powers;
 
 import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Pokemon;
+import Players.Joueur;
+
+import java.util.Scanner;
 
 public abstract class Power {
 
@@ -12,19 +15,25 @@ public abstract class Power {
         return m_nom;
     }
 
-    public void utiliserPouvoir(){
+    public void utiliserPouvoir(Joueur soi, Joueur adv){
         if (m_estUtilisable){
             AffichagePouvoirs.demandeEffet(this);
-            if (AffichagePouvoirs.autorisationUtilisation()){
-
+            if (autorisationUtilisation()){
+                declencherPouvoir(soi, adv);
             }
         }
     }
 
-    abstract void declencherPouvoir();
-/*
-    Pokemon getPokemonTerrain(){
-        String nomPokemon = AffichagePouvoirs.getNomPokeTerrain();
-    }*/
+    public boolean autorisationUtilisation(){
+        AffichagePouvoirs.autorisationUtilisation();
+        Scanner scanner = new Scanner(System.in);
+        String choix = scanner.nextLine();
+        if (choix.equals("o")){
+            return true;
+        }
+        return false;
+    }
+
+    abstract void declencherPouvoir(Joueur soi, Joueur adv);
 
 }

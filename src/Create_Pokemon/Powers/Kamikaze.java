@@ -1,5 +1,7 @@
 package Create_Pokemon.Powers;
 
+import Players.Joueur;
+
 public class Kamikaze extends Power{
 
     public Kamikaze(){
@@ -8,7 +10,7 @@ public class Kamikaze extends Power{
     }
 
     @Override
-    void declencherPouvoir() {
+    void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
 }

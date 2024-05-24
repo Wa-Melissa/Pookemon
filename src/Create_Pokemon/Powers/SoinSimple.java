@@ -1,5 +1,8 @@
 package Create_Pokemon.Powers;
 
+import Create_Pokemon.Pokemon;
+import Players.Joueur;
+
 public class SoinSimple extends Power{
 
     public SoinSimple(){
@@ -7,8 +10,15 @@ public class SoinSimple extends Power{
         m_estUtilisable = true;
     }
 
-    @Override
-    void declencherPouvoir() {
 
+    @Override
+    void declencherPouvoir(Joueur soi, Joueur adv) {
+        String nomReceveur = soi.choisirPokemon(soi.getTerrain(), "soigner");
+        int j = 0;
+        while(!soi.getTerrain().get(j).getNom().equals(nomReceveur)){
+            j++;
+        }
+        Pokemon receveur = (soi.getTerrain().get(j));
+        receveur.estSoigne(30);
     }
 }

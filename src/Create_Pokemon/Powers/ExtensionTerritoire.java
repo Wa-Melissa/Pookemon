@@ -1,5 +1,7 @@
 package Create_Pokemon.Powers;
 
+import Players.Joueur;
+
 public class ExtensionTerritoire extends Power{
 
     public ExtensionTerritoire(){
@@ -8,7 +10,7 @@ public class ExtensionTerritoire extends Power{
     }
 
     @Override
-    void declencherPouvoir() {
+    void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
 }

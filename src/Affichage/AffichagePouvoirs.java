@@ -1,5 +1,8 @@
 package Affichage;
+import Create_Pokemon.Pokemon;
 import Create_Pokemon.Powers.Power;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AffichagePouvoirs {
@@ -25,17 +28,8 @@ public class AffichagePouvoirs {
         }
     }
 
-    public static boolean autorisationUtilisation(){
+    public static void autorisationUtilisation(){
         System.out.print("Voulez-vous utiliser ce pouvoir ? o/n");
-        Scanner scanner = new Scanner(System.in);
-        String choix = scanner.nextLine();
-        if (choix.equals("o")){
-            return true;
-        }
-        return false;
     }
 
-   /* public static String getNomPokeTerrain(){
-        System.out.println("Sur quel pokemon voulez-vous utiliser le pouvoir ?");
-    }*/
 }

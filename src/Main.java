@@ -31,7 +31,6 @@ public class Main
         Plateau plateau  = new Plateau();
 
 
-
         Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
 
         String separation = "========================================================================\n";

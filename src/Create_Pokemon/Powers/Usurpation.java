@@ -1,5 +1,7 @@
 package Create_Pokemon.Powers;
 
+import Players.Joueur;
+
 public class Usurpation extends Power{
     public Usurpation(){
         m_nom = "usurpation";
@@ -7,7 +9,7 @@ public class Usurpation extends Power{
     }
 
     @Override
-    void declencherPouvoir() {
+    void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
 }
