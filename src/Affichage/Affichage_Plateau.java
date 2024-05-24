@@ -6,14 +6,15 @@ import Players.Ordinateur;
 
 import java.util.ArrayList;
 
-public class Plateau
+public class Affichage_Plateau
 {
-    private String m_carte;
     int m_tour = 1;
     private final String m_separation = "========================================================================";
     private String m_affichage;
+    public static ArrayList<String> m_resume = new ArrayList<>();
 
-    public Plateau()
+
+    public Affichage_Plateau()
     {
         m_affichage = "";
     }
@@ -56,8 +57,7 @@ public class Plateau
         m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
 
         m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
-        m_affichage += afficherCarte(J2) + "\n\n";
-        m_affichage += afficherMain(J2);
+        m_affichage += afficherCarte(J2) + "\n";
 
 
         return m_affichage;
@@ -171,6 +171,51 @@ public class Plateau
             s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
         }
         return s;
+    }
+
+    public static void resumeTour(Pokemon attaquant, Pokemon cible)
+    {
+        if (m_resume.size() == 4)
+        {
+            m_resume.clear();
+        }
+
+        if (m_resume.isEmpty())
+        {
+            m_resume.add("\u001B[33m" +"           L'adversaire à jouer ! Voici ce qu'il a fait :           " + "\u001B[0m");
+        }
+
+        int degats = 0;
+
+        String element = cible.getElement().getElement();
+
+        if (attaquant.getElement().getAvantage() == element)
+        {
+            degats = attaquant.getAttaque() + 10;
+        } else if (attaquant.getElement().getDesavantage() == element)
+        {
+            degats = attaquant.getAttaque() - 10;
+        } else
+        {
+            degats = attaquant.getAttaque();
+        }
+
+        m_resume.add("- Son " + attaquant.getNom() + " a infligé " + degats + " dégats à ton " + cible.getNom());
+    }
+
+    public String AfficheResume()
+    {
+        String concat = "";
+        String bordure = "*----------------------------------------------------------------------*";
+        concat += creationEspacement(bordure.length(), "Résumé".length());
+        concat += "Résumé\n";
+        concat += bordure + "\n";
+        for (String s : m_resume)
+        {
+            concat += String.format("| %-68s |      ", s) + "\n";
+        }
+        concat += bordure + "\n\n";
+        return concat;
     }
 
     public void ajouterTour()

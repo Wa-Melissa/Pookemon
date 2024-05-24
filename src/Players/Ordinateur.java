@@ -2,6 +2,7 @@ package Players;
 
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
+import Affichage.Affichage_Plateau;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -61,6 +62,8 @@ public class Ordinateur extends Joueur {
             }else { cible = pokemonsCibles.get(0);}
 
             pokemonAttaquant.attaque(cible,adversaire);
+            Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
+
         }
     }
 
@@ -130,4 +133,6 @@ public class Ordinateur extends Joueur {
         }
         return cibles;
     }
+
+
 }

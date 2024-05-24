@@ -1,7 +1,7 @@
 import Gestion_Jeu.Gestion_Tour;
 import Players.Joueur;
 import Players.Ordinateur;
-import Affichage.Plateau;
+import Affichage.Affichage_Plateau;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -22,13 +22,13 @@ public class Main
         if (pnjCommence==0){
              joueur1 = new Joueur(name, true);
              joueur2 = new Ordinateur("Ordinateur", false);
-             System.out.println("\nC'est vous qui commencez !");
+             System.out.println("\nC'est vous qui commencez !\n");
         }else {
              joueur1 = new Ordinateur("Ordinateur", true);
              joueur2 = new Joueur(name, false);
-             System.out.println("C'est votre adversaire qui commence!");
+             System.out.println("\nC'est votre adversaire qui commence!\n");
         }
-        Plateau plateau  = new Plateau();
+        Affichage_Plateau plateau  = new Affichage_Plateau();
 
 
         Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
@@ -45,9 +45,11 @@ public class Main
                 separation + espace + goAffichage + "\n"
                 + separation + separation + "\u001B[0m");
 
+
         //tours de jeu
         while (!joueur1.aPerdu() && !joueur2.aPerdu()){
             Gestion_Tour.tourSuivant(joueur1,joueur2,plateau);
+
         }
 
         //Affichage fin
