@@ -1,7 +1,6 @@
 package Players;
 
 import Create_Pokemon.Pokemon;
-import Create_Pokemon.Powers.Power;
 
 import java.util.ArrayList;
 import java.util.Scanner;

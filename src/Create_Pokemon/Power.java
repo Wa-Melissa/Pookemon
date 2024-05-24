@@ -1,4 +1,4 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
 import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Pokemon;

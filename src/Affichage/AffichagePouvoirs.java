@@ -1,8 +1,6 @@
 package Affichage;
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Powers.Power;
+import Create_Pokemon.Power;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AffichagePouvoirs {

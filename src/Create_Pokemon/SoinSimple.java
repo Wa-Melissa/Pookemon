@@ -1,9 +1,10 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
 import Create_Pokemon.Pokemon;
+import Create_Pokemon.Power;
 import Players.Joueur;
 
-public class SoinSimple extends Power{
+public class SoinSimple extends Power {
 
     public SoinSimple(){
         m_nom = "soin simple";

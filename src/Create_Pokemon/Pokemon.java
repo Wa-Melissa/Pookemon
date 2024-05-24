@@ -1,18 +1,16 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Powers.*;
 import Players.Joueur;
 
-import java.security.cert.Extension;
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
-    protected String m_nom;
-    protected int m_pvMax;
-    protected int m_pv;
-    protected int m_attaque;
+    String m_nom;
+    int m_pvMax;
+    int m_pv;
+    int m_attaque;
     Power m_pouvoir;
-    protected Element m_element;
+    Element m_element;
 
     /**
      * Constructeur Pokemon() : Crée un pokemon avec un nom, un élément, des PV et des dégats d'attaque
@@ -37,10 +35,10 @@ public class Pokemon
                 case "Berserk" : m_pouvoir = new Berserk();
                 case "Soin simple" : m_pouvoir = new SoinSimple();break;
                 case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
-                case "Kamikaze" : m_pouvoir = new Kamikaze(); break;
+                case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
                 case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
                 case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
-                case "Usurpation" : m_pouvoir = new Usurpation() ; break;
+                case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
                 default: m_pouvoir = new ExtensionTerritoire();
             }
         }
@@ -77,16 +75,14 @@ public class Pokemon
         return m_attaque;
     }
 
-    public void setAttaque(int newValue){
-        m_attaque = newValue;
+    void estSoigne(int soin) {
+        if (m_pv + soin <= m_pvMax) {
+            m_pv += soin;
+        } else {
+            m_pv = m_pvMax;
+        }
     }
 
-    public void estSoigne(int soin){
-        if (m_pv + soin <= m_pvMax){
-            m_pv += soin;
-        }
-        else { m_pv = m_pvMax; }
-    }
 
     /**
      * Méthode getPV() : Affiche les PV actuels du Pokémon
@@ -127,6 +123,7 @@ public class Pokemon
             dresseurAutre.perdPokemon(autre);
         }
     }
+
 
     /**
      * Méthode toString() : Renvoie les informations à propos du Pokémon

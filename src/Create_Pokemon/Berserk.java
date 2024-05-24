@@ -1,10 +1,11 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
 import Create_Pokemon.Pokemon;
+import Create_Pokemon.Power;
 import Players.Joueur;
 
-public class Berserk extends Power{
-    Pokemon m_receveur;
+public class Berserk extends Power {
+    private Pokemon m_receveur;
 
     public Berserk(){
         m_nom = "berserk";
@@ -19,6 +20,7 @@ public class Berserk extends Power{
             j++;
         }
         m_receveur = (soi.getTerrain().get(j));
-        m_receveur.setAttaque(m_receveur.getAttaque()*2);
+        m_receveur.m_attaque *= 2;
+        m_estUtilisable = false;
     }
 }

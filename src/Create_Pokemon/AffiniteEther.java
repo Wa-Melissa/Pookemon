@@ -1,6 +1,6 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
+import Create_Pokemon.Power;
 import Players.Joueur;
 
 public class AffiniteEther extends Power {

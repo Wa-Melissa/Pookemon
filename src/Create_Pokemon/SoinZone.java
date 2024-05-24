@@ -1,9 +1,9 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
+import Create_Pokemon.Power;
 import Players.Joueur;
 
-public class SoinZone extends Power{
+public class SoinZone extends Power {
     public SoinZone(){
         m_nom = "soin de zone";
         m_estUtilisable = true;

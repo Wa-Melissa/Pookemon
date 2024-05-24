@@ -1,8 +1,9 @@
-package Create_Pokemon.Powers;
+package Create_Pokemon;
 
+import Create_Pokemon.Power;
 import Players.Joueur;
 
-public class ExtensionTerritoire extends Power{
+public class ExtensionTerritoire extends Power {
 
     public ExtensionTerritoire(){
         m_nom = "extension du territoire";
