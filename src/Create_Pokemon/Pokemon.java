@@ -39,9 +39,11 @@ public class Pokemon
                 case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
                 case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
                 case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
-                default: m_pouvoir = new ExtensionTerritoire();
+                case "Extension du territoire": m_pouvoir = new ExtensionTerritoire();
+                default: m_pouvoir = null;
             }
-        }
+        } else {m_pouvoir = null;}
+        m_pouvoir = new Usurpation(this);
     }
 
     /**
@@ -100,10 +102,7 @@ public class Pokemon
     public int getPVMax(){return m_pvMax;}
 
     public boolean possedePouvoir(){
-        if (m_pouvoir != null){
-            return true;
-        }
-        return false;
+        return m_pouvoir != null;
     }
 
     /**

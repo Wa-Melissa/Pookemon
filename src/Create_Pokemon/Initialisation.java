@@ -52,7 +52,10 @@ public class Initialisation
 
     public static String getPouvoir()
     {
-        Random rdt = new Random();
-        return m_listePouvoirs.remove(rdt.nextInt(m_listePouvoirs.size()));
+        if (!m_listePouvoirs.isEmpty()){
+            Random rdt = new Random();
+            return m_listePouvoirs.remove(rdt.nextInt(m_listePouvoirs.size()));
+        }
+        return null;
     }
 }

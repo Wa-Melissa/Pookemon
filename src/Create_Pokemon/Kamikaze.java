@@ -1,12 +1,11 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class Kamikaze extends Power {
 
-    private Pokemon m_possesseur;
+    private final Pokemon m_possesseur;
 
     public Kamikaze(Pokemon possesseur){
         m_nom = "kamikaze";
@@ -26,5 +25,7 @@ public class Kamikaze extends Power {
         adv.perdPokemon(cible);
 
         m_estUtilisable = false;
+
+        AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+". Ils ont tous les deux été éliminés !");
     }
 }

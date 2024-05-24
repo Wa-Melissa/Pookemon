@@ -1,6 +1,6 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class SoinZone extends Power {
@@ -14,5 +14,8 @@ public class SoinZone extends Power {
         for (int i = 0 ; i < soi.getTerrain().size() ; i++){
             soi.getTerrain().get(i).estSoigne(10);
         }
+
+        AffichagePouvoirs.afficherResultatAction("tous vos pokemons ont récupéré de la santé !");
+
     }
 }

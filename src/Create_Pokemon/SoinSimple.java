@@ -1,7 +1,6 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class SoinSimple extends Power {
@@ -21,5 +20,8 @@ public class SoinSimple extends Power {
         }
         Pokemon receveur = (soi.getTerrain().get(j));
         receveur.estSoigne(30);
+
+        AffichagePouvoirs.afficherResultatAction(nomReceveur+" s'est régénéré !");
     }
+
 }

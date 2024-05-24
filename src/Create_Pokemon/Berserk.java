@@ -1,7 +1,6 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class Berserk extends Power {
@@ -22,5 +21,7 @@ public class Berserk extends Power {
         m_receveur = (soi.getTerrain().get(j));
         m_receveur.m_attaque *= 2;
         m_estUtilisable = false;
+
+        AffichagePouvoirs.afficherResultatAction(m_receveur.getNom()+" est passé en mode Berserk et inflige pour ce tour "+m_receveur.getAttaque()+" dégats !");
     }
 }

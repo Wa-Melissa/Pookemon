@@ -1,7 +1,6 @@
 package Create_Pokemon;
 
 import Affichage.AffichagePouvoirs;
-import Create_Pokemon.Pokemon;
 import Players.Joueur;
 
 import java.util.Scanner;
@@ -28,12 +27,8 @@ public abstract class Power {
         AffichagePouvoirs.autorisationUtilisation();
         Scanner scanner = new Scanner(System.in);
         String choix = scanner.nextLine();
-        if (choix.equals("o")){
-            return true;
-        }
-        return false;
+        return choix.equals("o");
     }
 
     abstract void declencherPouvoir(Joueur soi, Joueur adv);
-
 }
