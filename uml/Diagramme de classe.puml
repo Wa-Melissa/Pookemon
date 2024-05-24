@@ -21,6 +21,14 @@ class Plateau
 }
 
 package "Gestion_Jeu" #DDDDDD {
+class Gestion_Tour
+{
+    + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
+    + {static} tourSuivant(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
+    + {static} affichageFin(joueur Joueur)
+
+}
+}
 
 package "Players" #DDDDDD {
 
@@ -51,14 +59,7 @@ class Joueur
 - listeChoixPoke(liste : Pokemon[*] ): String
 }
 }
-class Gestion_Tour
-{
-    + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
-    + {static} tourSuivant(joueur1 : Joueur, joueur2 : Joueur, plateau : Plateau)
-    + {static} affichageFin(joueur Joueur)
 
-}
-}
 package "Create_Pokemon" #DDDDDD {
 
 class Pokemon

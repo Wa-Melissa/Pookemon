@@ -43,4 +43,13 @@ public class Element
         return m_avantage;
     }
 
+    /**
+     * accesseur au desavantage de l'elément
+     * @return le nom de l'élément sur lequel cet élément à un desavantage
+     */
+    public String getDesavantage()
+    {
+        return m_desavantage;
+    }
+
 }
