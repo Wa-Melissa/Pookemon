@@ -36,6 +36,9 @@ public class Initialisation
             "Crocrodil", "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", "Noarfang", "Coxy",
             "Coxyclaque", "Mimigal", "Migalos", "Nostenfer", "Loupio", "Lanturn", "Pichu"));
 
+    private static ArrayList<String> m_listePouvoirs = new ArrayList<>(Arrays.asList("Berserk", "Soin simple",
+            "Soin de zone","Kamikaze", "Affinité ether", "Affinité Plomb","Usurpation","Extension du territoire"));
+
 
     /**
      * Méthode getNom() : Affiche le nom du Pokémon
@@ -45,5 +48,11 @@ public class Initialisation
     {
         Random rdt = new Random();
         return m_listePokemon.remove(rdt.nextInt(m_listePokemon.size()));
+    }
+
+    public static String getPouvoir()
+    {
+        Random rdt = new Random();
+        return m_listePouvoirs.remove(rdt.nextInt(m_listePouvoirs.size()));
     }
 }

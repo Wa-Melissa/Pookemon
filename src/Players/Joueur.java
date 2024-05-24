@@ -1,6 +1,7 @@
 package Players;
 
 import Create_Pokemon.Pokemon;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,6 +64,7 @@ public class Joueur {
                 j++;
             }
             Pokemon monPokemon = (attaquants.remove(j));
+            utiliserPouvoir(monPokemon,adversaire);
             String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
             j = 0;
             while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
@@ -72,6 +74,13 @@ public class Joueur {
             monPokemon.attaque(pokemonAdverse, adversaire);
         }
     }
+
+    public void utiliserPouvoir(Pokemon pokemon, Joueur j2){
+        if (pokemon.possedePouvoir()){
+            pokemon.getPower().utiliserPouvoir(this, j2);
+        }
+    }
+
 
     /**
      * Retire un pokemon du terrain et le place dans la defausse
@@ -87,7 +96,7 @@ public class Joueur {
      * @param liste : la liste des pokemons parmis lesquels il doit choisir
      * @return le nom du pokemon selectionne
      */
-    private String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
+    public String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
         Scanner scanner = new Scanner(System.in);
         boolean choixValide = false;
         System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");

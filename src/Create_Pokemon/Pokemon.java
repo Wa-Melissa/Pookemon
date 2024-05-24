@@ -5,12 +5,12 @@ import Players.Joueur;
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
-    protected String m_nom;
-    protected int m_pvMax;
-    protected int m_pv;
-    protected int m_attaque;
-
-    protected Element m_element;
+    String m_nom;
+    int m_pvMax;
+    int m_pv;
+    int m_attaque;
+    Power m_pouvoir;
+    Element m_element;
 
     /**
      * Constructeur Pokemon() : Crée un pokemon avec un nom, un élément, des PV et des dégats d'attaque
@@ -28,6 +28,20 @@ public class Pokemon
             case 2: m_element = new Element("Air");break;
             default : m_element = new Element("Terre");
         }
+        int definitElus = ThreadLocalRandom.current().nextInt(0,6);
+        if (definitElus == 5){
+            String pouvoirDonne = Initialisation.getPouvoir();
+            switch (pouvoirDonne){
+                case "Berserk" : m_pouvoir = new Berserk();
+                case "Soin simple" : m_pouvoir = new SoinSimple();break;
+                case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
+                case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
+                case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
+                case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
+                case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
+                default: m_pouvoir = new ExtensionTerritoire();
+            }
+        }
     }
 
     /**
@@ -37,6 +51,10 @@ public class Pokemon
 
     public String getNom(){
         return m_nom;
+    }
+
+    public Power getPower(){
+        return m_pouvoir;
     }
 
     /**
@@ -57,6 +75,15 @@ public class Pokemon
         return m_attaque;
     }
 
+    void estSoigne(int soin) {
+        if (m_pv + soin <= m_pvMax) {
+            m_pv += soin;
+        } else {
+            m_pv = m_pvMax;
+        }
+    }
+
+
     /**
      * Méthode getPV() : Affiche les PV actuels du Pokémon
      * @return m_pv
@@ -71,6 +98,13 @@ public class Pokemon
      * @return m_pvMax
      */
     public int getPVMax(){return m_pvMax;}
+
+    public boolean possedePouvoir(){
+        if (m_pouvoir != null){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
@@ -89,6 +123,7 @@ public class Pokemon
             dresseurAutre.perdPokemon(autre);
         }
     }
+
 
     /**
      * Méthode toString() : Renvoie les informations à propos du Pokémon
