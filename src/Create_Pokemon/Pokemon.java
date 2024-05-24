@@ -1,7 +1,9 @@
 package Create_Pokemon;
 
+import Create_Pokemon.Powers.*;
 import Players.Joueur;
 
+import java.security.cert.Extension;
 import java.util.concurrent.ThreadLocalRandom;
 public class Pokemon
 {
@@ -10,7 +12,7 @@ public class Pokemon
     protected int m_pv;
     protected int m_attaque;
 
-    boolean m_possedePouvoir;
+    Power m_pouvoir;
     protected Element m_element;
 
     /**
@@ -28,6 +30,20 @@ public class Pokemon
             case 1: m_element = new Element("Feu");break;
             case 2: m_element = new Element("Air");break;
             default : m_element = new Element("Terre");
+        }
+        int definitElus = ThreadLocalRandom.current().nextInt(0,6);
+        if (definitElus == 5){
+            String pouvoirDonne = Initialisation.getPouvoir();
+            switch (pouvoirDonne){
+                case "Berserk" : m_pouvoir = new Berserk();
+                case "Soin simple" : m_pouvoir = new SoinSimple();break;
+                case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
+                case "Kamikaze" : m_pouvoir = new Kamikaze(); break;
+                case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
+                case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
+                case "Usurpation" : m_pouvoir = new Usurpation() ; break;
+                default: m_pouvoir = new ExtensionTerritoire();
+            }
         }
     }
 
@@ -73,7 +89,11 @@ public class Pokemon
      */
     public int getPVMax(){return m_pvMax;}
 
-    public boolean possedePouvoir(){ return m_possedePouvoir;
+    public boolean possedePouvoir(){
+        if (m_pouvoir != null){
+            return true;
+        }
+        return false;
     }
 
     /**

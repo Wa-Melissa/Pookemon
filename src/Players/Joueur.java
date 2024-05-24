@@ -76,6 +76,7 @@ public class Joueur {
 
     public void utiliserPouvoir(Pokemon pokemon){
         if (pokemon.possedePouvoir()){
+
         }
     }
 
