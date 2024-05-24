@@ -1,14 +1,12 @@
 package Affichage;
 
-import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
 import Players.Joueur;
 import Players.Ordinateur;
-import com.sun.source.tree.BreakTree;
 
 import java.util.ArrayList;
 
-public class Plateau
+public class Affichage_Plateau
 {
     int m_tour = 1;
     private final String m_separation = "========================================================================";
@@ -16,7 +14,7 @@ public class Plateau
     public static ArrayList<String> m_resume = new ArrayList<>();
 
 
-    public Plateau()
+    public Affichage_Plateau()
     {
         m_affichage = "";
     }

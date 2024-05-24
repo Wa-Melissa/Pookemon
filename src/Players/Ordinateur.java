@@ -2,7 +2,7 @@ package Players;
 
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
-import Affichage.Plateau;
+import Affichage.Affichage_Plateau;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -62,7 +62,7 @@ public class Ordinateur extends Joueur {
             }else { cible = pokemonsCibles.get(0);}
 
             pokemonAttaquant.attaque(cible,adversaire);
-            Plateau.resumeTour(pokemonAttaquant,cible);
+            Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
 
         }
     }

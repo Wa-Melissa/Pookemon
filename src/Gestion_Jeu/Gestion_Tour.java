@@ -1,6 +1,6 @@
 package Gestion_Jeu;
 
-import Affichage.Plateau;
+import Affichage.Affichage_Plateau;
 import Players.Joueur;
 import Players.Ordinateur;
 
@@ -12,7 +12,7 @@ public class Gestion_Tour {
      * @param joueur2 l'autre joueur
      * @param plateau le plateau de jeu
      */
-    public static void miseEnPlace(Joueur joueur1, Joueur joueur2, Plateau plateau){
+    public static void miseEnPlace(Joueur joueur1, Joueur joueur2, Affichage_Plateau plateau){
         joueur1.piocher();
 
         if (joueur1.getClass()!= Ordinateur.class){
@@ -36,7 +36,7 @@ public class Gestion_Tour {
      * @param joueur2 l'autre joueur
      * @param plateau le plateau de jeu
      */
-    public static void tourSuivant(Joueur joueur1, Joueur joueur2, Plateau plateau){
+    public static void tourSuivant(Joueur joueur1, Joueur joueur2, Affichage_Plateau plateau){
 
         joueur1.piocher();
         joueur1.placerPokemon();
