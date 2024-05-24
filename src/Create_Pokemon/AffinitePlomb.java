@@ -1,6 +1,5 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Power;
 import Players.Joueur;
 
 public class AffinitePlomb extends Power {
@@ -10,7 +9,7 @@ public class AffinitePlomb extends Power {
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
 }

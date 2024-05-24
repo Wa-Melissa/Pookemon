@@ -10,7 +10,7 @@ public class SoinZone extends Power {
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         for (int i = 0 ; i < soi.getTerrain().size() ; i++){
             soi.getTerrain().get(i).estSoigne(10);
         }

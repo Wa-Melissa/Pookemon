@@ -14,7 +14,7 @@ public class Kamikaze extends Power {
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         String nomCible = adv.choisirPokemon(adv.getTerrain(), "entraîner dans la mort");
         int j = 0;
         while(!adv.getTerrain().get(j).getNom().equals(nomCible)){

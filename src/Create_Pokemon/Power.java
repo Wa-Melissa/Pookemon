@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public abstract class Power {
 
-    String m_nom;//Nom du pouvoir
-    Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
+    protected String m_nom;//Nom du pouvoir
+    protected Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
 
     public String getNom(){
         return m_nom;
@@ -30,5 +30,5 @@ public abstract class Power {
         return choix.equals("o");
     }
 
-    abstract void declencherPouvoir(Joueur soi, Joueur adv);
+    protected abstract void declencherPouvoir(Joueur soi, Joueur adv);
 }

@@ -16,7 +16,7 @@ public class Usurpation extends Power {
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         ArrayList<Pokemon> terrainComplet = new ArrayList<>(adv.getTerrain());
         terrainComplet.addAll(soi.getTerrain());
         String nomCible = adv.choisirPokemon(terrainComplet, "usurper de son pouvoir");

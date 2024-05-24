@@ -12,7 +12,7 @@ public class Berserk extends Power {
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         String nomReceveur = soi.choisirPokemon(soi.getTerrain(), "rendre Berserk");
         int j = 0;
         while(!soi.getTerrain().get(j).getNom().equals(nomReceveur)){
