@@ -79,32 +79,32 @@ abstract class Power{
     # m_estUtilisable- : Boolean
     + getNom(): String
     + utiliserPouvoir(soi : Joueur, adv : Joueur)
-    + autorisationUtilisation(): Boolean
+    - autorisationUtilisation(): Boolean
     # {abstract} declencherPouvoir(soi : Joueur, adv : Joueur)
 }
 
 class Berserk extends Power{
-    + "Creates" Berserk()
+    # "Creates" Berserk()
     # declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
 }
 
 class Kamikaze extends Power{
-    + "Creates" Kamikaze(possesseur : Pokemon))
+    # "Creates" Kamikaze(possesseur : Pokemon))
     # declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
 }
 
 class SoinSimple extends Power{
-    + "Creates" SoinSimple()
+    # "Creates" SoinSimple()
     # declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
 }
 
 class SoinZone extends Power{
-    + "Creates" SoinZone()
+    # "Creates" SoinZone()
     # declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
 }
 
 class Usurpation extends Power{
-    + "Creates" Usurpation(possesseur : Pokemon)
+    # "Creates" Usurpation(possesseur : Pokemon)
     # declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
 }
 
@@ -132,7 +132,9 @@ class Pokemon
 class Initialisation
 {
 - {static} m_listeNoms : String[*]
-+ {static} getNom() : String
+- {static} m_listePouvoirs ! String[8]
+~ {static} getNom() : String
+~ {static} getPouvoir() : String
 }
 
 class Element

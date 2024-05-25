@@ -7,7 +7,7 @@ public class Kamikaze extends Power {
 
     private final Pokemon m_possesseur;
 
-    public Kamikaze(Pokemon possesseur){
+    protected Kamikaze(Pokemon possesseur){
         m_nom = "kamikaze";
         m_estUtilisable = true;
         m_possesseur = possesseur;

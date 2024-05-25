@@ -23,7 +23,7 @@ public abstract class Power {
         }
     }
 
-    public boolean autorisationUtilisation(){
+    private boolean autorisationUtilisation(){
         AffichagePouvoirs.autorisationUtilisation();
         Scanner scanner = new Scanner(System.in);
         String choix = scanner.nextLine();

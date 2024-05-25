@@ -6,7 +6,7 @@ import Players.Joueur;
 public class Berserk extends Power {
     private Pokemon m_receveur;
 
-    public Berserk(){
+    protected Berserk(){
         m_nom = "berserk";
         m_estUtilisable = true;
     }

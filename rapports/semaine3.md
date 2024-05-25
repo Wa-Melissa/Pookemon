@@ -23,6 +23,7 @@ Pouvoirs a implémenter :
 - l'implémentation de l'ordinateur
 - les attaques
 - la gestion des tours de jeux
+- le resumé des actions de l'ordi
 - Berserk
 - Kamikaze
 - Usurpation
@@ -32,8 +33,10 @@ Pouvoirs a implémenter :
 ## Difficultés rencontrées:
 - Faire en sorte que les cartes affichant les pokemons sur le terrain soient toutes de la meme taille malgré le changement de texte à l'intérieur
 - Rendre les affichages successifs du terrain facilement compréhensible pour l'utilisateur
+- resumer les actions de l'ordinateur
 
 ## To Do_
 - implémenter les pouvoirs affinité plomb, ether et extension du territoire
 - gerer les pouvoirs pour l'ordinateur
 - Afficher les pouvoirs des pokemons
+- arreter le pouvoir berserk apres un tour

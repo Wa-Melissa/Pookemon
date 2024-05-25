@@ -4,7 +4,7 @@ import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class SoinZone extends Power {
-    public SoinZone(){
+    protected SoinZone(){
         m_nom = "soin de zone";
         m_estUtilisable = true;
     }

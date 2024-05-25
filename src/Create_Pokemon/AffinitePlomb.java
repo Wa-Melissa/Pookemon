@@ -3,7 +3,7 @@ package Create_Pokemon;
 import Players.Joueur;
 
 public class AffinitePlomb extends Power {
-    public AffinitePlomb(){
+    protected AffinitePlomb(){
         m_nom = "affinité Plomb";
         m_estUtilisable = true;
     }

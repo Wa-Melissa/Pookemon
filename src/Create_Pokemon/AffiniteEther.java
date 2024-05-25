@@ -2,7 +2,7 @@ package Create_Pokemon;
 import Players.Joueur;
 
 public class AffiniteEther extends Power {
-    public AffiniteEther(){
+    protected AffiniteEther(){
         m_nom = "affinité Ether";
         m_estUtilisable = true;
     }
