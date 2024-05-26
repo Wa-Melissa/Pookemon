@@ -44,15 +44,18 @@ public class Initialisation
      * Méthode getNom() : Affiche le nom du Pokémon
      * @return m_listePokemon.get(m_index) : Le nom du Pokémon
      */
-    public static String getNom()
+    static String getNom()
     {
         Random rdt = new Random();
         return m_listePokemon.remove(rdt.nextInt(m_listePokemon.size()));
     }
 
-    public static String getPouvoir()
+    static String getPouvoir()
     {
-        Random rdt = new Random();
-        return m_listePouvoirs.remove(rdt.nextInt(m_listePouvoirs.size()));
+        if (!m_listePouvoirs.isEmpty()){
+            Random rdt = new Random();
+            return m_listePouvoirs.remove(rdt.nextInt(m_listePouvoirs.size()));
+        }
+        return null;
     }
 }

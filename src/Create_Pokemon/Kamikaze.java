@@ -1,21 +1,20 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class Kamikaze extends Power {
 
-    private Pokemon m_possesseur;
+    private final Pokemon m_possesseur;
 
-    public Kamikaze(Pokemon possesseur){
+    protected Kamikaze(Pokemon possesseur){
         m_nom = "kamikaze";
         m_estUtilisable = true;
         m_possesseur = possesseur;
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         String nomCible = adv.choisirPokemon(adv.getTerrain(), "entraîner dans la mort");
         int j = 0;
         while(!adv.getTerrain().get(j).getNom().equals(nomCible)){
@@ -26,5 +25,7 @@ public class Kamikaze extends Power {
         adv.perdPokemon(cible);
 
         m_estUtilisable = false;
+
+        AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+". Ils ont tous les deux été éliminés !");
     }
 }

@@ -1,18 +1,21 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class SoinZone extends Power {
-    public SoinZone(){
+    protected SoinZone(){
         m_nom = "soin de zone";
         m_estUtilisable = true;
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         for (int i = 0 ; i < soi.getTerrain().size() ; i++){
             soi.getTerrain().get(i).estSoigne(10);
         }
+
+        AffichagePouvoirs.afficherResultatAction("tous vos pokemons ont récupéré de la santé !");
+
     }
 }

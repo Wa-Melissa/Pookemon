@@ -75,9 +75,9 @@ public class Joueur {
         }
     }
 
-    public void utiliserPouvoir(Pokemon pokemon, Joueur j2){
+    public void utiliserPouvoir(Pokemon pokemon, Joueur adv){
         if (pokemon.possedePouvoir()){
-            pokemon.getPower().utiliserPouvoir(this, j2);
+            pokemon.getPower().utiliserPouvoir(this, adv);
         }
     }
 
@@ -98,7 +98,7 @@ public class Joueur {
      */
     public String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
         Scanner scanner = new Scanner(System.in);
-        boolean choixValide = false;
+        boolean choixValide;
         System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
         String choix = scanner.nextLine();
         choixValide = pokemonExiste(choix,liste);
@@ -166,9 +166,7 @@ public class Joueur {
     public boolean aPerdu(){
         if (m_pioche.isEmpty()){
             if (m_main.isEmpty()){
-                if (m_terrain.isEmpty()){
-                    return true;
-                }
+                return m_terrain.isEmpty();
             }
         }
         return false;

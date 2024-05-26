@@ -31,17 +31,20 @@ public class Pokemon
         int definitElus = ThreadLocalRandom.current().nextInt(1,7);
         if (definitElus == 5){
             String pouvoirDonne = Initialisation.getPouvoir();
-            switch (pouvoirDonne){
-                case "Berserk" : m_pouvoir = new Berserk();
-                case "Soin simple" : m_pouvoir = new SoinSimple();break;
-                case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
-                case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
-                case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
-                case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
-                case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
-                default: m_pouvoir = new ExtensionTerritoire();
-            }
-        }
+            if (pouvoirDonne != null){
+                switch (pouvoirDonne){
+                    case "Berserk" : m_pouvoir = new Berserk();
+                    case "Soin simple" : m_pouvoir = new SoinSimple();break;
+                    case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
+                    case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
+                    case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
+                    case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
+                    case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
+                    case "Extension du territoire": m_pouvoir = new ExtensionTerritoire(); break;
+                    default: m_pouvoir = null;
+                }
+            } else {m_pouvoir = null;}
+        } else {m_pouvoir = null;}
     }
 
     /**
@@ -101,10 +104,7 @@ public class Pokemon
     public int getPVMax(){return m_pvMax;}
 
     public boolean possedePouvoir(){
-        if (m_pouvoir != null){
-            return true;
-        }
-        return false;
+        return (m_pouvoir != null);
     }
 
     /**

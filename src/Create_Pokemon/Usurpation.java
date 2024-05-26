@@ -1,23 +1,22 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 import java.util.ArrayList;
 
 public class Usurpation extends Power {
 
-    private Pokemon m_possesseur;
+    private final Pokemon m_possesseur;
 
-    public Usurpation(Pokemon possesseur){
+    protected Usurpation(Pokemon possesseur){
         m_nom = "usurpation";
         m_estUtilisable = true;
         m_possesseur = possesseur;
     }
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         ArrayList<Pokemon> terrainComplet = new ArrayList<>(adv.getTerrain());
         terrainComplet.addAll(soi.getTerrain());
         String nomCible = adv.choisirPokemon(terrainComplet, "usurper de son pouvoir");
@@ -28,8 +27,17 @@ public class Usurpation extends Power {
                 cible = p;
             }
         }
-        m_possesseur.m_pouvoir = cible.getPower();
-        m_possesseur.m_pouvoir.m_estUtilisable = true;
+        if (cible.m_pouvoir != null){
+            m_possesseur.m_pouvoir = cible.m_pouvoir;
+            m_possesseur.m_pouvoir.m_estUtilisable = true;
+            AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a pris le pouvoir "+m_possesseur.m_pouvoir.getNom()+" de "+cible.getNom());
+
+        }else {
+            m_possesseur.m_pouvoir = null;
+            AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! "+m_possesseur+" a perdu son pouvoir");
+        }
         cible.m_pouvoir = null;
+
+        m_estUtilisable = false;
     }
 }

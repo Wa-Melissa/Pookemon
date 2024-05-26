@@ -1,22 +1,16 @@
 package Create_Pokemon;
 
 import Affichage.AffichagePouvoirs;
-import Create_Pokemon.Pokemon;
 import Players.Joueur;
 
 import java.util.Scanner;
 
 public abstract class Power {
 
-    String m_nom = "";//Nom du pouvoir
-    Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
+    protected String m_nom;//Nom du pouvoir
+    protected Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
 
-    public String getNom()
-    {
-        if(m_nom.isEmpty())
-        {
-            return "//////////////";
-        }
+    public String getNom(){
         return m_nom;
     }
 
@@ -29,16 +23,12 @@ public abstract class Power {
         }
     }
 
-    public boolean autorisationUtilisation(){
+    private boolean autorisationUtilisation(){
         AffichagePouvoirs.autorisationUtilisation();
         Scanner scanner = new Scanner(System.in);
         String choix = scanner.nextLine();
-        if (choix.equals("o")){
-            return true;
-        }
-        return false;
+        return choix.equals("o");
     }
 
-    abstract void declencherPouvoir(Joueur soi, Joueur adv);
-
+    protected abstract void declencherPouvoir(Joueur soi, Joueur adv);
 }

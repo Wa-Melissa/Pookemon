@@ -1,19 +1,18 @@
 package Create_Pokemon;
 
-import Create_Pokemon.Pokemon;
-import Create_Pokemon.Power;
+import Affichage.AffichagePouvoirs;
 import Players.Joueur;
 
 public class SoinSimple extends Power {
 
-    public SoinSimple(){
+    protected SoinSimple(){
         m_nom = "soin simple";
         m_estUtilisable = true;
     }
 
 
     @Override
-    void declencherPouvoir(Joueur soi, Joueur adv) {
+    protected void declencherPouvoir(Joueur soi, Joueur adv) {
         String nomReceveur = soi.choisirPokemon(soi.getTerrain(), "soigner");
         int j = 0;
         while(!soi.getTerrain().get(j).getNom().equals(nomReceveur)){
@@ -21,5 +20,8 @@ public class SoinSimple extends Power {
         }
         Pokemon receveur = (soi.getTerrain().get(j));
         receveur.estSoigne(30);
+
+        AffichagePouvoirs.afficherResultatAction(nomReceveur+" s'est régénéré !");
     }
+
 }
