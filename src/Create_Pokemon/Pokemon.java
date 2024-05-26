@@ -28,7 +28,7 @@ public class Pokemon
             case 2: m_element = new Element("Air");break;
             default : m_element = new Element("Terre");
         }
-        int definitElus = ThreadLocalRandom.current().nextInt(0,6);
+        int definitElus = ThreadLocalRandom.current().nextInt(1,7);
         if (definitElus == 5){
             String pouvoirDonne = Initialisation.getPouvoir();
             switch (pouvoirDonne){
@@ -53,7 +53,8 @@ public class Pokemon
         return m_nom;
     }
 
-    public Power getPower(){
+    public Power getPower()
+    {
         return m_pouvoir;
     }
 

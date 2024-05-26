@@ -8,10 +8,15 @@ import java.util.Scanner;
 
 public abstract class Power {
 
-    String m_nom;//Nom du pouvoir
+    String m_nom = "";//Nom du pouvoir
     Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
 
-    public String getNom(){
+    public String getNom()
+    {
+        if(m_nom.isEmpty())
+        {
+            return "//////////////";
+        }
         return m_nom;
     }
 

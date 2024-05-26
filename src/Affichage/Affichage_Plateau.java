@@ -112,6 +112,12 @@ public class Affichage_Plateau
         {
             carteString += String.format("| %-16s |      ", "Affinite : " + pokemon.getElement().getElement());
         }
+        /**carteString += "\n";
+        carteString += separation(j);
+        for(Pokemon pokemon : j.getTerrain())
+        {
+            carteString += String.format("| %-30s |      ", "Pouvoir : " + pokemon.getPower().getNom());
+        }*/
         carteString += "\n";
         carteString += separation(j);
         carteList.add(carteString);
