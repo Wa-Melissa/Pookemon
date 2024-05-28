@@ -1,6 +1,7 @@
 package Create_Pokemon;
 
 import Affichage.AffichagePouvoirs;
+import Affichage.Affichage_Plateau;
 import Players.Joueur;
 
 public class ExtensionTerritoire extends Power {
@@ -14,6 +15,8 @@ public class ExtensionTerritoire extends Power {
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
         soi.piocher();
         if (!soi.getMain().isEmpty()){
+            Affichage_Plateau p = new Affichage_Plateau();
+            p.afficherMain(soi);
             Pokemon nouveau = soi.trouverPokemon(soi.getMain(), "ajouter au terrain");
             soi.bougerPokemon(nouveau.getNom(),soi.getMain(), soi.getTerrain());
             m_estUtilisable = false;
