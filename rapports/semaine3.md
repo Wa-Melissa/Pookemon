@@ -34,6 +34,7 @@ Pouvoirs a implémenter :
 - Faire en sorte que les cartes affichant les pokemons sur le terrain soient toutes de la meme taille malgré le changement de texte à l'intérieur
 - Rendre les affichages successifs du terrain facilement compréhensible pour l'utilisateur
 - resumer les actions de l'ordinateur
+- Pouvoir afficher correctement le Pouvoir du pokemon, à notre stade, le pouvoir ne s'affiche pas correctement, il génère une erreur.
 
 ## To Do_
 - implémenter les pouvoirs affinité plomb, ether et extension du territoire
