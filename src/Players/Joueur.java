@@ -60,7 +60,7 @@ public class Joueur {
     public void attaquePokemon(Joueur adversaire){
         utiliserPouvoir(adversaire);
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
-        for ( int i = 0 ; i<3 ; i++){
+        for ( int i = 0 ; i< attaquants.size() && !attaquants.isEmpty(); i++){
             String pokemonChoisi = AffichageJoueur.choisirPokemon(attaquants,"jouer");
             int j = 0;
             while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
@@ -121,7 +121,7 @@ public class Joueur {
      * @param depart : la ou est actuellement le pokemon a deplacer
      * @param arrivee : la ou il doit etre deplace
      */
-    protected void bougerPokemon(String nom,ArrayList<Pokemon> depart, ArrayList<Pokemon> arrivee ){
+    public void bougerPokemon(String nom,ArrayList<Pokemon> depart, ArrayList<Pokemon> arrivee ){
         for (int i = 0 ; i< depart.size() ; i++){
             Pokemon p = depart.get(i);
             if (p.getNom().equals(nom)){

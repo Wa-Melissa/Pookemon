@@ -15,13 +15,18 @@ public class Kamikaze extends Power {
 
     @Override
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
-        Pokemon cible = soi.trouverPokemon(adv.getTerrain(), "entraîner dans la mort");
-        soi.perdPokemon(m_possesseur);
-        adv.perdPokemon(cible);
+        if (!adv.getTerrain().isEmpty()){
+            Pokemon cible = soi.trouverPokemon(adv.getTerrain(), "entraîner dans la mort");
+            soi.perdPokemon(m_possesseur);
+            adv.perdPokemon(cible);
 
-        m_estUtilisable = false;
+            m_estUtilisable = false;
 
-        AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+". Ils ont tous les deux été éliminés !");
+            AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+". Ils ont tous les deux été éliminés !");
+        }
+        else {
+            AffichagePouvoirs.afficherResultatAction(("Oups! Il n'y a aucun pokemon sur lequel utiliser ce pouvoir !"));
+        }
     }
 
     @Override
