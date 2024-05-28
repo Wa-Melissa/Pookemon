@@ -110,6 +110,10 @@ public class Affichage_Plateau
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
+            if (pokemon.getElement().getElement() == "Terre")
+            {
+                carteString += String.format("| %-42s |      ", "Affinite : " + pokemon.getElement().getElement());
+            }
             carteString += String.format("| %-42s |      ", "Affinite : " + pokemon.getElement().getElement());
         }
         carteString += "\n";
