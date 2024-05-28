@@ -3,7 +3,7 @@ import Players.Joueur;
 
 public class AffiniteEther extends Power {
     protected AffiniteEther(){
-        m_nom = "affinité Ether";
+        m_nom = "Affinité Ether";
         m_estUtilisable = true;
     }
 

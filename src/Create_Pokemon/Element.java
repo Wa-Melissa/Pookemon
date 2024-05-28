@@ -31,7 +31,23 @@ public class Element
      */
     public String getElement()
     {
-        return m_nom;
+        if (m_nom.equals("Feu"))
+        {
+            return "\u001B[31m" + m_nom + "\u001B[0m";
+
+        } else if (m_nom.equals("Air")) {
+
+            return "\u001B[33m" + m_nom + "\u001B[0m";
+
+        } else if (m_nom.equals("Terre")) {
+
+            return "\u001B[38;5;94m" + m_nom + "\u001B[0m";
+
+        } else {
+
+            return "\u001B[34m" + m_nom + "\u001B[0m";
+        }
+
     }
 
     /**

@@ -5,7 +5,7 @@ import Players.Joueur;
 
 public class SoinZone extends Power {
     protected SoinZone(){
-        m_nom = "soin de zone";
+        m_nom = "Soin de zone";
         m_estUtilisable = true;
     }
 
