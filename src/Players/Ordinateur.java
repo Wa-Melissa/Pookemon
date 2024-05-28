@@ -63,7 +63,8 @@ public class Ordinateur extends Joueur {
     }
 @Override
     protected void utiliserPouvoir( Joueur adv){
-        for (Pokemon p :m_terrain ) {
+    ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+    for (Pokemon p :attaquants ) {
             if (p.possedePouvoir()){
                 if (p.getPower().isUtilisable()){
                     p.getPower().utiliserPouvoir(this, adv);

@@ -82,7 +82,8 @@ public class Joueur {
     }
 
     protected void utiliserPouvoir( Joueur adv){
-        for (Pokemon p :m_terrain ) {
+        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+        for (Pokemon p :attaquants ) {
             if (p.possedePouvoir()){
                 if (p.getPower().isUtilisable()){
                     AffichagePouvoirs.demandeEffet(p.getPower().getNom());
