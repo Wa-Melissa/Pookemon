@@ -10,7 +10,7 @@ public class Usurpation extends Power {
     private final Pokemon m_possesseur;
 
     protected Usurpation(Pokemon possesseur){
-        m_nom = "usurpation";
+        m_nom = "Usurpation";
         m_estUtilisable = true;
         m_possesseur = possesseur;
     }

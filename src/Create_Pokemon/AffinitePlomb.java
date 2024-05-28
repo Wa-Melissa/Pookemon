@@ -4,7 +4,7 @@ import Players.Joueur;
 
 public class AffinitePlomb extends Power {
     protected AffinitePlomb(){
-        m_nom = "affinité Plomb";
+        m_nom = "Affinité Plomb";
         m_estUtilisable = true;
     }
 

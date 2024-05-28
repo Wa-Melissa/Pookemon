@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Affichage_Plateau
 {
     int m_tour = 1;
-    private final String m_separation = "======================================================================================================";
+    private final String m_separation = "===========================================================================================================================";
     private String m_affichage;
     public static ArrayList<String> m_resume = new ArrayList<>(); //PROBLEME : on peut pas mettre des attributs en public
 
@@ -94,23 +94,23 @@ public class Affichage_Plateau
 
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-25s |      ", pokemon.getNom());
+            carteString += String.format("| %-33s |      ", pokemon.getNom());
         }
         carteString += "\n";
         carteString += separation(j);
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-25s |      ", "Attaque: " + pokemon.getAttaque());
+            carteString += String.format("| %-33s |      ", "Attaque: " + pokemon.getAttaque());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-25s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
+            carteString += String.format("| %-33s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-25s |      ", "Affinite : " + pokemon.getElement().getElement());
+            carteString += String.format("| %-42s |      ", "Affinite : " + pokemon.getElement().getElement());
         }
         carteString += "\n";
         carteString += separation(j);
@@ -118,10 +118,10 @@ public class Affichage_Plateau
         {
             if(pokemon.getPower() == null)
             {
-                carteString += String.format("| %-25s |      ", "Pouvoir : -----");
+                carteString += String.format("| %-33s |      ", "Pouvoir : -----");
             } else
             {
-                carteString += String.format("| %-25s |      ", "Pouvoir : " + pokemon.getPower().getNom());
+                carteString += String.format("| %-33s |      ", "Pouvoir : " + pokemon.getPower().getNom());
             }
 
         }
@@ -144,7 +144,7 @@ public class Affichage_Plateau
         String s = "";
         for(Pokemon pokemon : j.getTerrain())
         {
-            s += "-----------------------------      ";
+            s += "-------------------------------------      ";
         }
         s += "\n";
         return s;
@@ -185,7 +185,11 @@ public class Affichage_Plateau
             if (pokemon.getPower() != null){
                 pouvoir = pouvoir.replaceFirst(pouvoir,pokemon.getPower().getNom());
             }
-            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + ", Pouvoir: "+pouvoir+"\n";
+            s += "- " + "\u001B[1m" + pokemon.getNom() + "\u001B[0m" + ", ";
+            s += pokemon.getElement().getElement() + ", ";
+            s += "Vie : " + "\u001B[32m" + pokemon.getPV() + "\u001B[0m" + ", ";
+            s += "Attaque : " + "\u001B[31m" + pokemon.getAttaque() + "\u001B[0m" + ", ";
+            s += "Pouvoir: "+pouvoir+"\n";
         }
         return s;
     }
@@ -225,13 +229,18 @@ public class Affichage_Plateau
         String concat = "";
         String bordure = "*----------------------------------------------------------------------*";
         concat += creationEspacement(bordure.length(), "Résumé".length());
+        concat += creationEspacement(m_separation.length(), bordure.length());
         concat += "Résumé\n";
+        concat += creationEspacement(m_separation.length(), bordure.length());
         concat += bordure + "\n";
         for (String s : m_resume)
         {
+            concat += creationEspacement(m_separation.length(), bordure.length());
             concat += String.format("| %-68s |      ", s) + "\n";
         }
+        concat += creationEspacement(m_separation.length(), bordure.length());
         concat += bordure + "\n\n";
+
         return concat;
     }
 

@@ -6,7 +6,7 @@ import Players.Joueur;
 public class SoinSimple extends Power {
 
     protected SoinSimple(){
-        m_nom = "soin simple";
+        m_nom = "Soin simple";
         m_estUtilisable = true;
     }
 

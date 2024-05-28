@@ -7,7 +7,7 @@ public class Berserk extends Power {
     private Pokemon m_receveur;
 
     protected Berserk(){
-        m_nom = "berserk";
+        m_nom = "Berserk";
         m_estUtilisable = true;
     }
 

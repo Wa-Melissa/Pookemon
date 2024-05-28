@@ -5,7 +5,7 @@ import Players.Joueur;
 public class ExtensionTerritoire extends Power {
 
     protected ExtensionTerritoire(){
-        m_nom = "extension du territoire";
+        m_nom = "Extension du territoire";
         m_estUtilisable = true;
     }
 
