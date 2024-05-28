@@ -33,7 +33,7 @@ public class Main
 
         Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
 
-        String separation = "========================================================================\n";
+        String separation = "======================================================================================================\n";
         String goAffichage = "C'est parti !!";
         String espace = "";
         for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
