@@ -28,8 +28,8 @@ public class Pokemon
             case 2: m_element = new Element("Air");break;
             default : m_element = new Element("Terre");
         }
-        int definitElus = ThreadLocalRandom.current().nextInt(0,6);
-        if (definitElus == 5){
+        int definitElus = ThreadLocalRandom.current().nextInt(0,2);
+        if (definitElus == 1){
             String pouvoirDonne = Initialisation.getPouvoir();
             if (pouvoirDonne != null){
                 switch (pouvoirDonne){

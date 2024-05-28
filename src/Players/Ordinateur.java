@@ -1,5 +1,6 @@
 package Players;
 
+import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
 import Affichage.Affichage_Plateau;
@@ -34,11 +35,11 @@ public class Ordinateur extends Joueur {
      */
     @Override
     public void attaquePokemon(Joueur adversaire){
+        utiliserPouvoir(adversaire);
         //Les pokemons attaquent dans l'ordre du terrain, et s'il reste des pokemons en face à attaquer
         for (int i = 0 ; i < m_terrain.size() && !adversaire.m_terrain.isEmpty() ; i++){
             //On commence par selectionner les pokemons avec les meilleurs éléments
             Pokemon pokemonAttaquant = m_terrain.get(i);
-            utiliserPouvoir(pokemonAttaquant, adversaire);
             ArrayList<Pokemon> pokemonsCibles = (ArrayList<Pokemon>) adversaire.m_terrain.clone();
             Element elementPokemonAttaquant = pokemonAttaquant.getElement();
             pokemonsCibles = recuperePokemonsAvantageux(pokemonsCibles, elementPokemonAttaquant);
@@ -58,6 +59,19 @@ public class Ordinateur extends Joueur {
             pokemonAttaquant.attaque(cible,adversaire);
             Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
 
+        }
+    }
+@Override
+    protected void utiliserPouvoir( Joueur adv){
+        for (Pokemon p :m_terrain ) {
+            if (p.possedePouvoir()){
+                if (p.getPower().isUtilisable()){
+                    p.getPower().utiliserPouvoir(this, adv);
+                }
+                else {
+                    p.getPower().finEffetPouvoir();
+                }
+            }
         }
     }
 

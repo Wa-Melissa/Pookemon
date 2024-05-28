@@ -13,11 +13,8 @@ public abstract class Power {
     }
 
     public void utiliserPouvoir(Joueur soi, Joueur adv){
-        if (m_estUtilisable){
-            AffichagePouvoirs.demandeEffet(getNom());
-            if (autorisationUtilisation(soi)){
-                declencherPouvoir(soi, adv);
-            }
+        if (autorisationUtilisation(soi)){
+            declencherPouvoir(soi, adv);
         }
     }
 
@@ -28,6 +25,10 @@ public abstract class Power {
     }
 
     protected abstract void declencherPouvoir(Joueur soi, Joueur adv);
+
+    public boolean isUtilisable(){
+        return m_estUtilisable;
+    }
 
     @Override
     public String toString(){

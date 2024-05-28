@@ -58,6 +58,7 @@ public class Joueur {
      * @param adversaire : Joueur ou Ordinateur qu'on attaque
      */
     public void attaquePokemon(Joueur adversaire){
+        utiliserPouvoir(adversaire);
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for ( int i = 0 ; i<3 ; i++){
             String pokemonChoisi = AffichageJoueur.choisirPokemon(attaquants,"jouer");
@@ -66,15 +67,12 @@ public class Joueur {
                 j++;
             }
             Pokemon monPokemon = (attaquants.remove(j));
-            finirPouvoir(monPokemon);
-            utiliserPouvoir(monPokemon,adversaire);
-
             Pokemon pokemonAdverse = trouverPokemon(adversaire.m_terrain,"attaquer");
             monPokemon.attaque(pokemonAdverse, adversaire);
         }
     }
 
-    public Pokemon trouverPokemon( ArrayList<Pokemon> zoneRecherche, String complementPhrase){
+    public Pokemon trouverPokemon(ArrayList<Pokemon> zoneRecherche, String complementPhrase){
         String nomPokemonCherche = AffichageJoueur.choisirPokemon(zoneRecherche, complementPhrase);
         int j = 0;
         while(!zoneRecherche.get(j).getNom().equals(nomPokemonCherche)){
@@ -83,17 +81,20 @@ public class Joueur {
         return zoneRecherche.get(j);
     }
 
-    protected void utiliserPouvoir(Pokemon pokemon, Joueur adv){
-        if (pokemon.possedePouvoir()){
-            pokemon.getPower().utiliserPouvoir(this, adv);
+    protected void utiliserPouvoir( Joueur adv){
+        for (Pokemon p :m_terrain ) {
+            if (p.possedePouvoir()){
+                if (p.getPower().isUtilisable()){
+                    AffichagePouvoirs.demandeEffet(p.getPower().getNom());
+                    p.getPower().utiliserPouvoir(this, adv);
+                }
+                else {
+                    p.getPower().finEffetPouvoir();
+                }
+            }
         }
     }
 
-    protected void finirPouvoir(Pokemon pokemon){
-        if (pokemon.possedePouvoir()){
-            pokemon.getPower().finEffetPouvoir();
-        }
-    }
 
     public boolean autoriserPouvoir(){
         AffichagePouvoirs.autorisationUtilisation();
