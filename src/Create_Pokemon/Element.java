@@ -41,7 +41,7 @@ public class Element
 
         } else if (m_nom.equals("Terre")) {
 
-            return "\u001B[38;5;94m" + m_nom + "\u001B[0m";
+            return "\u001B[32m" + m_nom + "\u001B[0m";
 
         } else {
 
