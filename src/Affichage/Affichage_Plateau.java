@@ -11,7 +11,7 @@ public class Affichage_Plateau
     int m_tour = 1;
     private final String m_separation = "========================================================================";
     private String m_affichage;
-    public static ArrayList<String> m_resume = new ArrayList<>();
+    public static ArrayList<String> m_resume = new ArrayList<>(); //PROBLEME : on peut pas mettre des attributs en public
 
 
     public Affichage_Plateau()
@@ -94,25 +94,34 @@ public class Affichage_Plateau
 
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-16s |      ", pokemon.getNom());
+            carteString += String.format("| %-21s |         ", pokemon.getNom());
         }
-        carteString += "\n";
+        carteString += "\n   ";
         carteString += separation(j);
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-16s |      ", "Attaque: " + pokemon.getAttaque());
+            carteString += String.format("| %-21s |         ", "Attaque: " + pokemon.getAttaque());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-16s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
+            carteString += String.format("| %-21s |         ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-16s |      ", "Affinite : " + pokemon.getElement().getElement());
+            carteString += String.format("| %-21s |         ", "Affinite : " + pokemon.getElement().getElement());
         }
         carteString += "\n";
+        for(Pokemon pokemon : j.getTerrain())
+        {
+            if (pokemon.getPower() != null){
+                carteString += String.format("| %-21s |         ", "Pouvoir : " + pokemon.getPower().getNom());
+            }else {
+                carteString += String.format("| %-21s |         ", "Pouvoir : Aucun ");
+            }
+        }
+        carteString += "\n   ";
         carteString += separation(j);
         carteList.add(carteString);
 
@@ -131,7 +140,7 @@ public class Affichage_Plateau
         String s = "";
         for(Pokemon pokemon : j.getTerrain())
         {
-            s += "--------------------      ";
+            s += "-------------------------      ";
         }
         s += "\n";
         return s;
@@ -168,7 +177,11 @@ public class Affichage_Plateau
         String s = "En main : \n";
         for (Pokemon pokemon : j.getMain())
         {
-            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
+            String pouvoir = "Aucun";
+            if (pokemon.getPower() != null){
+                pouvoir = pouvoir.replaceFirst(pouvoir,pokemon.getPower().getNom());
+            }
+            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + ", Pouvoir: "+pouvoir+"\n";
         }
         return s;
     }

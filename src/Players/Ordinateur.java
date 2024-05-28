@@ -8,13 +8,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ordinateur extends Joueur {
-    /**
-     * cree un ordinateur avec un pseudo automatique
-     * @param commence : vrai si l'ordi commence, faux sinon, doit etre different de l'attribut du joueur
-     */
-    public Ordinateur(boolean commence){
-        super("Ordianteur",commence);
-    }
 
     /**
      * cree un ordinateur
@@ -45,6 +38,7 @@ public class Ordinateur extends Joueur {
         for (int i = 0 ; i < m_terrain.size() && !adversaire.m_terrain.isEmpty() ; i++){
             //On commence par selectionner les pokemons avec les meilleurs éléments
             Pokemon pokemonAttaquant = m_terrain.get(i);
+            utiliserPouvoir(pokemonAttaquant, adversaire);
             ArrayList<Pokemon> pokemonsCibles = (ArrayList<Pokemon>) adversaire.m_terrain.clone();
             Element elementPokemonAttaquant = pokemonAttaquant.getElement();
             pokemonsCibles = recuperePokemonsAvantageux(pokemonsCibles, elementPokemonAttaquant);
@@ -65,6 +59,17 @@ public class Ordinateur extends Joueur {
             Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
 
         }
+    }
+
+    @Override
+    public boolean autoriserPouvoir(){
+        return true;
+    }
+
+    @Override
+    public Pokemon trouverPokemon( ArrayList<Pokemon> zoneRecherche, String complementPhrase){
+        Random rdt = new Random();
+        return zoneRecherche.get(rdt.nextInt(zoneRecherche.size()));
     }
 
     /**

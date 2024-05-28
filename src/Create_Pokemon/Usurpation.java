@@ -19,14 +19,7 @@ public class Usurpation extends Power {
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
         ArrayList<Pokemon> terrainComplet = new ArrayList<>(adv.getTerrain());
         terrainComplet.addAll(soi.getTerrain());
-        String nomCible = adv.choisirPokemon(terrainComplet, "usurper de son pouvoir");
-        Pokemon cible = null;
-        for (Pokemon p: terrainComplet
-             ) {
-            if (p.getNom().equals(nomCible)) {
-                cible = p;
-            }
-        }
+        Pokemon cible = soi.trouverPokemon(terrainComplet, "usurper de son pouvoir");
         if (cible.m_pouvoir != null){
             m_possesseur.m_pouvoir = cible.m_pouvoir;
             m_possesseur.m_pouvoir.m_estUtilisable = true;
@@ -34,10 +27,15 @@ public class Usurpation extends Power {
 
         }else {
             m_possesseur.m_pouvoir = null;
-            AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! "+m_possesseur+" a perdu son pouvoir");
+            AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! "+m_possesseur.getNom()+" a perdu son pouvoir");
         }
         cible.m_pouvoir = null;
 
         m_estUtilisable = false;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + " C'est le pokémon "+m_possesseur.getNom()+" qui possède ce pouvoir.";
     }
 }
