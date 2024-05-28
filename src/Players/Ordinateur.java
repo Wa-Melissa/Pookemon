@@ -1,5 +1,6 @@
 package Players;
 
+import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
 import Affichage.Affichage_Plateau;
@@ -8,13 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ordinateur extends Joueur {
-    /**
-     * cree un ordinateur avec un pseudo automatique
-     * @param commence : vrai si l'ordi commence, faux sinon, doit etre different de l'attribut du joueur
-     */
-    public Ordinateur(boolean commence){
-        super("Ordianteur",commence);
-    }
 
     /**
      * cree un ordinateur
@@ -41,6 +35,7 @@ public class Ordinateur extends Joueur {
      */
     @Override
     public void attaquePokemon(Joueur adversaire){
+        utiliserPouvoir(adversaire);
         //Les pokemons attaquent dans l'ordre du terrain, et s'il reste des pokemons en face à attaquer
         for (int i = 0 ; i < m_terrain.size() && !adversaire.m_terrain.isEmpty() ; i++){
             //On commence par selectionner les pokemons avec les meilleurs éléments
@@ -65,6 +60,30 @@ public class Ordinateur extends Joueur {
             Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
 
         }
+    }
+@Override
+    protected void utiliserPouvoir( Joueur adv){
+        for (Pokemon p :m_terrain ) {
+            if (p.possedePouvoir()){
+                if (p.getPower().isUtilisable()){
+                    p.getPower().utiliserPouvoir(this, adv);
+                }
+                else {
+                    p.getPower().finEffetPouvoir();
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean autoriserPouvoir(){
+        return true;
+    }
+
+    @Override
+    public Pokemon trouverPokemon( ArrayList<Pokemon> zoneRecherche, String complementPhrase){
+        Random rdt = new Random();
+        return zoneRecherche.get(rdt.nextInt(zoneRecherche.size()));
     }
 
     /**

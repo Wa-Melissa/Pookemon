@@ -1,5 +1,7 @@
 package Players;
 
+import Affichage.AffichageJoueur;
+import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Pokemon;
 
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class Joueur {
      */
     public void placerPokemon(){
         while(m_terrain.size()<3){
-            String choix = choisirPokemon(m_main,"placer");
+            String choix = AffichageJoueur.choisirPokemon(m_main,"placer");
             bougerPokemon(choix,m_main,m_terrain);
         }
     }
@@ -56,29 +58,49 @@ public class Joueur {
      * @param adversaire : Joueur ou Ordinateur qu'on attaque
      */
     public void attaquePokemon(Joueur adversaire){
+        utiliserPouvoir(adversaire);
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for ( int i = 0 ; i<3 ; i++){
-            String pokemonChoisi = choisirPokemon(attaquants,"jouer");
+            String pokemonChoisi = AffichageJoueur.choisirPokemon(attaquants,"jouer");
             int j = 0;
             while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
                 j++;
             }
             Pokemon monPokemon = (attaquants.remove(j));
-            utiliserPouvoir(monPokemon,adversaire);
-            String pokemonAttaque = choisirPokemon(adversaire.m_terrain,"attaquer");
-            j = 0;
-            while(!adversaire.m_terrain.get(j).getNom().equals(pokemonAttaque)){
-                j++;
-            }
-            Pokemon pokemonAdverse = (adversaire.m_terrain.get(j));
+            Pokemon pokemonAdverse = trouverPokemon(adversaire.m_terrain,"attaquer");
             monPokemon.attaque(pokemonAdverse, adversaire);
         }
     }
 
-    public void utiliserPouvoir(Pokemon pokemon, Joueur adv){
-        if (pokemon.possedePouvoir()){
-            pokemon.getPower().utiliserPouvoir(this, adv);
+    public Pokemon trouverPokemon(ArrayList<Pokemon> zoneRecherche, String complementPhrase){
+        String nomPokemonCherche = AffichageJoueur.choisirPokemon(zoneRecherche, complementPhrase);
+        int j = 0;
+        while(!zoneRecherche.get(j).getNom().equals(nomPokemonCherche)){
+            j++;
         }
+        return zoneRecherche.get(j);
+    }
+
+    protected void utiliserPouvoir( Joueur adv){
+        for (Pokemon p :m_terrain ) {
+            if (p.possedePouvoir()){
+                if (p.getPower().isUtilisable()){
+                    AffichagePouvoirs.demandeEffet(p.getPower().getNom());
+                    p.getPower().utiliserPouvoir(this, adv);
+                }
+                else {
+                    p.getPower().finEffetPouvoir();
+                }
+            }
+        }
+    }
+
+
+    public boolean autoriserPouvoir(){
+        AffichagePouvoirs.autorisationUtilisation();
+        Scanner scanner = new Scanner(System.in);
+        String choix = scanner.nextLine();
+        return choix.equals("o");
     }
 
 
@@ -91,25 +113,6 @@ public class Joueur {
         m_terrain.remove(p);
     }
 
-    /**
-     * Fait choisir à l'utilisateur un pokemon parmis une liste
-     * @param liste : la liste des pokemons parmis lesquels il doit choisir
-     * @return le nom du pokemon selectionne
-     */
-    public String choisirPokemon(ArrayList<Pokemon> liste, String complementPhrase){
-        Scanner scanner = new Scanner(System.in);
-        boolean choixValide;
-        System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
-        String choix = scanner.nextLine();
-        choixValide = pokemonExiste(choix,liste);
-        while (!choixValide){
-            System.out.println("\t--> Ce nom n'est pas valide, veuillez entrer un nom valide");
-            System.out.print("Quel pokemon voulez-vous "+complementPhrase+" ? ("+listeChoixPoke(liste)+"): ");
-            choix = scanner.nextLine();
-            choixValide = pokemonExiste(choix,liste);
-        }
-        return choix;
-    }
 
     /**
      * deplace un pokemon d'une liste à une autre à partir de son nom
@@ -129,27 +132,12 @@ public class Joueur {
     }
 
     /**
-     * fabrique la liste des noms des pokemons parmi lesquels l'utilisateur doit choisir
-     * @param liste : liste des pokemons
-     * @return la string contenant tous les noms
-     */
-    private String listeChoixPoke(ArrayList<Pokemon> liste){
-        String s = "";
-        for (Pokemon p:liste
-        ) {
-            s = s.concat(p.getNom()+"/");
-        }
-        s = s.substring(0,s.length()-1);
-        return s;
-    }
-
-    /**
      * Verifie qu'un pokemon existe dans une liste à partir de son nom
      * @param nom : le nom du pokemon
      * @param liste : la liste dans laquelle on veut cherchee
      * @return true s'il est dans la liste, false sinon
      */
-    protected boolean pokemonExiste(String nom,ArrayList<Pokemon> liste){
+    public static boolean pokemonExiste(String nom,ArrayList<Pokemon> liste){
         for (Pokemon p:liste
         ) {
             if (nom.equals(p.getNom())){

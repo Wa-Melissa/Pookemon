@@ -1,13 +1,11 @@
 package Affichage;
-import Create_Pokemon.Power;
 
 import java.util.Scanner;
 
 public class AffichagePouvoirs {
 
-    public static void demandeEffet(Power p){
-        String nomPouvoir = p.getNom();
-        System.out.print("Ce pokemon possède le pouvoir "+ nomPouvoir+" ! Voir son effet ? o/n ");
+    public static void demandeEffet(String nomPouvoir){
+        System.out.print("Un pokemon possède le pouvoir "+ nomPouvoir+" ! Voir son effet ? o/n ");
         Scanner scanner = new Scanner(System.in);
         String choix = scanner.nextLine();
         if (choix.equals("o")){

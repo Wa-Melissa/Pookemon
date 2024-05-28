@@ -13,15 +13,10 @@ public class SoinSimple extends Power {
 
     @Override
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
-        String nomReceveur = soi.choisirPokemon(soi.getTerrain(), "soigner");
-        int j = 0;
-        while(!soi.getTerrain().get(j).getNom().equals(nomReceveur)){
-            j++;
-        }
-        Pokemon receveur = (soi.getTerrain().get(j));
+        Pokemon receveur = soi.trouverPokemon(soi.getTerrain(), "soigner");
         receveur.estSoigne(30);
 
-        AffichagePouvoirs.afficherResultatAction(nomReceveur+" s'est régénéré !");
+        AffichagePouvoirs.afficherResultatAction(receveur.getNom() +" s'est régénéré !");
     }
 
 }

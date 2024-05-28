@@ -11,7 +11,7 @@ public class Affichage_Plateau
     int m_tour = 1;
     private final String m_separation = "======================================================================================================";
     private String m_affichage;
-    public static ArrayList<String> m_resume = new ArrayList<>();
+    public static ArrayList<String> m_resume = new ArrayList<>(); //PROBLEME : on peut pas mettre des attributs en public
 
 
     public Affichage_Plateau()
@@ -181,7 +181,11 @@ public class Affichage_Plateau
         String s = "En main : \n";
         for (Pokemon pokemon : j.getMain())
         {
-            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + "\n";
+            String pouvoir = "Aucun";
+            if (pokemon.getPower() != null){
+                pouvoir = pouvoir.replaceFirst(pouvoir,pokemon.getPower().getNom());
+            }
+            s += "- " + pokemon.getNom() + ", " + pokemon.getElement().getElement() + ", Vie : " + pokemon.getPV() + ", Attaque : " + pokemon.getAttaque() + ", Pouvoir: "+pouvoir+"\n";
         }
         return s;
     }
