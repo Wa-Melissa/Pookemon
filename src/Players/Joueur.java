@@ -60,7 +60,7 @@ public class Joueur {
     public void attaquePokemon(Joueur adversaire){
         utiliserPouvoir(adversaire);
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
-        for ( int i = 0 ; i< attaquants.size() && !attaquants.isEmpty(); i++){
+        for ( int i = 0 ; i< 4 && !attaquants.isEmpty(); i++){
             String pokemonChoisi = AffichageJoueur.choisirPokemon(attaquants,"jouer");
             int j = 0;
             while(!attaquants.get(j).getNom().equals(pokemonChoisi)){
@@ -70,6 +70,8 @@ public class Joueur {
             Pokemon pokemonAdverse = trouverPokemon(adversaire.m_terrain,"attaquer");
             monPokemon.attaque(pokemonAdverse, adversaire);
         }
+
+        finirPouvoir(adversaire);
     }
 
     public Pokemon trouverPokemon(ArrayList<Pokemon> zoneRecherche, String complementPhrase){
@@ -85,12 +87,21 @@ public class Joueur {
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for (Pokemon p :attaquants ) {
             if (p.possedePouvoir()){
-                if (p.getPower().isUtilisable()){
+                if (p.getPower().isUtilisable()) {
                     AffichagePouvoirs.demandeEffet(p.getPower().getNom());
                     p.getPower().utiliserPouvoir(this, adv);
                 }
-                else {
-                    p.getPower().finEffetPouvoir();
+            }
+        }
+    }
+
+    protected void finirPouvoir( Joueur adv){
+        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
+        for (Pokemon p :attaquants ) {
+            if (p.possedePouvoir()){
+                if (p.getPower().isUtilisable()) {
+                    AffichagePouvoirs.demandeEffet(p.getPower().getNom());
+                    p.getPower().utiliserPouvoir(this, adv);
                 }
             }
         }

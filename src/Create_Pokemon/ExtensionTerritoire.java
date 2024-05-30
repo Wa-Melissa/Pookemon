@@ -16,7 +16,7 @@ public class ExtensionTerritoire extends Power {
         soi.piocher();
         if (!soi.getMain().isEmpty()){
             Affichage_Plateau p = new Affichage_Plateau();
-            p.afficherMain(soi);
+            System.out.println(p.afficherMain(soi));
             Pokemon nouveau = soi.trouverPokemon(soi.getMain(), "ajouter au terrain");
             soi.bougerPokemon(nouveau.getNom(),soi.getMain(), soi.getTerrain());
             m_estUtilisable = false;

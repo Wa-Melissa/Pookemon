@@ -46,6 +46,7 @@ public class Gestion_Tour {
             System.out.println(plateau.afficherPlateau(joueur1, joueur2));
             System.out.println(plateau.afficherMain(joueur1));
         }
+
         joueur1.attaquePokemon(joueur2);
         if ((joueur1 instanceof  Ordinateur)){
             System.out.println(plateau.afficherPlateau(joueur1, joueur2));

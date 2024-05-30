@@ -26,8 +26,8 @@ public class Usurpation extends Power {
             AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a pris le pouvoir "+m_possesseur.m_pouvoir.getNom()+" de "+cible.getNom());
 
         }else {
-            m_possesseur.m_pouvoir = null;
-            AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! "+m_possesseur.getNom()+" a perdu son pouvoir");
+            m_estUtilisable = false;
+            AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! ");
         }
         cible.m_pouvoir = null;
 
