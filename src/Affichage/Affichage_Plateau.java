@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Affichage_Plateau
 {
     int m_tour = 1;
-    private final String m_separation = "===========================================================================================================================";
+    private String m_separation;
     private String m_affichage;
     public static ArrayList<String> m_resume = new ArrayList<>(); //PROBLEME : on peut pas mettre des attributs en public
 
@@ -28,6 +28,52 @@ public class Affichage_Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
+        m_separation = "===========================================================================================================================";
+        if (J1.getTerrain().size() == 4 || J2.getTerrain().size() == 4)
+        {
+            afficherPlateauEtendu(J1,J2);
+        } else {
+
+        String Affichagetour = "Tour " + m_tour; // Affiche le Tour actuel
+
+        if (J1.getClass() != Ordinateur.class)//Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur
+        {
+            Joueur temp = J1;
+            J1 = J2;
+            J2 = temp;
+        }
+
+        m_affichage = "\u001B[34m" + m_separation + "\n" + "\u001B[0m";
+        m_affichage += creationEspacement(m_separation.length(),Affichagetour.length());
+
+        m_affichage += "\u001B[34m" + Affichagetour +"\n" + m_separation + "\n" +"\u001B[0m" ;
+
+
+
+        m_affichage += m_separation + "\n";
+        m_affichage += creationEspacement(m_separation.length(),J1.getPseudo().length());
+
+        m_affichage += "\u001B[33m" + J1.getPseudo() +"\n\n\n" + "\u001B[0m" +
+                "pioche : " + J1.getPioche().size() + " Pokémons \n" +
+                "defausse : " + J1.getDefausse().size() + " Cartes \n";
+        m_affichage += afficherCarte(J1);
+
+
+        m_affichage += "\n" + m_separation + "\n";
+        m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
+
+        m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
+        m_affichage += afficherCarte(J2) + "\n";
+
+
+        }
+        return m_affichage;
+    }
+
+    public String afficherPlateauEtendu(Joueur J1,Joueur J2)
+    {
+        m_separation = "======================================================================================================================================================================" ;
+
         String Affichagetour = "Tour " + m_tour; // Affiche le Tour actuel
 
         if (J1.getClass() != Ordinateur.class)//Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur

@@ -22,6 +22,7 @@ public class ExtensionTerritoire extends Power {
             m_estUtilisable = false;
 
             AffichagePouvoirs.afficherResultatAction(nouveau.getNom()+" a été ajouté au terrain !");
+            System.out.println(p.afficherPlateau(soi, adv));
         }
         else {
             AffichagePouvoirs.afficherResultatAction("Oups! la pioche est vide!");
