@@ -2,9 +2,11 @@ package Create_Pokemon;
 
 import Players.Joueur;
 
-public class AffinitePlomb extends Power {
-    protected AffinitePlomb(){
-        m_nom = "Affinité Plomb";
+public class Empoisonnement extends Power {
+
+    protected Empoisonnement()
+    {
+        m_nom = "Regeneration";
         m_estUtilisable = true;
     }
 
@@ -12,4 +14,5 @@ public class AffinitePlomb extends Power {
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
 
     }
+
 }

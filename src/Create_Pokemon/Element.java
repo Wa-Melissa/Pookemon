@@ -15,13 +15,26 @@ public class Element
 
     public Element(String nom)
     {
+
         m_nom = nom;
-        switch (m_nom) {
-            case "Eau": m_avantage = "Feu"; m_desavantage = "Terre"; break;
-            case "Feu": m_avantage = "Air"; m_desavantage = "Eau"; break;
-            case "Terre": m_avantage = "Eau"; m_desavantage = "Air"; break;
-            case "Air": m_avantage = "Terre"; m_desavantage = "Feu"; break;
-        }
+            switch (m_nom) {
+                case "Eau":
+                    m_avantage = "Feu";
+                    m_desavantage = "Terre";
+                    break;
+                case "Feu":
+                    m_avantage = "Air";
+                    m_desavantage = "Eau";
+                    break;
+                case "Terre":
+                    m_avantage = "Eau";
+                    m_desavantage = "Air";
+                    break;
+                case "Air":
+                    m_avantage = "Terre";
+                    m_desavantage = "Feu";
+                    break;
+            }
 
     }
 

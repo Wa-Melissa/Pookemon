@@ -37,8 +37,8 @@ public class Pokemon
                     case "Soin simple" : m_pouvoir = new SoinSimple();break;
                     case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
                     case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
-                    case "Affinité Ether" : m_pouvoir = new AffiniteEther(); break;
-                    case "Affinité Plomb" : m_pouvoir = new AffinitePlomb(); break;
+                    case "Régénération" : m_pouvoir = new Regeneration(this); break;
+                    case "Empoisonnement" : m_pouvoir = new Empoisonnement(); break;
                     case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
                     case "Extension du territoire": m_pouvoir = new ExtensionTerritoire(); break;
                     default: m_pouvoir = null;
@@ -46,7 +46,6 @@ public class Pokemon
             } else {m_pouvoir = null;}
         } else {m_pouvoir = null;}
 
-        m_pouvoir = new ExtensionTerritoire();
     }
 
     /**
