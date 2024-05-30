@@ -37,7 +37,7 @@ public class Initialisation
             "Coxyclaque", "Mimigal", "Migalos", "Nostenfer", "Loupio", "Lanturn", "Pichu"));
 
     private static ArrayList<String> m_listePouvoirs = new ArrayList<>(Arrays.asList("Berserk", "Soin simple",
-            "Soin de zone","Kamikaze", "Affinité ether", "Affinité Plomb","Usurpation","Extension du territoire"));
+            "Soin de zone","Kamikaze", "Peur", "Regeneration","Usurpation","Extension du territoire"));
 
 
     /**

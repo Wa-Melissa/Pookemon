@@ -38,7 +38,7 @@ public class Pokemon
                     case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
                     case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
                     case "Régénération" : m_pouvoir = new Regeneration(this); break;
-                    case "Empoisonnement" : m_pouvoir = new Empoisonnement(); break;
+                    case "Peur" : m_pouvoir = new Peur(); break;
                     case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
                     case "Extension du territoire": m_pouvoir = new ExtensionTerritoire(); break;
                     default: m_pouvoir = null;
