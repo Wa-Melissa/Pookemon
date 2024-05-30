@@ -58,7 +58,7 @@ public class Ordinateur extends Joueur {
 
             pokemonAttaquant.attaque(cible,adversaire);
             Affichage_Plateau.resumeTour(pokemonAttaquant,cible);
-
+            finirPouvoir();
         }
     }
 @Override

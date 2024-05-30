@@ -71,7 +71,7 @@ public class Joueur {
             monPokemon.attaque(pokemonAdverse, adversaire);
         }
 
-        finirPouvoir(adversaire);
+        finirPouvoir();
     }
 
     public Pokemon trouverPokemon(ArrayList<Pokemon> zoneRecherche, String complementPhrase){
@@ -84,24 +84,33 @@ public class Joueur {
     }
 
     protected void utiliserPouvoir( Joueur adv){
-        ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
-        for (Pokemon p :attaquants ) {
+        ArrayList<Pokemon> terrain = (ArrayList<Pokemon>) m_terrain.clone();
+        ArrayList<Pokemon> possesseursPouvoirs = new ArrayList<Pokemon>() ;
+        for (Pokemon p :terrain ) {
             if (p.possedePouvoir()){
                 if (p.getPower().isUtilisable()) {
-                    AffichagePouvoirs.demandeEffet(p.getPower().getNom());
-                    p.getPower().utiliserPouvoir(this, adv);
+                    possesseursPouvoirs.add(p);
                 }
             }
         }
+        for ( int i = 0 ; i< 4 && !possesseursPouvoirs.isEmpty(); i++){
+            String pokemonChoisi = AffichageJoueur.choisirPokemon(possesseursPouvoirs,"faire activer son pouvoir");
+            int j = 0;
+            while(!possesseursPouvoirs.get(j).getNom().equals(pokemonChoisi)){
+                j++;
+            }
+            Pokemon monPokemon = (possesseursPouvoirs.remove(j));
+            AffichagePouvoirs.demandeEffet(monPokemon.getPower().getNom());
+            monPokemon.getPower().utiliserPouvoir(this, adv);
+        }
     }
 
-    protected void finirPouvoir( Joueur adv){
+    protected void finirPouvoir(){
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for (Pokemon p :attaquants ) {
             if (p.possedePouvoir()){
-                if (p.getPower().isUtilisable()) {
-                    AffichagePouvoirs.demandeEffet(p.getPower().getNom());
-                    p.getPower().utiliserPouvoir(this, adv);
+                if (!p.getPower().isUtilisable()) {
+                    p.getPower().finEffetPouvoir();
                 }
             }
         }
