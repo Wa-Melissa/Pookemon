@@ -11,7 +11,7 @@ public class Affichage_Plateau
     int m_tour = 1;
     private String m_separation;
     private String m_affichage;
-    public static ArrayList<String> m_resume = new ArrayList<>(); //PROBLEME : on peut pas mettre des attributs en public
+    private static ArrayList<String> m_resume = new ArrayList<>();
 
 
     public Affichage_Plateau()
