@@ -166,12 +166,13 @@ public class Affichage_Plateau
         carteString += separation(j);
         for(Pokemon pokemon : j.getTerrain())
         {
-            if(pokemon.getPower() == null)
-            {
-                carteString += String.format("| %-33s |      ", "Pouvoir : -----");
-            } else
+            if(!(pokemon.getPower() == null))
             {
                 carteString += String.format("| %-33s |      ", "Pouvoir : " + pokemon.getPower().getNom());
+
+            } else
+            {
+                carteString += String.format("| %-33s |      ", "Pouvoir : -----");
             }
 
         }

@@ -6,7 +6,8 @@ import Players.Joueur;
 public abstract class Power {
 
     protected String m_nom;//Nom du pouvoir
-    protected Boolean m_estUtilisable; //Faux si usage unique et déjà utilisé, vrai sinon
+
+    protected Boolean m_estUtilisable = true; //Faux si usage unique et déjà utilisé, vrai sinon
 
     public String getNom(){
         return m_nom;
