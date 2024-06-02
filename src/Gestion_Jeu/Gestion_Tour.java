@@ -46,7 +46,7 @@ public class Gestion_Tour {
             System.out.println(plateau.afficherPlateau(joueur1, joueur2));
             System.out.println(plateau.afficherMain(joueur1));
         }
-
+        joueur1.utiliserPouvoir(joueur2);
         joueur1.attaquePokemon(joueur2);
         if ((joueur1 instanceof  Ordinateur)){
             System.out.println(plateau.afficherPlateau(joueur1, joueur2));
@@ -62,6 +62,7 @@ public class Gestion_Tour {
         joueur2.piocher();
 
         joueur2.placerPokemon();
+        joueur2.utiliserPouvoir(joueur1);
         joueur2.attaquePokemon(joueur1);
         System.out.println(plateau.afficherPlateau(joueur1, joueur2));
         if ((joueur2 instanceof  Ordinateur)){

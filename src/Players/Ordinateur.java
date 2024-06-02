@@ -34,7 +34,6 @@ public class Ordinateur extends Joueur {
      */
     @Override
     public void attaquePokemon(Joueur adversaire){
-        utiliserPouvoir(adversaire);
         //Les pokemons attaquent dans l'ordre du terrain, et s'il reste des pokemons en face à attaquer
         for (int i = 0 ; i < m_terrain.size() && !adversaire.m_terrain.isEmpty() ; i++){
             //On commence par selectionner les pokemons avec les meilleurs éléments
@@ -66,7 +65,7 @@ public class Ordinateur extends Joueur {
      * @param adv, l'adversaire du joueur
      */
 @Override
-    protected void utiliserPouvoir( Joueur adv){
+    public void utiliserPouvoir( Joueur adv){
     ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
     for (Pokemon p :attaquants ) {
             if (p.possedePouvoir()){

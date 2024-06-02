@@ -32,12 +32,14 @@ Pouvoirs a implémenter :
 - Peur
 - Regeneration
 - l'utilisation des pouvoirs par l'ordi
+- afficher les pouvoirs sur le terrain
 
 ## Difficultés rencontrées:
 - Faire en sorte que les cartes affichant les pokemons sur le terrain soient toutes de la meme taille malgré le changement de texte à l'intérieur
 - Rendre les affichages successifs du terrain facilement compréhensible pour l'utilisateur
 - resumer les actions de l'ordinateur
 - Pouvoir afficher correctement le Pouvoir du pokemon, à notre stade, le pouvoir ne s'affiche pas correctement, il génère une erreur.
+- cacher pour l'ordi les différentes phases de l'utilisation de pouvoir
 
 ## To Do_
 - affichage des effets actifs des pouvoirs

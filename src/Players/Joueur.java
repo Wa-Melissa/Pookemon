@@ -58,7 +58,6 @@ public class Joueur {
      * @param adversaire : Joueur ou Ordinateur qu'on attaque
      */
     public void attaquePokemon(Joueur adversaire){
-        utiliserPouvoir(adversaire);
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for ( int i = 0 ; i< 4 && !attaquants.isEmpty(); i++){
             String pokemonChoisi = AffichageJoueur.choisirPokemon(attaquants,"jouer");
@@ -93,7 +92,7 @@ public class Joueur {
      * permet d'utiliser tous les pouvoirs du terrain du joueur
      * @param adv, l'adversaire du joueur
      */
-    protected void utiliserPouvoir( Joueur adv){
+    public void utiliserPouvoir( Joueur adv){
         ArrayList<Pokemon> terrain = (ArrayList<Pokemon>) m_terrain.clone();
         ArrayList<Pokemon> possesseursPouvoirs = new ArrayList<>() ;
         for (Pokemon p :terrain ) {
