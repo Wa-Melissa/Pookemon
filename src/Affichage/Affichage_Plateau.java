@@ -168,8 +168,13 @@ public class Affichage_Plateau
         {
             if(!(pokemon.getPower() == null))
             {
-                carteString += String.format("| %-33s |      ", "Pouvoir : " + pokemon.getPower().getNom());
-
+                if (pokemon.getPower().isUtilisable())
+                {
+                    carteString += String.format("| %-33s |      ", "Pouvoir : " + pokemon.getPower().getNom());
+                } else
+                {
+                    carteString += String.format("| Pouvoir :\u001B[31m %-22s \u001B[0m |      ", "" + pokemon.getPower().getNom()) + "";
+                }
             } else
             {
                 carteString += String.format("| %-33s |      ", "Pouvoir : -----");
