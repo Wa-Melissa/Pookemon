@@ -37,7 +37,7 @@ public class Pokemon
                     case "Soin simple" : m_pouvoir = new SoinSimple();break;
                     case "Soin de zone" : m_pouvoir = new SoinZone() ; break;
                     case "Kamikaze" : m_pouvoir = new Kamikaze(this); break;
-                    case "Régénération" : m_pouvoir = new Regeneration(this); break;
+                    case "Régénération" : m_pouvoir = new Regeneration(); break;
                     case "Peur" : m_pouvoir = new Peur(); break;
                     case "Usurpation" : m_pouvoir = new Usurpation(this) ; break;
                     case "Extension du territoire": m_pouvoir = new ExtensionTerritoire(); break;
@@ -45,7 +45,7 @@ public class Pokemon
                 }
             } else {m_pouvoir = null;}
         } else {m_pouvoir = null;}
-        m_pouvoir = new Regeneration(this);
+        m_pouvoir = new Berserk();
     }
 
     /**

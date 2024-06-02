@@ -132,6 +132,16 @@ class Usurpation extends Power{
     + toString(): String {redefines}
 }
 
+class Regeneration extends Power{
+    ~ "Creates" Usurpation(possesseur : Pokemon)
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
+class Peur extends Power{
+    ~ "Creates" Usurpation(possesseur : Pokemon)
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
 class Pokemon
 {
 # m_nom : String
@@ -195,6 +205,7 @@ Gestion_Tour ..> Joueur :<<calls>>
 Gestion_Tour ..> AffichagePlateau :<<calls>>
 Pokemon ..> Initialisation : <<uses>>
 Power ..> AffichagePouvoirs :<<calls>>
+Power ..> Pokemon : <<uses>>
 Power ..> RecuperationInfoCible :<<calls>>
 Joueur ..> Power :<<calls>>
 Joueur ..> AffichageJoueur :<<calls>>

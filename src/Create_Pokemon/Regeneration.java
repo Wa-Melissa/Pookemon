@@ -5,13 +5,10 @@ import Players.Joueur;
 
 public class Regeneration extends Power{
 
-    public final Pokemon m_possesseur;
-
-    protected Regeneration(Pokemon possesseur)
+    protected Regeneration()
     {
         m_nom = "Regeneration";
         m_estUtilisable = true;
-        m_possesseur = possesseur;
     }
 
     /**
@@ -26,7 +23,7 @@ public class Regeneration extends Power{
         Pokemon cible = soi.trouverPokemon(soi.getTerrain(), "regenerer le pouvoir");
         if (cible.m_pouvoir != null){
             cible.getPower().m_estUtilisable = true;
-            AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a régénéré le pouvoir de "+cible.getNom()+" !");
+            AffichagePouvoirs.afficherResultatAction("Le pouvoir de "+cible.getNom()+" a été régéneré !");
         }else {
             AffichagePouvoirs.afficherResultatAction(cible.getNom()+" n'avait pas de pouvoir ! ");
         }
