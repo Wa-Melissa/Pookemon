@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class AffichagePouvoirs {
 
+    /**
+     * affiche les effets d'un pouvoir si l'utilisateur souhaite les voir
+     * @param nomPouvoir, le nom du pouvoir dont on veut afficher l'effet
+     */
     public static void demandeEffet(String nomPouvoir){
         System.out.print("Un pokemon possède le pouvoir "+ nomPouvoir+" ! Voir son effet ? o/n ");
         Scanner scanner = new Scanner(System.in);
@@ -24,10 +28,17 @@ public class AffichagePouvoirs {
         }
     }
 
+    /**
+     * affiche la demande de validation de l'utilisation du pouvoir
+     */
     public static void autorisationUtilisation(){
         System.out.print("Voulez-vous utiliser ce pouvoir ? o/n ");
     }
 
+    /**
+     * affiche le resultat de l'action d'un pouvoir déclenché
+     * @param texte, string decrivant l'effet produit
+     */
     public static void afficherResultatAction(String texte){
         System.out.println("* "+texte+" *");
     }

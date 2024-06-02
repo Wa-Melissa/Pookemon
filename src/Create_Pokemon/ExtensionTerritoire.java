@@ -11,6 +11,11 @@ public class ExtensionTerritoire extends Power {
         m_estUtilisable = true;
     }
 
+    /**
+     * produit tous les effets du pouvoir
+     * @param soi, le Joueur qui déclenche un pouvoir
+     * @param adv, son adversaire
+     */
     @Override
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
         soi.piocher();

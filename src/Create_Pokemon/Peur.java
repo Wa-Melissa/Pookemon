@@ -9,6 +9,11 @@ public class Peur extends Power{
         m_estUtilisable = true;
     }
 
+    /**
+     * produit tous les effets du pouvoir
+     * @param soi, le Joueur qui déclenche un pouvoir
+     * @param adv, son adversaire
+     */
     @Override
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
         Pokemon cible = soi.trouverPokemon(adv.getTerrain(), "effrayer");

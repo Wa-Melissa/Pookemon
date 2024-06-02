@@ -1,6 +1,5 @@
 package Players;
 
-import Affichage.AffichagePouvoirs;
 import Create_Pokemon.Element;
 import Create_Pokemon.Pokemon;
 import Affichage.Affichage_Plateau;
@@ -61,6 +60,11 @@ public class Ordinateur extends Joueur {
             finirPouvoir();
         }
     }
+
+    /**
+     * permet d'utiliser tous les pouvoirs du terrain de l'ordi
+     * @param adv, l'adversaire du joueur
+     */
 @Override
     protected void utiliserPouvoir( Joueur adv){
     ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
@@ -76,11 +80,21 @@ public class Ordinateur extends Joueur {
         }
     }
 
+    /**
+     * recupere l'autorisation du joueur d'activer un pouvoir
+     * @return true si le joueur est d'accord, false sinon
+     */
     @Override
     public boolean autoriserPouvoir(){
         return true;
     }
 
+    /**
+     * Choisi un pokemon parmi une liste
+     * @param zoneRecherche, la liste de pokemons parmi laquelle le joueur doit choisir
+     * @param complementPhrase, string completant la question pour le joueur
+     * @return le pokemon choisi
+     */
     @Override
     public Pokemon trouverPokemon( ArrayList<Pokemon> zoneRecherche, String complementPhrase){
         Random rdt = new Random();

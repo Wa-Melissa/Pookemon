@@ -74,6 +74,12 @@ public class Joueur {
         finirPouvoir();
     }
 
+    /**
+     * Trouve un pokemon choisi par le joueur
+     * @param zoneRecherche, la liste de pokemons parmi laquelle le joueur doit choisir
+     * @param complementPhrase, string completant la question pour le joueur
+     * @return le pokemon choisi
+     */
     public Pokemon trouverPokemon(ArrayList<Pokemon> zoneRecherche, String complementPhrase){
         String nomPokemonCherche = AffichageJoueur.choisirPokemon(zoneRecherche, complementPhrase);
         int j = 0;
@@ -83,9 +89,13 @@ public class Joueur {
         return zoneRecherche.get(j);
     }
 
+    /**
+     * permet d'utiliser tous les pouvoirs du terrain du joueur
+     * @param adv, l'adversaire du joueur
+     */
     protected void utiliserPouvoir( Joueur adv){
         ArrayList<Pokemon> terrain = (ArrayList<Pokemon>) m_terrain.clone();
-        ArrayList<Pokemon> possesseursPouvoirs = new ArrayList<Pokemon>() ;
+        ArrayList<Pokemon> possesseursPouvoirs = new ArrayList<>() ;
         for (Pokemon p :terrain ) {
             if (p.possedePouvoir()){
                 if (p.getPower().isUtilisable()) {
@@ -105,6 +115,9 @@ public class Joueur {
         }
     }
 
+    /**
+     * met fin a l'action des pouvoirs qui ont un temps d'effet limité
+     */
     protected void finirPouvoir(){
         ArrayList<Pokemon> attaquants = (ArrayList<Pokemon>) m_terrain.clone();
         for (Pokemon p :attaquants ) {
@@ -116,7 +129,10 @@ public class Joueur {
         }
     }
 
-
+    /**
+     * recupere l'autorisation du joueur d'activer un pouvoir
+     * @return true si le joueur est d'accord, false sinon
+     */
     public boolean autoriserPouvoir(){
         AffichagePouvoirs.autorisationUtilisation();
         Scanner scanner = new Scanner(System.in);

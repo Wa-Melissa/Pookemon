@@ -11,6 +11,11 @@ public class SoinSimple extends Power {
     }
 
 
+    /**
+     * produit tous les effets du pouvoir
+     * @param soi, le Joueur qui déclenche un pouvoir
+     * @param adv, son adversaire
+     */
     @Override
     protected void declencherPouvoir(Joueur soi, Joueur adv) {
         Pokemon receveur = soi.trouverPokemon(soi.getTerrain(), "soigner");
