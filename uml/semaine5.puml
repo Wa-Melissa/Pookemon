@@ -1,0 +1,211 @@
+@startuml
+
+class Main
+{
+    + {static} main(args : String[*])
+}
+
+package "Affichage" #DDDDDD {
+
+class AffichagePlateau
+{
+- m_separation : String {read only}
+- m_affichage : String
+# m_tour : Integer
++ <<Create>> Affichage_Plateau()
++ afficherPlateau(J1 : Joueur, J2 : Joueur) : String
++ creationEspacement(textRef : Integer, textMid : Integer) : String
++ afficherCarte(j : Joueur) : String
++ afficherMain(j : Joueur) : String
++ separation(j : Joueur) : String
++ PertePokemon(j : Joueur) : String
++ {static} resumeTour(attaquant : Pokemon, cible : Pokemon)
++ AfficheResume(): String
++ ajouterTour()
+}
+
+class AffichagePouvoirs
+{
++ {static} demandeEffet(nomPouvoir : String)
++ {static} autorisationUtilisation()
++ {static} afficherResultatAction(texte : String)
+}
+
+class AffichageJoueur
+{
++ {static} choisirPokemon(liste : Pokemon[*],complementPhrase : String):String
+- {static}  listeChoixPoke(liste : Pokemon[*] ): String
+}
+
+}
+
+package "Players" #DDDDDD {
+
+class Ordinateur
+{
++ <<Create>> Ordinateur(pseudo: String, ordrePassage: Boolean)
++ <<Create>> Ordinateur(ordrePassage: Boolean)
++ placerPokemon() {redefines}
++ attaquePokemon(adversaire : Joueur) {redefines}
++ utiliserPouvoir(pokemon : Pokemon, adv : Joueur) {redefines}
++ autoriserPouvoir(): Boolean {redefines}
++ trouverPokemon(zoneRecherche : Pokemon[*], complementPhrase : String): Pokemon {redefines}
+- getPokemonsPvMin(listeDep: Pokemon[*]): Pokemon[*]
+- recuperePokemonsAvantageux(ttPokemonsAdverses : Pokemon[*], monElement : Element): Pokemon[*]
+- getPokemonsAvecElement(pokemonsAttaques : Pokemon[*], elementVoulu : String  ): Pokemon[*]
+}
+
+class Joueur implements RecuperationInfoCible
+{
+~ m_commence : Boolean
+~ m_pseudo : String
++ <<Create>> Joueur(pseudo: String, commence: Boolean)
++ getPseudo(): String
++ getMain(): Pokemon[*]
++ getPioche(): Pokemon[*]
++ getTerrain(): Pokemon[*]
++ getDefausse(): Pokemon[*]
++ piocher()
++ placerPokemon()
++ attaquePokemon(adversaire : Joueur)
++ perdPokemon(p : Pokemon)
++ trouverPokemon( zoneRecherche : Pokemon[*], complementPhrase : String): Pokemon
++ aPerdu() : Boolean
++ pokemonExiste(nom : String, liste : Pokemon[*] : Boolean
++ autoriserPouvoir(): Boolean
++ utiliserPouvoir(pokemon : Pokemon, adv : Joueur)
+~ bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
+}
+
+Interface RecuperationInfoCible{
+
+}
+
+}
+
+package "Gestion_Jeu" #DDDDDD {
+class Gestion_Tour
+{
+    + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : AffichagePlateau)
+    + {static} tourSuivant(joueur1 : Joueur, joueur2 : Joueur, plateau : AffichagePlateau)
+    + {static} affichageFin(joueur : Joueur)
+
+}
+}
+package "Create_Pokemon" #DDDDDD {
+
+abstract class Power{
+    ~ m_nom : String
+    ~ m_estUtilisable- : Boolean
+    + getNom(): String
+    + utiliserPouvoir(soi : Joueur, adv : Joueur)
+    - autorisationUtilisation(soi : Joueur): Boolean
+    ~ {abstract} declencherPouvoir(soi : Joueur, adv : Joueur)
+    + toString(): String {redefines}
+}
+
+class Berserk extends Power{
+    ~ "Creates" Berserk()
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+    + toString(): String {redefines}
+}
+
+class Kamikaze extends Power{
+    ~ "Creates" Kamikaze(possesseur : Pokemon))
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+    + toString(): String {redefines}
+}
+
+class SoinSimple extends Power{
+    ~ "Creates" SoinSimple()
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
+class SoinZone extends Power{
+    ~ "Creates" SoinZone()
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
+class Usurpation extends Power{
+    ~ "Creates" Usurpation(possesseur : Pokemon)
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+    + toString(): String {redefines}
+}
+
+class Regeneration extends Power{
+    ~ "Creates" Usurpation(possesseur : Pokemon)
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
+class Peur extends Power{
+    ~ "Creates" Usurpation(possesseur : Pokemon)
+    ~ declencherPouvoir(soi : Joueur, adv : Joueur) {redefines}
+}
+
+class Pokemon
+{
+# m_nom : String
+# m_pv : Integer
+# m_pvMax : Integer
+# m_attaque : Integer
+# m_element : Element
+# m_pouvoir : Power
++ <<Create>> Pokemon()
++ getNom() : String
++ getElement() : Element
++ getAttaque() : Integer
++ getPV() : Integer
++ getPVMax() : Integer
++ getPower() : Power
++ attaque(autre : Pokemon, dresseurAutre : Joueur)
++ possedePouvoir():Boolean
++ toString() : String {redefines}
+# estSoigne(soin : Integer)
+}
+
+
+class Initialisation
+{
+- {static} m_listeNoms : String[*]
+- {static} m_listePouvoirs : String[8]
+# {static} getNom() : String
+# {static} getPouvoir() : String
+}
+
+class Element
+{
+~ m_avantage : String
+~ m_desavantage : String
+~ m_nom : String
++ <<Create>> Element (nom : String)
++ getElement() : String
++ getAvantage() : String
++ getDesavantage(): String
+}
+
+}
+
+
+Joueur "*" *----> "# m_terrain[*] 1" Pokemon
+Joueur "*" *----> "# m_pioche[*] 1" Pokemon
+Joueur "*" *----> "# m_main[*] 1" Pokemon
+Joueur "*" *----> "# m_defausse[*] 1" Pokemon
+
+Main *-> "2\n" Joueur : crée >
+
+Pokemon o-> "1\n-m_element" Element : a une affinité avec  >
+Pokemon *-> "0..1\n~ m_pouvoir" Power : peut utiliser >
+
+Ordinateur --|> Joueur
+AffichagePlateau ..> Joueur : <<calls>>
+Main ..> Joueur :<<uses>>
+Main ..> Gestion_Tour :<<calls>>
+Gestion_Tour ..> Joueur :<<calls>>
+Gestion_Tour ..> AffichagePlateau :<<calls>>
+Pokemon ..> Initialisation : <<uses>>
+Power ..> AffichagePouvoirs :<<calls>>
+Power ..> Pokemon : <<uses>>
+Power ..> RecuperationInfoCible :<<calls>>
+Joueur ..> Power :<<calls>>
+Joueur ..> AffichageJoueur :<<calls>>
+@enduml

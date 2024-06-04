@@ -45,7 +45,6 @@ public class Pokemon
                 }
             } else {m_pouvoir = null;}
         } else {m_pouvoir = null;}
-        m_pouvoir = new Berserk();
     }
 
     /**
