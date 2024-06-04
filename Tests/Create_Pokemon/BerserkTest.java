@@ -8,18 +8,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BerserkTest {
 
+    /**
+     * Teste si la méthode de fin d'effet du pouvoir fonctionne et ramène le pokemon a ses stats d'attaque initiales
+     */
     @Test
     public void test_0(){
-        Pokemon berserk = new Pokemon();
-        berserk.m_pouvoir = new Berserk();
-        Ordinateur ordi = new Ordinateur(true,berserk);
+        Ordinateur ordi1 = new Ordinateur("",true);
+        Ordinateur ordi2 = new Ordinateur("",false);
 
-        Pokemon p = new Pokemon();
-        p.m_pouvoir = null;
-        Ordinateur j = new Ordinateur(false,p);
+        ordi1.piocher();
+        ordi1.placerPokemon();
+        for (int i = 0 ; i<2 ; i++){
+            ordi1.perdPokemon(ordi1.getTerrain().get(i));
+        }
+        assertEquals(ordi1.getTerrain().size(),1);
+        int attaqueInit = ordi1.getTerrain().get(0).m_attaque ;
 
-        int attaqueInit = berserk.m_attaque ;
+        Power berserk = new Berserk();
+        berserk.declencherPouvoir(ordi1,ordi2);
+        berserk.finEffetPouvoir();
 
+        assertEquals(ordi1.getTerrain().get(0).m_attaque ,attaqueInit);
     }
 
 }

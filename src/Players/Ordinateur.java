@@ -18,10 +18,6 @@ public class Ordinateur extends Joueur {
         super(pseudo,commence);
     }
 
-    public Ordinateur(boolean commence, Pokemon main){
-        super(commence,main);
-    }
-
     /**
      * Place les pokemons dans l'ordre de sa main
      */

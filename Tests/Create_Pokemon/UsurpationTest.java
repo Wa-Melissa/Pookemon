@@ -11,9 +11,13 @@ class UsurpationTest {
         Pokemon p = new Pokemon();
         p.m_pouvoir = new Usurpation(p);
 
-        Ordinateur ordi1 = new Ordinateur(true,p);
+        Ordinateur ordi1 = new Ordinateur("",true);
         Ordinateur ordi2 = new Ordinateur("",false);
+        ordi1.piocher();
+        ordi1.placerPokemon();
+
         p.getPower().declencherPouvoir(ordi1,ordi2);
+
         assertNotNull(p.getPower());
 
     }

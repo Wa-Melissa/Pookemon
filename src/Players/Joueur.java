@@ -32,16 +32,6 @@ public class Joueur {
         }
         if (!m_commence){ m_pioche.add(new Pokemon());}
     }
-    public Joueur(boolean commence, Pokemon main){
-        m_pseudo = "joueur";
-        m_commence = commence;
-        m_pioche = new ArrayList<>(21);
-        m_main = new ArrayList<>();
-        m_main.add(main);
-        m_defausse = new ArrayList<>();
-        m_terrain = new ArrayList<>(3);
-
-    }
 
     /**
      * complete la main du joueur avec la pioche
