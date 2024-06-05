@@ -1,13 +1,14 @@
 package Players;
 
 import Create_Pokemon.Element;
+import Create_Pokemon.ActionsJoueur;
 import Create_Pokemon.Pokemon;
 import Affichage.Affichage_Plateau;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ordinateur extends Joueur {
+public class Ordinateur extends Joueur implements ActionsJoueur {
 
     /**
      * cree un ordinateur

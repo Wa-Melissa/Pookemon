@@ -18,7 +18,7 @@ public abstract class Power {
      * @param adv, le joueur adverse
      */
     public void utiliserPouvoir(Joueur soi, Joueur adv){
-        if (autorisationUtilisation(soi)){
+        if (soi.autoriserPouvoir()){
             declencherPouvoir(soi, adv);
         }
     }
@@ -27,15 +27,6 @@ public abstract class Power {
      * met fin a l'action du pouvoir
      */
     public void finEffetPouvoir(){}
-
-    /**
-     * permet de savoir si le joueur choisit d'utiliser le pouvoir ou non
-     * @param soi, le Joueur dont c'est le tour de jouer
-     * @return true s'il valide l'utilisation, false sinon
-     */
-    private boolean autorisationUtilisation(Joueur soi){
-        return soi.autoriserPouvoir();
-    }
 
     /**
      * produit tous les effets du pouvoir

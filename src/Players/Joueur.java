@@ -2,12 +2,13 @@ package Players;
 
 import Affichage.AffichageJoueur;
 import Affichage.AffichagePouvoirs;
+import Create_Pokemon.ActionsJoueur;
 import Create_Pokemon.Pokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Joueur {
+public class Joueur implements ActionsJoueur {
     protected boolean m_commence ; // 1 si le joueur commence, 2 sinon
     protected String m_pseudo;
     protected ArrayList<Pokemon> m_pioche;

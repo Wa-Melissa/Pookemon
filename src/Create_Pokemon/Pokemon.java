@@ -3,7 +3,7 @@ package Create_Pokemon;
 import Players.Joueur;
 
 import java.util.concurrent.ThreadLocalRandom;
-public class Pokemon
+public class Pokemon implements InfoCible
 {
     String m_nom;
     int m_pvMax;
@@ -15,7 +15,6 @@ public class Pokemon
     /**
      * Constructeur Pokemon() : Crée un pokemon avec un nom, un élément, des PV et des dégats d'attaque
      */
-
     public Pokemon(){
         m_nom = Initialisation.getNom(); //Méthode statique ?
         m_pvMax = ThreadLocalRandom.current().nextInt(10, 21) * 10; //multiple de 10 entre 100 et 200
@@ -79,7 +78,11 @@ public class Pokemon
         return m_attaque;
     }
 
-    void estSoigne(int soin) {
+    /**
+     * soigne le pokemon sans dépasser ses pv max
+     * @param soin int le nombre de pv à lui rendre
+     */
+    public void estSoigne(int soin) {
         if (m_pv + soin <= m_pvMax) {
             m_pv += soin;
         } else {
@@ -111,12 +114,13 @@ public class Pokemon
      * Méthode attaque() : Permet de gérer l'action d'attaque d'un pokémon vers un autre
      * @param autre : Pokémon attaqué
      */
-
     public void attaque(Pokemon autre, Joueur dresseurAutre){
         if(m_element.m_avantage.equals(autre.m_element.getElement())){
             autre.m_pv -= (m_attaque+10);
         } else if (m_element.m_desavantage.equals(autre.m_element.getElement())){
-            autre.m_pv -= (m_attaque-10);
+            if (m_attaque - 10 > 0){ //Pour etre sur de ne pas soigner l'adversaire en l'attaquant
+                autre.m_pv -= (m_attaque-10);
+            }
         }
         else {autre.m_pv -= m_attaque;}
 

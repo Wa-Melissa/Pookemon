@@ -19,9 +19,6 @@ class SoinZoneTest {
         for (int i = 0 ; i<3 ; i++){
             ordi1.getTerrain().get(i).m_pv -= 15;
         }
-        assertEquals(ordi1.getTerrain().get(0).m_pvMax-15,ordi1.getTerrain().get(0).m_pv);
-        assertEquals(ordi1.getTerrain().get(1).m_pvMax-15,ordi1.getTerrain().get(1).m_pv);
-        assertEquals(ordi1.getTerrain().get(2).m_pvMax-15,ordi1.getTerrain().get(2).m_pv);
 
         Power hopital = new SoinZone();
         hopital.declencherPouvoir(ordi1,ordi2);
@@ -30,5 +27,19 @@ class SoinZoneTest {
         assertEquals(ordi1.getTerrain().get(1).m_pvMax-5,ordi1.getTerrain().get(1).m_pv);
         assertEquals(ordi1.getTerrain().get(2).m_pvMax-5,ordi1.getTerrain().get(2).m_pv);
 
+    }
+
+    /**
+     * Vérifie que le pouvoir reste utilisable
+     */
+    @Test
+    public void test_1(){
+        Ordinateur ordi1 = new Ordinateur("",true);
+        Ordinateur ordi2 = new Ordinateur("",false);
+
+        Power hopital = new SoinZone();
+
+        hopital.declencherPouvoir(ordi1,ordi2);
+        assertTrue(hopital.isUtilisable());
     }
 }
