@@ -28,23 +28,6 @@ public class Affichage_Plateau
     }
 
     /**
-     * Affiche le départ de la partie
-     */
-    public static void affichageDebut(){
-        String separation = "===========================================================================================================================\n";
-        String goAffichage = "C'est parti !!";
-        String espace = "";
-        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
-        {
-            espace += " ";
-        }
-        System.out.println("\u001B[32m" + separation +
-
-                separation + espace + goAffichage + "\n"
-                + separation + separation + "\u001B[0m");
-    }
-
-    /**
      * Méthode afficherPlateau : Affiche le plateau sur la console
      * @param J1 : Joueur 1
      * @param J2 : Joueur 2
@@ -282,9 +265,29 @@ public class Affichage_Plateau
         return concat;
     }
 
+    public static String afficheDepart(Joueur J1)
+    {
+        String separation = "";
+        for (Pokemon carte : J1.getTerrain())
+        {
+            separation += "===========================================";
+
+        }
+        String goAffichage = "C'est parti !!";
+        String espace = "";
+
+        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
+        {
+            espace += " ";
+        }
+        return "\u001B[32m" + separation + separation + espace + goAffichage + "\n"
+                + separation + separation + "\u001B[0m";
+    }
+
     /**
      * Méthode ajouterTour : ajoute un tour au compteur
      */
+
     public void ajouterTour()
     {
         m_tour++;
