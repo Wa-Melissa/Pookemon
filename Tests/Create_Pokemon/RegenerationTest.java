@@ -19,4 +19,5 @@ class RegenerationTest {
         vacances.declencherPouvoir(ordi1,ordi2);
         assertFalse(vacances.isUtilisable());
     }
+
 }

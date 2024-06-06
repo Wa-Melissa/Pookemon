@@ -2,6 +2,7 @@ package Players;
 
 import Affichage.AffichageJoueur;
 import Affichage.AffichagePouvoirs;
+import Affichage.Affichage_Plateau;
 import Create_Pokemon.ActionsJoueur;
 import Create_Pokemon.Pokemon;
 
