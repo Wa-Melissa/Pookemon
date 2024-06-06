@@ -36,7 +36,8 @@ public class Affichage_Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
-        for (int i = 1; i <= J1.getTerrain().size(); i++)
+        // Changement de la taille de l'affichage en fonction du nombre de cartes sur le terrain
+        for (Pokemon carte : J1.getTerrain())
         {
             m_separation += "===========================================";
 
@@ -262,6 +263,20 @@ public class Affichage_Plateau
         concat += bordure + "\n\n";
 
         return concat;
+    }
+
+    public static String afficheDepart()
+    {
+        String separation = "===========================================================================================================================\n";
+        String goAffichage = "C'est parti !!";
+        String espace = "";
+
+        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
+        {
+            espace += " ";
+        }
+        return "\u001B[32m" + separation + separation + espace + goAffichage + "\n"
+                + separation + separation + "\u001B[0m";
     }
 
     /**

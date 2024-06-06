@@ -33,17 +33,9 @@ public class Main
 
         Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
 
-        String separation = "===========================================================================================================================\n";
-        String goAffichage = "C'est parti !!";
-        String espace = "";
-        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
-        {
-            espace += " ";
-        }
-        System.out.println("\u001B[32m" + separation +
+        Affichage_Plateau.afficheDepart();
 
-                separation + espace + goAffichage + "\n"
-                + separation + separation + "\u001B[0m");
+
 
 
         //tours de jeu
