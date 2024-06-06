@@ -14,7 +14,7 @@ public class Affichage_Plateau
      */
 
     int m_tour = 1;
-    private String m_separation;
+    private String m_separation = "";
     private String m_affichage;
     private static ArrayList<String> m_resume = new ArrayList<>();
 
@@ -36,13 +36,10 @@ public class Affichage_Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
-
-        // Vérification de la taille du terrain de chaque joueur
-        if (J1.getTerrain().size() == 4 || J2.getTerrain().size() == 4)
+        for (int i = 1; i <= J1.getTerrain().size(); i++)
         {
-            m_separation = "==========================================================================================================================================================================" ;
-        } else {
-            m_separation = "==============================================================================================================================";
+            m_separation += "===========================================";
+
         }
 
             // Affiche le Tour actuel
