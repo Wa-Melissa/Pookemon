@@ -27,7 +27,7 @@ public class Kamikaze extends Power {
 
             m_estUtilisable = false;
 
-            AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+". Ils ont tous les deux été éliminés !");
+            AffichagePouvoirs.afficherResultatAction(m_possesseur.getNom()+" a réussi son attaque suicide contre "+cible.getNom()+", ils ont tous les deux été éliminés !");
         }
         else {
             AffichagePouvoirs.afficherResultatAction(("Oups! Il n'y a aucun pokemon sur lequel utiliser ce pouvoir !"));

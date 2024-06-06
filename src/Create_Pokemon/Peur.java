@@ -20,6 +20,6 @@ public class Peur extends Power{
         cible.m_attaque -= 10;
         m_estUtilisable = false;
 
-        AffichagePouvoirs.afficherResultatAction("Vous avez effrayé "+cible.getNom()+" !");
+        AffichagePouvoirs.afficherResultatAction(cible.getNom()+" a été effrayé !");
     }
 }

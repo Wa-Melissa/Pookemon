@@ -13,7 +13,7 @@ public interface InfoCible {
      * Méthode getNom() : Affiche le nom du Pokémon
      * @return m_nom : nom du Pokémon
      */
-    public String getNom();
+     String getNom();
 
 
     /**

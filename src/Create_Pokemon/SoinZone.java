@@ -20,7 +20,7 @@ public class SoinZone extends Power {
             soi.getTerrain().get(i).estSoigne(10);
         }
 
-        AffichagePouvoirs.afficherResultatAction("tous vos pokemons ont récupéré de la santé !");
+        AffichagePouvoirs.afficherResultatAction("tous les pokemons de "+soi.getPseudo()+" ont récupéré de la santé !");
 
     }
 }

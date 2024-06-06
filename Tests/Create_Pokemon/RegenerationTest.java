@@ -14,6 +14,11 @@ class RegenerationTest {
         Ordinateur ordi1 = new Ordinateur("",true);
         Ordinateur ordi2 = new Ordinateur("",false);
 
+        ordi1.piocher();
+        ordi1.placerPokemon();
+        ordi2.piocher();
+        ordi2.placerPokemon();
+
         Power vacances = new Regeneration();
 
         vacances.declencherPouvoir(ordi1,ordi2);
