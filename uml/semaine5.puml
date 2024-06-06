@@ -55,7 +55,7 @@ class Ordinateur
 - getPokemonsAvecElement(pokemonsAttaques : Pokemon[*], elementVoulu : String  ): Pokemon[*]
 }
 
-class Joueur implements RecuperationInfoCible
+class Joueur
 {
 ~ m_commence : Boolean
 ~ m_pseudo : String
@@ -91,8 +91,18 @@ class Gestion_Tour
 }
 package "Create_Pokemon" #DDDDDD {
 
-Interface RecuperationInfoCible{
+interface InfoCible{
++ estSoigne(soin : Integer)
++ getNom(): String
++ getAttaque(): Integer
+}
 
+interface ActionsJoueur{
++ autoriserPouvoir():Boolean
++ trouverPokemon(zoneRecherche : Pokemon[*], complementPhrase : String):Pokemon
++ perdPokemon(p : Pokemon)
++ getMain(): Pokemon[*]
++ getTerrain(): Pokemon[*]
 }
 
 abstract class Power{
@@ -183,7 +193,7 @@ class Element
 + getAvantage() : String
 + getDesavantage(): String
 }
-
+Power ..> ActionsJoueur :<<calls>>
 }
 
 
@@ -211,7 +221,8 @@ Pokemon ..> Initialisation : <<uses>>
 Power ..> AffichagePouvoirs :<<calls>>
 Power ..> Pokemon : <<uses>>
 Power ..> InfoCible :<<calls>>
-Power ..> ActionsJoueur :<<calls>>
 Joueur ..> Power :<<calls>>
 Joueur ..> AffichageJoueur :<<calls>>
+Create_Pokemon.Pokemon -[dashed]-|> Create_Pokemon.InfoCible
+Players.Joueur -[dashed]-|> Create_Pokemon.ActionsJoueur
 @enduml

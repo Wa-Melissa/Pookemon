@@ -11,8 +11,8 @@ class SoinZoneTest {
      */
     @Test
     public void test_0(){
-        Ordinateur ordi1 = new Ordinateur("",true);
-        Ordinateur ordi2 = new Ordinateur("",false);
+        Ordinateur ordi1 = new Ordinateur("pseudo1",true);
+        Ordinateur ordi2 = new Ordinateur("pseudo2",false);
 
         ordi1.piocher();
         ordi1.placerPokemon();
@@ -34,8 +34,8 @@ class SoinZoneTest {
      */
     @Test
     public void test_1(){
-        Ordinateur ordi1 = new Ordinateur("",true);
-        Ordinateur ordi2 = new Ordinateur("",false);
+        Ordinateur ordi1 = new Ordinateur("pseudo1",true);
+        Ordinateur ordi2 = new Ordinateur("pseudo2",false);
 
         Power hopital = new SoinZone();
 
