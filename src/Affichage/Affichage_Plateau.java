@@ -27,6 +27,20 @@ public class Affichage_Plateau
         m_affichage = "";
     }
 
+    public static void affichageDebut(){
+        String separation = "===========================================================================================================================\n";
+        String goAffichage = "C'est parti !!";
+        String espace = "";
+        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
+        {
+            espace += " ";
+        }
+        System.out.println("\u001B[32m" + separation +
+
+                separation + espace + goAffichage + "\n"
+                + separation + separation + "\u001B[0m");
+    }
+
     /**
      * Méthode afficherPlateau : Affiche le plateau sur la console
      * @param J1 : Joueur 1
@@ -89,7 +103,7 @@ public class Affichage_Plateau
      * @return s : Chaîne de caractère contenant les espaces nécessaires pour centrer
      */
 
-    public String creationEspacement(int textRef, int textMid)
+    private String creationEspacement(int textRef, int textMid)
     {
         String s ="";
         for(int i = 0; i < (textRef - textMid)/2; i++)
@@ -105,7 +119,7 @@ public class Affichage_Plateau
      * @return s : Chaîne de caractère contenant les cartes sur le terrain du joueur j
      */
 
-    public String afficherCarte(Joueur j)
+    private String afficherCarte(Joueur j)
     {
         ArrayList<String> carteList = new ArrayList<>();
 
@@ -168,7 +182,7 @@ public class Affichage_Plateau
      * @return s : Chaîne de caractère contenant les séparations
      */
 
-    public String separation(Joueur j)
+    private String separation(Joueur j)
     {
         String s = "";
         for(Pokemon pokemon : j.getTerrain())
@@ -226,10 +240,10 @@ public class Affichage_Plateau
 
         String element = cible.getElement().getElement();
 
-        if (attaquant.getElement().getAvantage() == element)
+        if (attaquant.getElement().getAvantage().equals(element))
         {
             degats = attaquant.getAttaque() + 10;
-        } else if (attaquant.getElement().getDesavantage() == element)
+        } else if (attaquant.getElement().getDesavantage().equals(element))
         {
             degats = attaquant.getAttaque() - 10;
         } else

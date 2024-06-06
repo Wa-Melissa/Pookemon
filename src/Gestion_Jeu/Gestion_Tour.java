@@ -4,84 +4,124 @@ import Affichage.Affichage_Plateau;
 import Players.Joueur;
 import Players.Ordinateur;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Gestion_Tour {
+
+    private final int m_pnjCommence;
+    private final Joueur m_joueur1;
+    private final Joueur m_joueur2;
+    private final Affichage_Plateau m_plateau;
+
+    public Gestion_Tour(){
+        //Initialisation des joueurs
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Veuillez entrer votre pseudo : ");
+        String name = scanner.nextLine();
+        System.out.println("Bonjour " + name + " !\nBienvenue dans Pookémon ! Prépare toi au combat.");
+        Random rdt = new Random();
+        m_pnjCommence = rdt.nextInt(2); // 0 pour non, 1 pour oui
+        if (m_pnjCommence==0){
+            m_joueur1 = new Joueur(name, true);
+            m_joueur2 = new Ordinateur("Ordinateur", false);
+            System.out.println("\nC'est vous qui commencez !\n");
+        }else {
+            m_joueur1 = new Ordinateur("Ordinateur", true);
+            m_joueur2 = new Joueur(name, false);
+            System.out.println("\nC'est votre adversaire qui commence!\n");
+        }
+
+        m_plateau  = new Affichage_Plateau();
+    }
 
     /**
      * Fait la mise en place de la partie
-     * @param joueur1 le joueur qui commence
-     * @param joueur2 l'autre joueur
-     * @param plateau le plateau de jeu
      */
-    public static void miseEnPlace(Joueur joueur1, Joueur joueur2, Affichage_Plateau plateau){
-        joueur1.piocher();
+    public void miseEnPlace(){
+        m_joueur1.piocher();
 
-        if (joueur1.getClass()!= Ordinateur.class){
+        if (m_joueur1.getClass()!= Ordinateur.class){
             System.out.println("Placez vos pokemons !");
-            System.out.println(plateau.afficherMain(joueur1));
+            System.out.println(m_plateau.afficherMain(m_joueur1));
         }
-        joueur1.placerPokemon();
+        m_joueur1.placerPokemon();
 
-        joueur2.piocher();
-        if (joueur2.getClass()!=Ordinateur.class){
+        m_joueur2.piocher();
+        if (m_joueur2.getClass()!=Ordinateur.class){
             System.out.println("Placez vos pokemons !");
-            System.out.println(plateau.afficherMain(joueur2));
+            System.out.println(m_plateau.afficherMain(m_joueur2));
         }
-        joueur2.placerPokemon();
+        m_joueur2.placerPokemon();
 
     }
 
     /**
      * appelle toutes les actions d'dun tour de jeu
-     * @param joueur1 le joueur qui commence
-     * @param joueur2 l'autre joueur
-     * @param plateau le plateau de jeu
      */
-    public static void tourSuivant(Joueur joueur1, Joueur joueur2, Affichage_Plateau plateau){
+    public void tourSuivant(){
 
-        joueur1.piocher();
-        joueur1.placerPokemon();
+        m_joueur1.piocher();
+        m_joueur1.placerPokemon();
 
 
-        if (!(joueur1 instanceof  Ordinateur)){
-            System.out.println(plateau.afficherPlateau(joueur1, joueur2));
-            System.out.println(plateau.afficherMain(joueur1));
+        if (!(m_joueur1 instanceof  Ordinateur)){
+            System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
+            System.out.println(m_plateau.afficherMain(m_joueur1));
         }
-        joueur1.utiliserPouvoir(joueur2);
-        joueur1.attaquePokemon(joueur2);
-        if ((joueur1 instanceof  Ordinateur)){
-            System.out.println(plateau.afficherPlateau(joueur1, joueur2));
-            System.out.println(plateau.AfficheResume());
-        }
-
-
-        if (!(joueur2 instanceof  Ordinateur)){
-            System.out.println(plateau.afficherMain(joueur2));
-
+        m_joueur1.utiliserPouvoir(m_joueur2);
+        m_joueur1.attaquePokemon(m_joueur2);
+        if ((m_joueur1 instanceof  Ordinateur)){
+            System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
+            System.out.println(m_plateau.AfficheResume());
         }
 
-        joueur2.piocher();
 
-        joueur2.placerPokemon();
-        joueur2.utiliserPouvoir(joueur1);
-        joueur2.attaquePokemon(joueur1);
-        System.out.println(plateau.afficherPlateau(joueur1, joueur2));
-        if ((joueur2 instanceof  Ordinateur)){
-            System.out.println(plateau.AfficheResume());
+        if (!(m_joueur2 instanceof  Ordinateur)){
+            System.out.println(m_plateau.afficherMain(m_joueur2));
+
         }
-        plateau.ajouterTour();
+
+        m_joueur2.piocher();
+
+        m_joueur2.placerPokemon();
+        m_joueur2.utiliserPouvoir(m_joueur1);
+        m_joueur2.attaquePokemon(m_joueur1);
+        System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
+        if ((m_joueur2 instanceof  Ordinateur)){
+            System.out.println(m_plateau.AfficheResume());
+        }
+        m_plateau.ajouterTour();
 
     }
+
 
     /**
      * Affiche à la fin de la partie si l'utilisateur a gagné ou perdu
-     * @param joueur le joueur joué par l'utilisateur
      */
-    public static void affichageFin(Joueur joueur){
-        if (joueur.aPerdu()){
-            System.out.println("\nVous avez perdu !");
-        } else {            System.out.println("\nVous avez gagné ! :)");
+    public void affichageFin(){
+        if (m_pnjCommence==0){
+            if (m_joueur1.aPerdu()){
+                System.out.println("\nVous avez perdu !");
+            } else {
+                System.out.println("\nVous avez gagné ! :)");
+            }
+        }
+        else {
+            if (m_joueur2.aPerdu()){
+                System.out.println("\nVous avez perdu !");
+            } else {
+                System.out.println("\nVous avez gagné ! :)");
+            }
         }
     }
 
+    public boolean Joueur1aPerdu(){
+        return m_joueur1.aPerdu();
+    }
+
+    public boolean Joueur2aPerdu(){
+        return m_joueur2.aPerdu();
+    }
 
 }

@@ -9,7 +9,6 @@ class SoinSimpleTest {
     /**
      * Vérifie que la vie du pokemon soigné ne dépasse pas ses pv max
      */
-
     @Test
 public void test_0(){
     Ordinateur ordi1 = new Ordinateur("",true);
