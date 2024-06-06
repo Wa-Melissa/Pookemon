@@ -1,5 +1,4 @@
 import Gestion_Jeu.Gestion_Tour;
-import Affichage.Affichage_Plateau;
 
 public class Main
 {
@@ -8,8 +7,6 @@ public class Main
         //Initialisation des joueurs
         Gestion_Tour partie1 = new Gestion_Tour();
         partie1.miseEnPlace();
-
-        Affichage_Plateau.affichageDebut();
 
         //tours de jeu
         while (!partie1.Joueur1aPerdu() && !partie1.Joueur2aPerdu()){

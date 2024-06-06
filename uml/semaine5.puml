@@ -14,7 +14,7 @@ class AffichagePlateau
 # m_tour : Integer
 + <<Create>> Affichage_Plateau()
 + afficherPlateau(J1 : Joueur, J2 : Joueur) : String
-+ {static} affichageDebut()
++ {static} affichageDepart(joueur1 : Joueur)
 + afficherMain(j : Joueur) : String
 + PertePokemon(j : Joueur) : String
 + {static} resumeTour(attaquant : Pokemon, cible : Pokemon)
@@ -221,7 +221,6 @@ Usurpation o-> "1\n-m_possesseur" Pokemon : est utilisé par  >
 Ordinateur --|> Joueur
 AffichagePlateau ..> Joueur : <<calls>>
 Main ..> Gestion_Tour :<<calls>>
-Main ..> AffichagePlateau :<<calls>>
 Gestion_Tour ..> AffichagePlateau :<<calls>>
 Pokemon ..> Initialisation : <<uses>>
 Power ..> AffichagePouvoirs :<<calls>>

@@ -57,6 +57,8 @@ public class Gestion_Tour {
         }
         m_joueur2.placerPokemon();
 
+        Affichage_Plateau.afficheDepart(m_joueur1);
+
     }
 
     /**

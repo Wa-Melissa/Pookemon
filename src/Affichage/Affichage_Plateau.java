@@ -265,7 +265,7 @@ public class Affichage_Plateau
         return concat;
     }
 
-    public static String afficheDepart(Joueur J1)
+    public static void afficheDepart(Joueur J1)
     {
         String separation = "";
         for (Pokemon carte : J1.getTerrain())
@@ -280,8 +280,9 @@ public class Affichage_Plateau
         {
             espace += " ";
         }
-        return "\u001B[32m" + separation + separation + espace + goAffichage + "\n"
-                + separation + separation + "\u001B[0m";
+        String finale = "\u001B[32m" + separation + "\n" + separation + "\n" + espace + goAffichage + "\n"
+                + separation + "\n" + separation + "\n" + "\u001B[0m";
+        System.out.println(finale);
     }
 
     /**
