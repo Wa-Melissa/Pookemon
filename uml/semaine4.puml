@@ -18,7 +18,6 @@ class AffichagePlateau
 + afficherCarte(j : Joueur) : String
 + afficherMain(j : Joueur) : String
 + separation(j : Joueur) : String
-+ PertePokemon(j : Joueur) : String
 + {static} resumeTour(attaquant : Pokemon, cible : Pokemon)
 + AfficheResume(): String
 + ajouterTour()
@@ -44,7 +43,6 @@ package "Players" #DDDDDD {
 class Ordinateur
 {
 + <<Create>> Ordinateur(pseudo: String, ordrePassage: Boolean)
-+ <<Create>> Ordinateur(ordrePassage: Boolean)
 + placerPokemon() {redefines}
 + attaquePokemon(adversaire : Joueur) {redefines}
 + utiliserPouvoir(pokemon : Pokemon, adv : Joueur) {redefines}

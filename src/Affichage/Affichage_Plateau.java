@@ -8,11 +8,19 @@ import java.util.ArrayList;
 
 public class Affichage_Plateau
 {
+
+    /**
+     * Initialisation des attributs
+     */
+
     int m_tour = 1;
-    private String m_separation;
+    private String m_separation = "";
     private String m_affichage;
     private static ArrayList<String> m_resume = new ArrayList<>();
 
+    /**
+     * Constructeur Affichage_Plateau : Crée un plateau
+     */
 
     public Affichage_Plateau()
     {
@@ -28,86 +36,51 @@ public class Affichage_Plateau
 
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
-        m_separation = "===========================================================================================================================";
-        if (J1.getTerrain().size() == 4 || J2.getTerrain().size() == 4)
+        for (int i = 1; i <= J1.getTerrain().size(); i++)
         {
-            afficherPlateauEtendu(J1,J2);
-        } else {
+            m_separation += "===========================================";
 
-        String Affichagetour = "Tour " + m_tour; // Affiche le Tour actuel
-
-        if (J1.getClass() != Ordinateur.class)//Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur
-        {
-            Joueur temp = J1;
-            J1 = J2;
-            J2 = temp;
         }
 
-        m_affichage = "\u001B[34m" + m_separation + "\n" + "\u001B[0m";
-        m_affichage += creationEspacement(m_separation.length(),Affichagetour.length());
+            // Affiche le Tour actuel
+            String Affichagetour = "Tour " + m_tour;
 
-        m_affichage += "\u001B[34m" + Affichagetour +"\n" + m_separation + "\n" +"\u001B[0m" ;
+            // Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur
+            if (J1.getClass() != Ordinateur.class)
+            {
+                Joueur temp = J1;
+                J1 = J2;
+                J2 = temp;
+            }
 
+            //Affichage du bandeau "Tour"
+            m_affichage = "\u001B[34m" + m_separation + "\n" + "\u001B[0m";
+            m_affichage += creationEspacement(m_separation.length(),Affichagetour.length());
+            m_affichage += "\u001B[34m" + Affichagetour +"\n" + m_separation + "\n" +"\u001B[0m" ;
 
+            //Affichage de la séparation et du nom de l'ordinateur
+            m_affichage += m_separation + "\n";
+            m_affichage += creationEspacement(m_separation.length(),J1.getPseudo().length());
+            m_affichage += "\u001B[33m" + J1.getPseudo() + "\n\n\n" + "\u001B[0m";
 
-        m_affichage += m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J1.getPseudo().length());
+            //Affichage du nombre de pokémon dans la pioche et dans la défausse de l'ordinateur
+            m_affichage += "pioche : " + J1.getPioche().size() + " Pokémons \n" +
+                    "defausse : " + J1.getDefausse().size() + " Cartes \n";
 
-        m_affichage += "\u001B[33m" + J1.getPseudo() +"\n\n\n" + "\u001B[0m" +
-                "pioche : " + J1.getPioche().size() + " Pokémons \n" +
-                "defausse : " + J1.getDefausse().size() + " Cartes \n";
-        m_affichage += afficherCarte(J1);
+            //Affichage des cartes de l'ordinateur
+            m_affichage += afficherCarte(J1);
 
+            //Affichage de la séparation et du nom du Joueur
+            m_affichage += "\n" + m_separation + "\n";
+            m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
+            m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
 
-        m_affichage += "\n" + m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
+            //Affichage des cartes du Joueur
+            m_affichage += afficherCarte(J2) + "\n";
 
-        m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
-        m_affichage += afficherCarte(J2) + "\n";
-
-
-        }
         return m_affichage;
     }
 
-    public String afficherPlateauEtendu(Joueur J1,Joueur J2)
-    {
-        m_separation = "======================================================================================================================================================================" ;
-
-        String Affichagetour = "Tour " + m_tour; // Affiche le Tour actuel
-
-        if (J1.getClass() != Ordinateur.class)//Vérifie et corrige pour que le joueur en bas soit toujours l'utilisateur
-        {
-            Joueur temp = J1;
-            J1 = J2;
-            J2 = temp;
-        }
-
-        m_affichage = "\u001B[34m" + m_separation + "\n" + "\u001B[0m";
-        m_affichage += creationEspacement(m_separation.length(),Affichagetour.length());
-
-        m_affichage += "\u001B[34m" + Affichagetour +"\n" + m_separation + "\n" +"\u001B[0m" ;
-
-
-
-        m_affichage += m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J1.getPseudo().length());
-
-        m_affichage += "\u001B[33m" + J1.getPseudo() +"\n\n\n" + "\u001B[0m" +
-                "pioche : " + J1.getPioche().size() + " Pokémons \n" +
-                "defausse : " + J1.getDefausse().size() + " Cartes \n";
-        m_affichage += afficherCarte(J1);
-
-
-        m_affichage += "\n" + m_separation + "\n";
-        m_affichage += creationEspacement(m_separation.length(),J2.getPseudo().length());
-
-        m_affichage += "\u001B[33m" + J2.getPseudo() +"\n\n\n" + "\u001B[0m";
-        m_affichage += afficherCarte(J2) + "\n";
-
-
-        return m_affichage;
-    }
 
     /**
      * Méthode creationEspacement() : créer des espaces avant certain texte pour les centrer
@@ -140,27 +113,27 @@ public class Affichage_Plateau
 
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-33s |      ", pokemon.getNom());
+            carteString += String.format("| %-34s |      ", pokemon.getNom());
         }
         carteString += "\n";
         carteString += separation(j);
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-33s |      ", "Attaque: " + pokemon.getAttaque());
+            carteString += String.format("| %-34s |      ", "Attaque: " + pokemon.getAttaque());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
-            carteString += String.format("| %-33s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
+            carteString += String.format("| %-34s |      ", "Vie: " + pokemon.getPV() + "/" + pokemon.getPVMax());
         }
         carteString += "\n";
         for(Pokemon pokemon : j.getTerrain())
         {
             if (pokemon.getElement().getElement() == "Terre")
             {
-                carteString += String.format("| %-42s |      ", "Affinite : " + pokemon.getElement().getElement());
+                carteString += String.format("| %-43s |      ", "Affinite : " + pokemon.getElement().getElement());
             }
-            carteString += String.format("| %-42s |      ", "Affinite : " + pokemon.getElement().getElement());
+            carteString += String.format("| %-43s |      ", "Affinite : " + pokemon.getElement().getElement());
         }
         carteString += "\n";
         carteString += separation(j);
@@ -170,14 +143,14 @@ public class Affichage_Plateau
             {
                 if (pokemon.getPower().isUtilisable())
                 {
-                    carteString += String.format("| %-33s |      ", "Pouvoir : " + pokemon.getPower().getNom());
+                    carteString += String.format("| %-34s |      ", "Pouvoir : " + pokemon.getPower().getNom());
                 } else
                 {
-                    carteString += String.format("| Pouvoir :\u001B[31m %-22s \u001B[0m |      ", "" + pokemon.getPower().getNom()) + "";
+                    carteString += String.format("| Pouvoir :\u001B[31m %-21s \u001B[0m |      ", "" + pokemon.getPower().getNom()) + "";
                 }
             } else
             {
-                carteString += String.format("| %-33s |      ", "Pouvoir : -----");
+                carteString += String.format("| %-34s |      ", "Pouvoir : -----");
             }
 
         }
@@ -200,28 +173,9 @@ public class Affichage_Plateau
         String s = "";
         for(Pokemon pokemon : j.getTerrain())
         {
-            s += "-------------------------------------      ";
+            s += "--------------------------------------      ";
         }
         s += "\n";
-        return s;
-    }
-
-    /**
-     * Méthode PertePokemon() : Affiche un texte lorsque l'un des deux joueurs perd un pokemon
-     * @param j : utilisateur
-     * @return s : Chaîne de caractère contenant l'annonce de la mort du Pokémon
-     */
-
-    public String PertePokemon(Joueur j)
-    {
-        String s = "";
-        if (j.getClass() != Ordinateur.class)
-        {
-            s = "\u001B[31m" + "Oh mince ! tu as perdu un Pokémon...\n" + "\u001B[0m";
-        } else
-        {
-            s = "\u001B[31m" + "Tu as éliminé un Pokémon ennemi ! Bien joué !" + "\u001B[0m";
-        }
         return s;
     }
 
@@ -249,6 +203,12 @@ public class Affichage_Plateau
         }
         return s;
     }
+
+    /**
+     * Méthode resumeTour : Crée le résumé du tour de l'adversaire
+     * @param attaquant : Pokémon qui a attaqué
+     * @param cible : Pokémon qui a reçu l'attaque
+     */
 
     public static void resumeTour(Pokemon attaquant, Pokemon cible)
     {
@@ -280,6 +240,10 @@ public class Affichage_Plateau
         m_resume.add("- Son " + attaquant.getNom() + " a infligé " + degats + " dégats à ton " + cible.getNom());
     }
 
+    /**
+     * Méthode AfficheResume : Affiche le résumé du tour de l'adversaire
+     */
+
     public String AfficheResume()
     {
         String concat = "";
@@ -299,6 +263,10 @@ public class Affichage_Plateau
 
         return concat;
     }
+
+    /**
+     * Méthode ajouterTour : ajoute un tour au compteur
+     */
 
     public void ajouterTour()
     {

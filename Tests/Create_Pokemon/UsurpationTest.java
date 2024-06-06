@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UsurpationTest {
+
+    /**
+     * Test_0 : Teste si Usurpation a bien pris le pouvoir d'un autre pokémon
+     */
     @Test
     public void test_0(){
         Pokemon p = new Pokemon();
