@@ -2,7 +2,6 @@ package Players;
 
 import Affichage.AffichageJoueur;
 import Affichage.AffichagePouvoirs;
-import Affichage.Affichage_Plateau;
 import Create_Pokemon.ActionsJoueur;
 import Create_Pokemon.Pokemon;
 
@@ -198,26 +197,41 @@ public class Joueur implements ActionsJoueur {
         return false;
     }
 
+    /**
+     * @return le pseudo du joueur
+     */
     public String getPseudo()
     {
         return m_pseudo;
     }
 
+    /**
+     * @return la liste de pokemons dans la main du joueur
+     */
     public ArrayList<Pokemon> getMain()
     {
         return m_main;
     }
 
+    /**
+     * @return la liste de pokemons dans la pioche du joueur
+     */
     public ArrayList<Pokemon> getPioche()
     {
         return m_pioche;
     }
 
+    /**
+     * @return la liste de pokemons dans le terrain du joueur
+     */
     public ArrayList<Pokemon> getTerrain()
     {
         return m_terrain;
     }
 
+    /**
+     * @return la liste de pokemons dans la defausse du joueur
+     */
     public ArrayList<Pokemon> getDefausse()
     {
         return m_defausse;

@@ -14,14 +14,15 @@ class AffichagePlateau
 # m_tour : Integer
 + <<Create>> Affichage_Plateau()
 + afficherPlateau(J1 : Joueur, J2 : Joueur) : String
-+ creationEspacement(textRef : Integer, textMid : Integer) : String
-+ afficherCarte(j : Joueur) : String
++ {static} affichageDebut()
 + afficherMain(j : Joueur) : String
-+ separation(j : Joueur) : String
 + PertePokemon(j : Joueur) : String
 + {static} resumeTour(attaquant : Pokemon, cible : Pokemon)
 + AfficheResume(): String
 + ajouterTour()
+- creationEspacement(textRef : Integer, textMid : Integer) : String
+- afficherCarte(j : Joueur) : String
+- separation(j : Joueur) : String
 }
 
 class AffichagePouvoirs
@@ -83,10 +84,16 @@ class Joueur
 package "Gestion_Jeu" #DDDDDD {
 class Gestion_Tour
 {
-    + {static} miseEnPlace(joueur1 : Joueur, joueur2 : Joueur, plateau : AffichagePlateau)
-    + {static} tourSuivant(joueur1 : Joueur, joueur2 : Joueur, plateau : AffichagePlateau)
-    + {static} affichageFin(joueur : Joueur)
-
+    - m_pnjCommence : Integer {final}
+    - m_joueur1 : Joueur {final}
+    - m_joueur2 : Joueur {final}
+    - m_plateau : AffichagePlateau {final}
+    + "Creates" Gestion_Tour()
+    + miseEnPlace()
+    + tourSuivant()
+    + affichageFin()
+    + Joueur1aPerdu(): Boolean
+    + Joueur2aPerdu(): Boolean
 }
 }
 package "Create_Pokemon" #DDDDDD {
@@ -202,7 +209,7 @@ Joueur "*" *----> "# m_pioche[*] 1" Pokemon
 Joueur "*" *----> "# m_main[*] 1" Pokemon
 Joueur "*" *----> "# m_defausse[*] 1" Pokemon
 
-Main *-> "2\n" Joueur : crée >
+Gestion_Tour *-> "2\n" Joueur : crée >
 
 Pokemon o-> "1\n-m_element" Element : a une affinité avec  >
 Pokemon *-> "0..1\n~ m_pouvoir" Power : peut utiliser >
@@ -213,9 +220,8 @@ Usurpation o-> "1\n-m_possesseur" Pokemon : est utilisé par  >
 
 Ordinateur --|> Joueur
 AffichagePlateau ..> Joueur : <<calls>>
-Main ..> Joueur :<<uses>>
 Main ..> Gestion_Tour :<<calls>>
-Gestion_Tour ..> Joueur :<<calls>>
+Main ..> AffichagePlateau :<<calls>>
 Gestion_Tour ..> AffichagePlateau :<<calls>>
 Pokemon ..> Initialisation : <<uses>>
 Power ..> AffichagePouvoirs :<<calls>>

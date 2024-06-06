@@ -27,6 +27,9 @@ public class Affichage_Plateau
         m_affichage = "";
     }
 
+    /**
+     * Affiche le départ de la partie
+     */
     public static void affichageDebut(){
         String separation = "===========================================================================================================================\n";
         String goAffichage = "C'est parti !!";
@@ -279,24 +282,9 @@ public class Affichage_Plateau
         return concat;
     }
 
-    public static String afficheDepart()
-    {
-        String separation = "===========================================================================================================================\n";
-        String goAffichage = "C'est parti !!";
-        String espace = "";
-
-        for(int i = 0; i < (separation.length() - goAffichage.length())/2; i++)
-        {
-            espace += " ";
-        }
-        return "\u001B[32m" + separation + separation + espace + goAffichage + "\n"
-                + separation + separation + "\u001B[0m";
-    }
-
     /**
      * Méthode ajouterTour : ajoute un tour au compteur
      */
-
     public void ajouterTour()
     {
         m_tour++;

@@ -25,6 +25,4 @@ class UsurpationTest {
         assertNotNull(p.getPower());
 
     }
-
-
 }

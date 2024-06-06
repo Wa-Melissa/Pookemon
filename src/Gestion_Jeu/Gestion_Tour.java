@@ -9,11 +9,14 @@ import java.util.Scanner;
 
 public class Gestion_Tour {
 
-    private final int m_pnjCommence;
+    private final int m_pnjCommence; //1 pour true, 0 pour false
     private final Joueur m_joueur1;
     private final Joueur m_joueur2;
     private final Affichage_Plateau m_plateau;
 
+    /**
+     * Crée un gestionnaire de tours
+     */
     public Gestion_Tour(){
         //Initialisation des joueurs
         Scanner scanner = new Scanner(System.in);
@@ -116,10 +119,16 @@ public class Gestion_Tour {
         }
     }
 
+    /**
+     * @return true si le joueur 1 a perdu, false sinon
+     */
     public boolean Joueur1aPerdu(){
         return m_joueur1.aPerdu();
     }
 
+    /**
+     * @return true si le joueur 2 a perdu, false sinon
+     */
     public boolean Joueur2aPerdu(){
         return m_joueur2.aPerdu();
     }
