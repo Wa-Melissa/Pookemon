@@ -265,9 +265,14 @@ public class Affichage_Plateau
         return concat;
     }
 
-    public static String afficheDepart()
+    public static String afficheDepart(Joueur J1)
     {
-        String separation = "===========================================================================================================================\n";
+        String separation = "";
+        for (Pokemon carte : J1.getTerrain())
+        {
+            separation += "===========================================";
+
+        }
         String goAffichage = "C'est parti !!";
         String espace = "";
 

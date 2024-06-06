@@ -33,7 +33,7 @@ public class Main
 
         Gestion_Tour.miseEnPlace(joueur1,joueur2, plateau);
 
-        Affichage_Plateau.afficheDepart();
+        Affichage_Plateau.afficheDepart(joueur1);
 
 
 
