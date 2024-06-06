@@ -115,14 +115,17 @@ public class Pokemon implements InfoCible
      * @param autre : Pokémon attaqué
      */
     public void attaque(Pokemon autre, Joueur dresseurAutre){
+        int attaque;
         if(m_element.m_avantage.equals(autre.m_element.getElement())){
-            autre.m_pv -= (m_attaque+10);
+            attaque = m_attaque+10 ;
         } else if (m_element.m_desavantage.equals(autre.m_element.getElement())){
-            if (m_attaque - 10 > 0){ //Pour etre sur de ne pas soigner l'adversaire en l'attaquant
-                autre.m_pv -= (m_attaque-10);
-            }
+            attaque = m_attaque - 10;
         }
-        else {autre.m_pv -= m_attaque;}
+        else { attaque = m_attaque;}
+
+        if (attaque > 0){ //On vérifie que l'attaque n'est pas négative
+            autre.m_pv -= attaque;
+        }
 
         if (autre.m_pv <= 0){
             dresseurAutre.perdPokemon(autre);
