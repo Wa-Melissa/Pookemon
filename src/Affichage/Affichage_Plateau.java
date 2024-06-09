@@ -37,10 +37,19 @@ public class Affichage_Plateau
     public String afficherPlateau(Joueur J1, Joueur J2)
     {
         // Changement de la taille de l'affichage en fonction du nombre de cartes sur le terrain
-        for (Pokemon carte : J1.getTerrain())
+        Joueur joueurPetitTerrain;
+        if (J1.getTerrain().size() < J2.getTerrain().size())
         {
-            m_separation += "===========================================";
+            joueurPetitTerrain = J2;
+        } else
+        {
+            joueurPetitTerrain = J1;
+        }
+        m_separation = "";
+        for (Pokemon carte : joueurPetitTerrain.getTerrain())
+        {
 
+            m_separation += "===========================================";
         }
 
             // Affiche le Tour actuel
@@ -264,6 +273,11 @@ public class Affichage_Plateau
 
         return concat;
     }
+
+    /**
+     * Méthode afficheDepart : Affiche le message de départ de la partie
+     * @param J1
+     */
 
     public static void afficheDepart(Joueur J1)
     {
