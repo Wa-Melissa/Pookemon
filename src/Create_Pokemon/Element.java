@@ -44,21 +44,21 @@ public class Element
      */
     public String getElement()
     {
-        if (m_nom.equals("Feu"))
-        {
-            return "\u001B[31m" + m_nom + "\u001B[0m";
+        switch (m_nom) {
+            case "Feu":
+                return "\u001B[31m" + m_nom + "\u001B[0m";
 
-        } else if (m_nom.equals("Air")) {
+            case "Air":
 
-            return "\u001B[33m" + m_nom + "\u001B[0m";
+                return "\u001B[33m" + m_nom + "\u001B[0m";
 
-        } else if (m_nom.equals("Terre")) {
+            case "Terre":
 
-            return "\u001B[32m" + m_nom + "\u001B[0m";
+                return "\u001B[32m" + m_nom + "\u001B[0m";
 
-        } else {
+            default:
 
-            return "\u001B[34m" + m_nom + "\u001B[0m";
+                return "\u001B[34m" + m_nom + "\u001B[0m";
         }
 
     }
@@ -79,6 +79,11 @@ public class Element
     public String getDesavantage()
     {
         return m_desavantage;
+    }
+
+    @Override
+    public String toString(){
+        return "élément "+m_nom;
     }
 
 }

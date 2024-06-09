@@ -237,4 +237,8 @@ public class Joueur implements ActionsJoueur {
         return m_defausse;
     }
 
+    @Override
+    public String toString(){
+        return "joueur "+m_pseudo;
+    }
 }

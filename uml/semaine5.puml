@@ -61,6 +61,7 @@ class Joueur
 ~ m_commence : Boolean
 ~ m_pseudo : String
 + <<Create>> Joueur(pseudo: String, commence: Boolean)
+~ bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
 + getPseudo(): String
 + getMain(): Pokemon[*]
 + getPioche(): Pokemon[*]
@@ -75,7 +76,7 @@ class Joueur
 + pokemonExiste(nom : String, liste : Pokemon[*] : Boolean
 + autoriserPouvoir(): Boolean
 + utiliserPouvoir(pokemon : Pokemon, adv : Joueur)
-~ bougerPokemon(nom : String, depart : Pokemon[*], arrivee : Pokemon[*])
++ toString(): String {redefines}
 }
 
 
@@ -179,6 +180,7 @@ class Pokemon
 + possedePouvoir():Boolean
 + toString() : String {redefines}
 # estSoigne(soin : Integer)
++ toString(): String {redefines}
 }
 
 
@@ -199,6 +201,7 @@ class Element
 + getElement() : String
 + getAvantage() : String
 + getDesavantage(): String
++ toString(): String {redefines}
 }
 Power ..> ActionsJoueur :<<calls>>
 }
