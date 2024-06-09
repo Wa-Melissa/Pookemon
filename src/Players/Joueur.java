@@ -28,7 +28,7 @@ public class Joueur implements ActionsJoueur {
         m_main = new ArrayList<>(5);
         m_defausse = new ArrayList<>();
         m_terrain = new ArrayList<>(3);
-        for (int i = 0 ; i<21 ; i++){
+        for (int i = 0 ; i<20 ; i++){
             m_pioche.add(new Pokemon());
         }
         if (!m_commence){ m_pioche.add(new Pokemon());}
@@ -40,7 +40,7 @@ public class Joueur implements ActionsJoueur {
     public void piocher(){
         while (m_main.size()<5 && !m_pioche.isEmpty()){
            // Random rdt = new Random();
-            m_main.add(m_pioche.remove(0)); //ou rdt.nextInt(m_pioche.size())
+            m_main.add(m_pioche.remove(0));
         }
     }
 

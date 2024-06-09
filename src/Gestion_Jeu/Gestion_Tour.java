@@ -44,14 +44,14 @@ public class Gestion_Tour {
     public void miseEnPlace(){
         m_joueur1.piocher();
 
-        if (m_joueur1.getClass()!= Ordinateur.class){
+        if (m_pnjCommence == 0){
             System.out.println("Placez vos pokemons !");
             System.out.println(m_plateau.afficherMain(m_joueur1));
         }
         m_joueur1.placerPokemon();
 
         m_joueur2.piocher();
-        if (m_joueur2.getClass()!=Ordinateur.class){
+        if (m_pnjCommence != 0){
             System.out.println("Placez vos pokemons !");
             System.out.println(m_plateau.afficherMain(m_joueur2));
         }
@@ -70,19 +70,19 @@ public class Gestion_Tour {
         m_joueur1.placerPokemon();
 
 
-        if (!(m_joueur1 instanceof  Ordinateur)){
+        if (m_pnjCommence == 0){
             System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
             System.out.println(m_plateau.afficherMain(m_joueur1));
         }
         m_joueur1.utiliserPouvoir(m_joueur2);
         m_joueur1.attaquePokemon(m_joueur2);
-        if ((m_joueur1 instanceof  Ordinateur)){
+        if (m_pnjCommence != 0){
             System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
             System.out.println(m_plateau.AfficheResume());
         }
 
 
-        if (!(m_joueur2 instanceof  Ordinateur)){
+        if (m_pnjCommence != 0){
             System.out.println(m_plateau.afficherMain(m_joueur2));
 
         }
@@ -93,7 +93,7 @@ public class Gestion_Tour {
         m_joueur2.utiliserPouvoir(m_joueur1);
         m_joueur2.attaquePokemon(m_joueur1);
         System.out.println(m_plateau.afficherPlateau(m_joueur1, m_joueur2));
-        if ((m_joueur2 instanceof  Ordinateur)){
+        if (m_pnjCommence == 0){
             System.out.println(m_plateau.AfficheResume());
         }
         m_plateau.ajouterTour();
