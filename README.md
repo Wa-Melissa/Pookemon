@@ -1,46 +1,13 @@
-# POOkemon Project
+# Pookemon Project
 
-On souhaite développer une application pour **un nouveau un jeu Pokémon**.
-C'est un jeu à **deux joueurs** où les dresseurs s'affrontent en plaçant sur leur terrain différents Pokémons.
+C'est un jeu où deux dresseurs s'affrontent en plaçant sur leur terrain différents Pokémons.
 
 ## Organisation
 
-- Travail en **binôme** au sein d'un même groupe de TP
+- Projet en première année de BUT (avril - juin 2024)
+- Travail en binôme
 - Durée : 5 semaines
-- Nombre de séances :
-   - 20h encadrées, en groupe TP
-   - 8h tutorées, en promo complète
-   - travail non-encadré
-- Sujet dévoilé en deux phases :
-  - Phase 1 sur les deux premières semaines
-  - Phase 2 dévoilée le **Lundi 20 mai**.
-
-## Calendrier
-
-- Lundi **22 avril** : début du projet
-- Dimanche **19 mai** : rendu intermédiaire
-- Lundi 20 mai : début de la phase 2
-- Dimanche **9 Juin** à minuit : rendu final
-- Lundi **10** et mardi **11 juin** : soutenances
-
-De plus, il y aura un rendu hebdomadaire **chaque dimanche à minuit**, hors vacances scolaires.
-
-
-## Planning indicatif
-
-C'est un planning indicatif qui donne simplement une trame de ce qu'il faudrait avoir si on a une progression linéaire. Il n'est pas à respecter impérativement.
-
-- **Semaine 1** : Première version de la conception générale du projet et début de l'implémentation.  
-_Fonctionalités_ :
-  - un pokémon est capable d'en attaquer un autre sans gestion des affinités, ni d'une pioche, ni d'une défausse, etc.
-- **Semaine 2** : Conception générale finalisée et suite de l'implémentation.  
-_Fonctionalités_ :
-  - gestion des affinités
-  - gestion des mains, pioches et défausses et terrain
-- **Semaine 3** : Début d'interface utilisateur avec gestion des entrées clavier  
-_Fonctionalités_ :
-  - gestion des tours de jeux
-
+- en Java
 
 ## Le jeu
 
@@ -58,24 +25,27 @@ Chaque joueur a à sa disposition :
 ### Mise en place du jeu
 
 1. Le premier joueur à jouer est choisi aléatoirement.
-1. Le premier joueur possède une **pioche de 20 Pokémons**, le second de **21 Pokémons**.
-1. Chaque joueur **pioche 5 Pokémons**.
-1. Le premier joueur **place 3 Pokémons** de sa main sur son terrain face visible puis le second joueur fait de même.
-1. Le premier joueur commence à jouer.
+2. Le premier joueur possède une **pioche de 20 Pokémons**, le second de **21 Pokémons**.
+3. Chaque joueur **pioche 5 Pokémons**.
+4. Le premier joueur **place 3 Pokémons** de sa main sur son terrain face visible puis le second joueur fait de même.
+5. Le premier joueur commence à jouer.
 
 ### Déroulement d'un tour
 
 À son tour, le joueur humain :
 
-1. **Pioche** des Pokémons jusqu'à en avoir 5 en main ou que sa pioche soit vide.
-1. **Place** un Pokémon de sa main face visible sur chaque emplacement vide sur son terrain.
-1. **Peut attaquer** une fois avec chacun des Pokémons de son terrain, dans l'ordre de son choix.
+1. **Peut lire** la description des pouvoirs des Pokémons de son terrain.
+2. **Peut jouer** une fois le pouvoir de chacun des Pokémons de son terrain, dans l'ordre de son choix.
+3. **Pioche** des Pokémons jusqu'à en avoir 5 en main ou que sa pioche soit vide.
+4. **Place** un Pokémon de sa main face visible sur chaque emplacement vide sur son terrain.
+5. **Attaque** une fois avec chacun des Pokémons de son terrain, dans l'ordre de son choix.
 
 À son tour, l'ordinateur :
 
-1. **Pioche** des Pokémons jusqu'à en avoir 5 en main ou que sa pioche soit vide.
-1. **Place** un Pokémon de sa main face visible sur chaque emplacement vide sur son terrain, **dans l'ordre de sa main**.
-1. **Attaque** une fois avec chacun des Pokémons de son terrain **dans l'ordre de ses terrains**.
+1. **Joue les pouvoirs** de chacun des pokemons de son terrain.
+2. **Pioche** des Pokémons jusqu'à en avoir 5 en main ou que sa pioche soit vide.
+3. **Place** un Pokémon de sa main face visible sur chaque emplacement vide sur son terrain, **dans l'ordre de sa main**.
+4. **Attaque** une fois avec chacun des Pokémons de son terrain **dans l'ordre de ses terrains**.
 
 ## Les Pokémons
 
@@ -84,7 +54,9 @@ Chaque Pokémon possède :
 - un **nom**
 - des **points de vie**
 - une **force d'attaque**
-- une **affinité avec un élément**.
+- une **affinité avec un élément**
+
+Certains Pokémons possèdent en plus un pouvoir spécial unique dans le jeu.
 
 ### Les éléments
 
@@ -94,6 +66,19 @@ Il y a 4 éléments : la terre, l'eau, le feu et l'air. Chaque élément a un av
 - l'eau à l'avantage sur le feu
 - le feu a l'avantage sur l'air
 - l'air a l'avantage sur la terre.
+
+### Les pouvoirs 
+
+Il y a 8 pouvoirs, les pouvoirs peuvent être à utilisation unique ou être réutilisables à chaque tour. 
+
+- **Berserk** : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). Pour le tour en cours, l'attaque de ce Pokémon est doublée.(utilisation unique)
+- **Extension du territoire** : le terrain du joueur gagne un quatrième emplacement sur lequel il peut placer immédiatement un Pokémon de sa main. Lorsque le Pokémon qui a utilisé ce pouvoir meurt, son emplacement est perdu et le terrain possède de nouveau trois emplacements.(utilisation unique)
+- **Kamikaze** : le Pokémon choisit un Pokémon du camp adverse. Les deux Pokémons sont alors éliminés. (utilisation unique)
+- **Peur** : le Pokémon choisit un Pokémon du camp adverse. Jusqu'à la fin de la partie ou à la mort du Pokémon choisi, les attaques de celui-ci infligent 10 dégats de moins. (utilisation unique)
+- **Regeneration** : le Pokémon choisit un Pokémon de son camp. Si le Pokémon a déjà utilisé un pouvoir à utilisation unique, il peut alors l'utiliser une seconde fois. (utilisation unique)
+- **Soin simple** : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). Celui-ci regagne 30 points de vie (mais ne peut pas dépasser son nombre de points de vie initial). (utilisable à chaque tour)
+- ***Soin de zone** : chaque Pokémon de son camp regagne 10 points de vie. (utilisable à chaque tour)
+- **Usurpation** : le Pokémon choisit un Pokémon (dans son camp ou dans le camp adverse). Il gagne alors le pouvoir du Pokémon choisi et le Pokémon choisi perd son pouvoir. Fonctionne aussi pour les pouvoirs à utilisation unique déjà utilisés.(utilisation unique)
 
 ### Attaque des Pokémons
 
@@ -118,16 +103,14 @@ Un Pokémon de l'ordinateur :
 - leur nombre de points de vie est un multiple de 10, compris entre 100 et 200 et déterminé aléatoirement,
 - leur valeur d'attaque est un multiple de 10 compris entre 10 et 40 et déterminé aléatoirement,
 - leur affinité est choisie aléatoirement.
+- ils se voient attribuer un ou aucun pouvoir. Le même pouvoir ne peut se voir attribuer qu'à un seul Pokémon dans tout le jeu.
 
 ## L'application
 
-Elle doit :
-
-- être réalisée en Java,
-- proposer une interface textuelle,
-- permettre de visualiser les Pokémons sur les terrains et ceux en main du joueur humain, mais pas celles de l'ordinateur,
-- indiquer clairement quelles sont les actions possibles et les entrées clavier à effectuer pour les réaliser.
-- afficher les actions effectuées par l'ordinateur lorsque c'est son tour
+- propose une interface textuelle,
+- permet de visualiser les Pokémons sur les terrains et ceux en main du joueur humain, mais pas celles de l'ordinateur,
+- indique quelles sont les actions possibles et les entrées clavier à effectuer pour les réaliser.
+- affiche les actions effectuées par l'ordinateur lorsque c'est son tour
 
 ### Exemple d'affichage
 
@@ -142,96 +125,44 @@ Tour 3:
 
 pioche: 15 pokemons
 defausse: 0 pokemons
-  *--------------------*    *--------------------*    *--------------------*
-  | Attaque: 20        |    | Attaque: 40        |    | Attaque: 20        |
-  | Vie: 50/120        |    | Vie: 50/150        |    | Vie: 50/130        |
-  | Affinite : Air     |    | Affinite : Air     |    | Affinite : Feu     |
-  |     Herbizarre     |    |     Florizarre     |    |     Salamèche      |
-  *--------------------*    *--------------------*    *--------------------*
-
+   ---------------------      ---------------------      -------------------- 
+  |     Herbizarre      |    |     Florizarre      |    |     Salamèche      |
+   --------------------       ---------------------      -------------------- 
+  | Attaque: 20         |    | Attaque: 40         |    | Attaque: 20        |
+  | Vie: 50/120         |    | Vie: 50/150         |    | Vie: 50/130        |
+  | Affinite : Air      |    | Affinite : Air      |    | Affinite : Feu     |
+   ---------------------      ---------------------      --------------------
+  | Pouvoir : Peur   |       | Pouvoir : -----     |    | Pouvoir : -----    |
+   ---------------------      ---------------------      -------------------- 
+  
 ----------------------------------------------------------------------------------------------------
 
-  *--------------------*    *--------------------*    *--------------------*
-  |     Dracaufeu      |    |     Bulbizarre     |    |      Pikachu       |
-  | Affinite : Feu     |    | Affinite : Eau     |    | Affinite : Terre   |
-  | Vie: 50/180        |    | Vie: 50/150        |    | Vie: 50/100        |
-  | Attaque: 40        |    | Attaque: 30        |    | Attaque: 10        |
-  *--------------------*    *--------------------*    *--------------------*
+   --------------------      -----------------------      -------------------- 
+  |     Dracaufeu      |    |     Bulbizarre        |    |      Pikachu       |
+   ---------------------      ---------------------      -------------------- 
+  | Affinite : Feu     |    | Affinite : Eau        |    | Affinite : Terre   |
+  | Vie: 50/180        |    | Vie: 50/150           |    | Vie: 50/100        |
+  | Attaque: 40        |    | Attaque: 30           |    | Attaque: 10        |
+   --------------------      ----------------------      --------------------
+  | Pouvoir : -----    |    | Pouvoir : Soin Simple |    | Pouvoir : -----    |
+   --------------------      -----------------------      -------------------- 
 
 pioche: 12 pokemons
 defausse: 0 pokemons
 
 En main:
-- Reptincel, Feu, Vie: 160, Attaque: 20
-- Carapuce, Eau, Vie: 100, Attaque: 40
-- Tortank, Eau, Vie: 200, Attaque: 20
-- Papilusion, Air, Vie: 120, Attaque: 20
-- Roucool, Air, Vie: 150, Attaque: 30
+- Reptincel, Feu, Vie: 160, Attaque: 20, Pouvoir: Berserk
+- Carapuce, Eau, Vie: 100, Attaque: 40, Pouvoir: Aucun
+- Tortank, Eau, Vie: 200, Attaque: 20, Pouvoir: Extension du territoire
+- Papilusion, Air, Vie: 120, Attaque: 20, Pouvoir: Aucun
+- Roucool, Air, Vie: 150, Attaque: 30, Pouvoir: Aucun
 
                                     Players.Joueur 2
 
 Quel pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
 ```
 
-Il n'est pas nécessaire de reproduire le visuel tel quel mais toutes les informations doivent être présentes.
 
 ### Fin du jeu
 
 À la fin du jeu, un écran affiche "Vous avez perdu" ou "Vous avez gagné" et indique le nombre de Pokémons restants au gagnant.
-
-## Rendus hebdomadaires
-
-Votre projet doit être un fork de ce dépôt dans un groupe ayant pour nom `<nom_etudiant_1>-<nom_etudiant_2>`.
-Votre enseignant en TP et le responsable du module doivent être ajoutés comme Reporter à votre projet.
-
-Vous devez effectuer un rendu par semaine au plus tard le dimanche soir à minuit : la régularité des rendus sera prise en compte dans l'évaluation.
-Un rendu est une branche qui a pour nom `rendu<numéro-rendu>`.
-Le dernier rendu sera évalué en tant que rendu final.
-
-Chaque rendu doit contenir :
-
-- un programme qui compile dont les sources sont dans le répertoire `src/`,
-- un diagramme de classes à jour placé dans le répertoire `uml/` ayant pour nom `semaine<numero>.puml`,
-- un rapport dans le fichier `rapport.md` indiquant vos choix de conception actuels, quelles fonctionnalités ont été implémentées, les difficultés rencontrées et ce que vous planifiez de faire pour le rendu suivant.
-
-La structure du dépôt git doit être la suivante :
-```bash
-.
-├── README.md
-├── rapports/
-    ├── semaine1.md
-    ├── ...
-├── .gitignore
-├── src/
-    ├── ...
-├── uml/
-    ├── Diagramme de classe.puml
-    ├──...
-```
-
-## Rendus évalués
-
-#### 1er rendu : 19 mai
-
-Seront évalués :
-
-- Diagramme de classes complet de la phase 1
-  - respect des conventions UML
-- Code 
-  - cohérence avec l'UML
-- Rapport
-  - Justifications des choix de conception qui font référence au diagramme UML
-
-## Quelques consignes
-
-Veillez :
-
-- à respecter les [P21 Guidelines](https://moodle.unistra.fr/pluginfile.php/2390971/mod_resource/content/2/p21_guidelines.pdf)
-- à la bonne conception du code : il doit être lisible et facile à corriger, à réutiliser, à modifier et à étendre.
-
-## Quelques conseils
-
-- N'essayez pas d'implémenter toutes les fonctionnalités en une seule fois. Commencez par un programme simple mais fonctionnel et intégrez progressivement les fonctionnalités.
-- Faites des commits réguliers sur vos branches de travail.
-- Concevez votre code de façon à ce qu'il soit facile de le modifier et d'y ajouter de nouvelles fonctionnalités, notamment en prévision de la phase 2.
-- La qualité de la conception et du code produit est plus importante que le nombre de fonctionnalités intégrées.
